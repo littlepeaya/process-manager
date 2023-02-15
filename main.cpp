@@ -4,10 +4,11 @@
 
 #include <iostream>
 
-#include "Sessions/Session.hpp"
-#include "Controllers/Controller.hpp"
+#include "Session/Session.hpp"
+#include "Controllers/Controllers.hpp"
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Log/Log.hpp"
+#include "Generic.hpp"
 
 #define WLAN_IFACE_ADDRESS_PATH     "/sys/class/net/wlan0/address" 
 
@@ -118,13 +119,13 @@ int main(int argc, char *argv[]) {
     Log::Create(root["log"]["path"].asString(), true, true, level, level);
     LOG_INFO("The log is contained in the '%s'.", root["log"]["path"].asCString());
 
-    Session session;
+    Session session; 
     if (session.Start() < 0) {
         fprintf(stderr, "Error starting session\n");
         exit(1);
     }
 
-    Controller controller;
+    Controllers controller;
     if (controller.Start() < 0) {
         fprintf(stderr, "Error starting controller\n");
         exit(1);

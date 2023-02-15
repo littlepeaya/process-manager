@@ -6,7 +6,6 @@
 #include <pthread.h>
 #include <sys/stat.h>
 
-#include "gtest/gtest.h"
 #include <string>
 
 class JsonConfiguration {

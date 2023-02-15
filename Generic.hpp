@@ -567,6 +567,6 @@ out:
     close(oldfd);
     close(newfd);
     return -1;
-} 
+}
 
 #endif // GENERIC_HPP

@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/littlepea/MAv3/host/usr/include/glib-2.0",
+                "/home/littlepea/MAv3/host/usr/lib/glib-2.0/include/",
+                "/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/"
+            ],
+            "defines": [],
+            "compilerPath": "/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-arm"
+        }
+    ],
+    "version": 4
+}
