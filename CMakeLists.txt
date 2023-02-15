@@ -13,10 +13,10 @@ if (BOARD STREQUAL MT9050)
     set(SYSROOT "${TOOLS_PATH}/usr/arm-buildroot-linux-gnueabihf/sysroot")
 
     set(CMAKE_C_COMPILER "${TOOLS_PATH}/usr/bin/arm-linux-gnueabihf-gcc")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${SYSROOT}/usr/include/glib-2.0 -L/home/littlepea/MAv3/audio-manager/AutomationTesting/googletest/build/lib -I/home/littlepea/MAv3/audio-manager/AutomationTesting/googletest/googlemock/include -I/home/littlepea/MAv3/audio-manager/AutomationTesting/googletest/googletest/include -I${SYSROOT}/usr/lib/glib-2.0/include -Wno-abi")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${SYSROOT}/usr/include/glib-2.0  -I${SYSROOT}/usr/lib/glib-2.0/include -Wno-abi")
 
     set(CMAKE_CXX_COMPILER "${TOOLS_PATH}/usr/bin/arm-linux-gnueabihf-g++")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${SYSROOT}/usr/include/glib-2.0 -L/home/littlepea/MAv3/audio-manager/AutomationTesting/googletest/build/lib -I/home/littlepea/MAv3/audio-manager/AutomationTesting/googletest/googlemock/include -I/home/littlepea/MAv3/audio-manager/AutomationTesting/googletest/googletest/include -I${SYSROOT}/usr/lib/glib-2.0/include -Wno-abi")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${SYSROOT}/usr/include/glib-2.0  -I${SYSROOT}/usr/lib/glib-2.0/include -Wno-abi")
 
 endif()
 
@@ -31,7 +31,6 @@ file(GLOB_RECURSE SOURCES
 
     "${CMAKE_SOURCE_DIR}/Sessions/*"
 
-    # "${CMAKE_SOURCE_DIR}/AutomationTesting/Libs/*"
 )
 
 message(STATUS "BOARD: ${BOARD}")
@@ -42,11 +41,3 @@ add_executable(${PROJECT_NAME} ${SOURCES} main.cpp)
 
 target_link_libraries(audio-manager pthread glib-2.0 httpserver jsoncpp gobject-2.0 gio-2.0 wpa_client curl rt sqlite3 asound boost_system z)
 
-option(ENABLE_TESTING "Enable Testing: " ON)
-message(STATUS "Enable Testing: ${ENABLE_TESTING}")
-
-if(ENABLE_TESTING) 
-    add_executable(main_test ${SOURCES} main_test.cc /home/littlepea/MAv3/audio-manager/AutomationTesting/Libs/BluetoothTest.hpp)
-
-    target_link_libraries(main_test gtest gmock gtest_main gmock_main pthread glib-2.0 httpserver jsoncpp gobject-2.0 gio-2.0 wpa_client curl rt sqlite3 asound boost_system z)
-endif()
