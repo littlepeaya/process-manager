@@ -11,8 +11,8 @@
 
 class KeepAlive {
 public: 
-    KeepAlive() {}; 
-    ~KeepAlive() = default;
+    KeepAlive(); 
+    ~KeepAlive() ;
 
     int Start();
     void Stop();
@@ -20,11 +20,11 @@ public:
 private: 
     int active_;
 
-    static int StartService(const std::string &name);
+    static void StartService(const std::string &name);
     static void StopService(const std::string &name);
     static void RestartService(); 
     static int CheckALiveService();
-    static void HandleStatus(); 
+    static void HandleKeepAlive(std::string name); 
     static std::string ExecuteCommand(const char *cmd);
 };
 

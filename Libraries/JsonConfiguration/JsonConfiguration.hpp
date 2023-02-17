@@ -24,7 +24,6 @@ public:
     std::string GetPathname();
 
 private:
-
     JsonConfiguration();
 
     static JsonConfiguration *json_configuration_;

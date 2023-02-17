@@ -3,8 +3,6 @@
 
 #include <sqlite3.h>
 
-#include "gtest/gtest.h"
-
 #include <string>
 
 class Database {
@@ -26,8 +24,6 @@ public:
                 void *user_data);
 
 private:
-    FRIEND_TEST(DataTest, CheckExecute);
-
     static Database *kSelf;
     sqlite3 *database_;
 

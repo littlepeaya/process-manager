@@ -4,16 +4,12 @@
 #include <iostream>
 #include <queue>
 #include <pthread.h>
-#include "gtest/gtest.h"
-#include "/home/littlepea/MAv3/audio-manager/Libraries/Log/LogPlus.hpp"
+
+#include "Libraries/Log/LogPlus.hpp"
 
 template <typename T>
 class BlockingQueue {
 private:
-    FRIEND_TEST(BlockingQueueTest, CheckPush); 
-
-    FRIEND_TEST(BlockingQueueTest, CheckTryPop);
-
     std::queue<T> m_queue;
     pthread_mutex_t m_mutex;
     pthread_cond_t m_cond;
@@ -100,7 +96,6 @@ inline bool BlockingQueue<T>::TryPop(T *val, time_t timeout) {
 
     return true;
 }
-
 
 
 #endif // __BLOCKINGQUEUE_HPP__

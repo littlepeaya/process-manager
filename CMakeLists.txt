@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-set(PROJECT_NAME audio-manager)
+set(PROJECT_NAME process-manager)
 
 project(${PROJECT_NAME})
 
@@ -29,7 +29,7 @@ file(GLOB_RECURSE SOURCES
 
     "${CMAKE_SOURCE_DIR}/Controllers/*"
 
-    "${CMAKE_SOURCE_DIR}/Sessions/*"
+    "${CMAKE_SOURCE_DIR}/Session/*"
 
 )
 
@@ -39,5 +39,5 @@ message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
 add_executable(${PROJECT_NAME} ${SOURCES} main.cpp)
 
-target_link_libraries(audio-manager pthread glib-2.0 httpserver jsoncpp gobject-2.0 gio-2.0 wpa_client curl rt sqlite3 asound boost_system z)
+target_link_libraries(process-manager pthread glib-2.0 httpserver jsoncpp gobject-2.0 gio-2.0 wpa_client curl rt sqlite3 asound boost_system z)
 

@@ -4,8 +4,6 @@
 #include <signal.h>
 #include <time.h>
 
-#include "gtest/gtest.h"
-
 #include <string>
 #include <vector>
 
@@ -26,18 +24,6 @@ public:
     void CancelTimerHandler(int (*routine)(void *user_data));
     
 private:
-    FRIEND_TEST(TimerTest, Constructor);
-
-    FRIEND_TEST(TimerTest, HadBeenStarted); 
-
-    FRIEND_TEST(TimerTest, TimerNotStarted); 
-
-    FRIEND_TEST(TimerTest, CheckHandleTimerHandlers); 
-
-    FRIEND_TEST(TimerTest, CheckRegisterTimerHandler); 
-
-    FRIEND_TEST(TimerTest, CheckCancelTimerHandler); 
-
     timer_t timerid_;
     struct sigevent sigev_;
     bool has_started_;
