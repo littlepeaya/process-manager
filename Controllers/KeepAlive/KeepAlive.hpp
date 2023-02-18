@@ -12,7 +12,7 @@
 class KeepAlive {
 public: 
     KeepAlive(); 
-    ~KeepAlive() ;
+    ~KeepAlive();
 
     int Start();
     void Stop();
