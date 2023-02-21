@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <sys/stat.h>
 
+
 #include <string>
 
 class JsonConfiguration {

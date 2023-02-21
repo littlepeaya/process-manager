@@ -4,9 +4,9 @@ int Resources::check_RAM_ = 0;
 int Resources::check_CPU_ = 0; 
 
 Resources::Resources() : 
-                        is_stable_(true)
-{
-
+                        is_stable_(true) { 
+    time_.RegisterTimerHandler(HandleStatusCPUusage, this); 
+    time_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
 }
 
 Resources::~Resources()
@@ -22,20 +22,23 @@ Resources::Start() {
             return -1; 
         }
         else {
-            CheckResource(0, TIME_CHECK); 
+            // CheckResource(0, TIME_CHECK); 
             LOG_INFO("Resources is avaible acquired successfully"); 
             is_stable_ = true; 
             return 1; 
         }
+        sleep(TIME_CHECK); 
     }
+    return 1; 
+}
+void 
+Resources::Run() {
+    time_.Start(2*1000,7*1000);
 }
 
 void 
 Resources::CheckResource(int timepoint, int timeval) {
-    time_.Start(0,50);
-    HandleStatusCPUusage();
-    HandleStatusRAMIsOver();
-    sleep(5); 
+    
 }
 
 void 
@@ -46,15 +49,19 @@ Resources::Stop() {
 
 }
 
-void 
-Resources::HandleStatusCPUusage() {
+int 
+Resources::HandleStatusCPUusage(void *user_data) {
+    auto data = (Resources *) user_data;
+    LOG_INFO(" percentCPU check"); 
 
+}
+
+int  
+Resources::HandleStatusRAMIsOver(void *user_data) {
+    auto data = (Resources *) user_data; 
+    LOG_INFO("RAM check"); 
 
 }
 
-void 
-Resources::HandleStatusRAMIsOver() {
-
-}
 
 

@@ -5,6 +5,7 @@
 #include "Libraries/Log/LogPlus.hpp"
 #include "Generic.hpp"
 
+
 JsonConfiguration *JsonConfiguration::json_configuration_ = nullptr;
 pthread_mutex_t JsonConfiguration::json_configured_mutex_ = PTHREAD_MUTEX_INITIALIZER;
 

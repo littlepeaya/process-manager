@@ -7,6 +7,8 @@
 
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Log/LogPlus.hpp"
+#include "Libraries/Timer/Timer.hpp"
+
 
 
 class KeepAlive {
@@ -16,16 +18,18 @@ public:
 
     int Start();
     void Stop();
+    void Run(); 
 
 private: 
-    int active_;
+    std::vector<std::string> name_services; 
+    bool keep_;
+    bool all_active_; 
 
-    static void StartService(const std::string &name);
-    static void StopService(const std::string &name);
-    static void RestartService(); 
-    static int CheckALiveService();
-    static void HandleKeepAlive(std::string name); 
-    static std::string ExecuteCommand(const char *cmd);
+   static void StartService(std::string name);
+    void StopService(std::string name);
+    void RestartService(std::string name); 
+    static int HandleKeepAlive(void *user_data); 
+    Timer periodic_check_;
 };
 
 

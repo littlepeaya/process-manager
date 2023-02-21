@@ -241,5 +241,15 @@ CMakeFiles/process-manager.dir/Controllers/Controllers.cpp.o: \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Exception.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Atomic/AtomicCounter.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogFile.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Timer/Timer.hpp \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/signal.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/signum.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/siginfo.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/sigaction.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/sigcontext.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/asm/sigcontext.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/sigstack.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/ucontext.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/sigthread.h \
  /home/littlepea/MAv3/Dev/process-manager/Controllers/LogHistory/LogHistory.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Controllers/Resources/Resources.hpp

@@ -3,11 +3,12 @@
 
 #include<Libraries/Log/LogPlus.hpp>
 #include<Libraries/Timer/Timer.hpp>
+#include<Controllers/LogHistory/LogHistory.hpp>
 #include<unistd.h> 
 
 #define LIMIT_RAM_FREE 50 //50MB 
 #define LIMIT_CPU_IN_USE 70 // 70% 
-#define TIME_CHECK 60*1000*1000 //1H 
+#define TIME_CHECK 60*60*1000 //1H 
 
 typedef struct {
     float used_mem;
@@ -28,17 +29,19 @@ public:
 
     int Start();
     void Stop();
+    void Run(); 
     void CheckResource(int timepoint, int timeval); 
 
 private: 
     static int check_RAM_;
     static int check_CPU_;
 
-    static void HandleStatusRAMIsOver(); 
-    static void HandleStatusCPUusage(); 
+    static int HandleStatusRAMIsOver(void *user_data); 
+    static int HandleStatusCPUusage(void *user_data); 
 
     bool is_stable_; 
     Timer time_;
+    LogHistory log_tranfer_; 
 };
 
 #endif //__MAV3_PROCESS_MANAGER_RESOURCES_HPP__

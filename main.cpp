@@ -10,6 +10,7 @@
 #include "Libraries/Log/Log.hpp"
 #include "Generic.hpp"
 
+
 #define WLAN_IFACE_ADDRESS_PATH     "/sys/class/net/wlan0/address" 
 
 #define WLAN_IFACE_ADDRESS_LEN      17 
@@ -130,6 +131,8 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error starting controller\n");
         exit(1);
     }
+
+    controller.Run(); 
 
     GMainLoop *loop = g_main_loop_new(NULL, FALSE);
     g_main_loop_run(loop);

@@ -216,15 +216,6 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 TOOLS_PATH:UNINITIALIZED=/home/littlepea/MAv3/host
 
 //Value Computed by CMake
-audio-manager_BINARY_DIR:STATIC=/home/littlepea/MAv3/Dev/process-manager/build
-
-//Value Computed by CMake
-audio-manager_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-audio-manager_SOURCE_DIR:STATIC=/home/littlepea/MAv3/Dev/process-manager
-
-//Value Computed by CMake
 process-manager_BINARY_DIR:STATIC=/home/littlepea/MAv3/Dev/process-manager/build
 
 //Value Computed by CMake

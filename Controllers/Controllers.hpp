@@ -13,9 +13,12 @@ public:
 
     int Start();
     void Stop(); 
+    void Run(); 
 
 private: 
     KeepAlive keepalive_;
+    Resources resources_;
+    LogHistory log_history_;
 
 };
 

@@ -493,12 +493,12 @@ out:
 
 inline bool 
 Execute(const String& command) {
-    LOG_INFO("Execute: %s", command.data());
+    // LOG_INFO("Execute: %s", command.data());
     int result = system(command.c_str());
     if (WIFEXITED(result) && WEXITSTATUS(result) == EXIT_SUCCESS)
         return true;
 
-    LOG_ERRO("Could not execute command: %d - %d - %s", result, errno, strerror(errno));
+    // LOG_ERRO("Could not execute command: %d - %d - %s", result, errno, strerror(errno));
     return false;
 }
 
@@ -567,6 +567,25 @@ out:
     close(oldfd);
     close(newfd);
     return -1;
+}
+
+inline std::string
+ExecuteCommand(const char *cmd) {
+    try {
+        std::array<char, 128> buffer{};
+        std::string result;
+        std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+        if (!pipe) {
+            THROW_EXCEPTION();  
+        }
+        while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+            result += buffer.data();
+        }
+        return result;
+    }catch (std::exception& ex) {
+        LOG_ERRO(ex.what());
+        return String();
+    }
 }
 
 #endif // GENERIC_HPP
