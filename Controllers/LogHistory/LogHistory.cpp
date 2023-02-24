@@ -19,14 +19,12 @@ LogHistory::Start() {
     auto config = JsonConfiguration::GetInstance()->Read();
     log_periority_ = config["LogTranfer"]["periority"].asInt(); 
     url_server_ = config["LogTranfer"]["server"].asString();
-    LOG_INFO("Start Log HIstory"); 
-    return 1; 
+    LOG_INFO("Start Log History"); 
+
+    time_upload_file_log_.Start(200, PERIODIC_UPLOAD); 
+  
 }
 
-void 
-LogHistory::Run() {
-    time_upload_file_log_.Start(1*1000, 5*1000);
-}
 
 void 
 LogHistory::Stop() {

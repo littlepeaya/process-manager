@@ -132,8 +132,6 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    controller.Run(); 
-
     GMainLoop *loop = g_main_loop_new(NULL, FALSE);
     g_main_loop_run(loop);
 

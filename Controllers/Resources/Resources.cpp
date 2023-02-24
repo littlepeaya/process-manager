@@ -5,8 +5,8 @@ int Resources::check_CPU_ = 0;
 
 Resources::Resources() : 
                         is_stable_(true) { 
-    time_.RegisterTimerHandler(HandleStatusCPUusage, this); 
-    time_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
+    timer_check_RAM_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
+    timer_check_CPU_.RegisterTimerHandler(HandleStatusCPUusage,this); 
 }
 
 Resources::~Resources()
@@ -16,44 +16,62 @@ Resources::~Resources()
 
 int 
 Resources::Start() {
-    while(true) {
-        if(!is_stable_) {
-            LOG_DBUG("Resources is not released"); 
-            return -1; 
-        }
-        else {
-            // CheckResource(0, TIME_CHECK); 
-            LOG_INFO("Resources is avaible acquired successfully"); 
-            is_stable_ = true; 
-            return 1; 
-        }
-        sleep(TIME_CHECK); 
-    }
-    return 1; 
-}
-void 
-Resources::Run() {
-    time_.Start(2*1000,7*1000);
-}
+    if(timer_check_CPU_.Start(100, TIME_CHECK) < 0 ) {
+        LOG_ERRO("Could not start timer to check CPU"); 
+        return -1; 
+    } 
 
-void 
-Resources::CheckResource(int timepoint, int timeval) {
-    
+    // if(timer_check_RAM_.Start(150,TIME_CHECK) < 0 ) {
+    //     LOG_ERRO("Could not start time to check RAM"); 
+    //     return -1; 
+    // } 
+    return 1; 
 }
 
 void 
 Resources::Stop() {
-    // time_.CancelTimerHandler(CheckResource);
-
     is_stable_ = true; 
-
 }
 
 int 
 Resources::HandleStatusCPUusage(void *user_data) {
     auto data = (Resources *) user_data;
-    LOG_INFO(" percentCPU check"); 
+    std::string line;
+    size_t substr_start = 0;
+    size_t substr_len;
+    float percent_cpu_init[TIME_COUNT]; 
+    float percent_cpu = 0.00; 
 
+    unsigned long long stats[CP_STATES];
+    unsigned long long stats_all; 
+    int time_count = 0;
+
+    while (time_count != TIME_COUNT) {
+        stats_all = 0; 
+        std::ifstream stat_file("/proc/stat");
+        getline(stat_file, line);
+        stat_file.close();
+
+        substr_len = line.find_first_of(" ", 3);
+
+        for (unsigned i = 0; i < 4; i++) {
+            substr_start = line.find_first_not_of(" ", substr_len);
+            substr_len = line.find_first_of(" ", substr_start);
+            stats[i] = std::stoll(line.substr(substr_start, substr_len));
+            stats_all += stats[i];
+
+        }
+        
+
+        percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.0 ;
+        time_count++;
+        sleep(0.1); 
+    }
+
+    for( int i = 0; i < TIME_COUNT; ++i) {
+        percent_cpu += percent_cpu_init[i]; 
+    }
+    LOG_INFO("Percent CPU avager is: %0.8f percent", (float)percent_cpu/TIME_COUNT); 
 }
 
 int  

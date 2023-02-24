@@ -4,10 +4,8 @@
 
 KeepAlive::KeepAlive() :
                         keep_(true), 
-                        all_active_(false), 
-                        name_services() {
-        
-    periodic_check_.RegisterTimerHandler(HandleKeepAlive, this);
+                        all_active_(false) {
+    check_priodic_time_.RegisterTimerHandler(HandleKeepAlive, this);
 
 }
 
@@ -19,12 +17,7 @@ KeepAlive::~KeepAlive(){
 int 
 KeepAlive::Start() { 
     auto configuration = JsonConfiguration::GetInstance()->Read();
-    // for(int i = 0; i < configuration["services"].size(); ++i) {
-    //     name_services[i] = configuration["services"][i].asString();
-    //     LOG_INFO("Service %s is started", name_services[i].c_str()); 
-    // }
-    // LOG_INFO("%d", (int)all_active_); 
-    
+    check_priodic_time_.Start(100, CHECK_PERIODIC_TIME);
     if(!all_active_) {
         all_active_ = false;
     } 
@@ -34,11 +27,6 @@ KeepAlive::Start() {
     return 1;   
 }
 
-void 
-KeepAlive::Run() {
-    auto configuration = JsonConfiguration::GetInstance()->Read();
-    periodic_check_.Start(1*1000,15*1000);
-}
 
 void 
 KeepAlive::Stop() {
@@ -104,6 +92,12 @@ if(!active_) {
     }
     return 0; 
     }
+
+    // for(int i = 0; i < configuration["services"].size(); ++i) {
+    //     name_services[i] = configuration["services"][i].asString();
+    //     LOG_INFO("Service %s is started", name_services[i].c_str()); 
+    // }
+    // LOG_INFO("%d", (int)all_active_); 
 */
 
 

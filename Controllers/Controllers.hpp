@@ -13,7 +13,6 @@ public:
 
     int Start();
     void Stop(); 
-    void Run(); 
 
 private: 
     KeepAlive keepalive_;

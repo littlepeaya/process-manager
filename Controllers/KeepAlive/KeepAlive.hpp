@@ -9,7 +9,13 @@
 #include "Libraries/Log/LogPlus.hpp"
 #include "Libraries/Timer/Timer.hpp"
 
+#define CHECK_PERIODIC_TIME  15*1000 //15s 
 
+typedef struct {
+    std::string name; 
+    int periority; 
+    bool is_monitor; 
+} Service; 
 
 class KeepAlive {
 public: 
@@ -18,18 +24,18 @@ public:
 
     int Start();
     void Stop();
-    void Run(); 
 
 private: 
-    std::vector<std::string> name_services; 
     bool keep_;
     bool all_active_; 
 
-   static void StartService(std::string name);
+    static void StartService(std::string name);
     void StopService(std::string name);
     void RestartService(std::string name); 
     static int HandleKeepAlive(void *user_data); 
-    Timer periodic_check_;
+
+    Timer check_priodic_time_;
+    Service service_; 
 };
 
 
