@@ -7,6 +7,7 @@ Resources::Resources() :
                         is_stable_(true) { 
     timer_check_RAM_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
     timer_check_CPU_.RegisterTimerHandler(HandleStatusCPUusage,this); 
+    timer_check_Load_Avereages_.RegisterTimerHandler(LoadAverages, this); 
 }
 
 Resources::~Resources()
@@ -25,6 +26,11 @@ Resources::Start() {
     //     LOG_ERRO("Could not start time to check RAM"); 
     //     return -1; 
     // } 
+    if(timer_check_Load_Avereages_.Start(150, TIME_CHECK) < 0 ) {
+        LOG_ERRO("Could not start timer to check CPU"); 
+        return -1; 
+    } 
+
     return 1; 
 }
 
@@ -65,7 +71,7 @@ Resources::HandleStatusCPUusage(void *user_data) {
 
         percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.0 ;
         time_count++;
-        sleep(0.1); 
+        // sleep(0.01); 
     }
 
     for( int i = 0; i < TIME_COUNT; ++i) {
@@ -77,8 +83,35 @@ Resources::HandleStatusCPUusage(void *user_data) {
 int  
 Resources::HandleStatusRAMIsOver(void *user_data) {
     auto data = (Resources *) user_data; 
-    LOG_INFO("RAM check"); 
+    std::string line; 
+    size_t substr_start; 
+    size_t substr_len; 
 
+    std::ifstream meminfo_file("/proc/meminfo"); 
+    getline(meminfo_file, line); 
+    meminfo_file.close(); 
+
+    for ( int i = 0; i < 4; ++i ) {
+        substr_start = 0; 
+        substr_len = line.find("MemTotal:", 10); 
+        substr_start = line.find_first_not_of(" ", substr_len); 
+    
+    }
+
+}
+
+int
+Resources::LoadAverages(void *user_data) {
+    auto data = (Resources *) user_data; 
+    double load_avg[3];
+    if (getloadavg(load_avg, 3) != -1) {
+        LOG_INFO("CPU load averages in 1  minute: %0.2f", load_avg[0]); 
+        LOG_INFO("CPU load averages in 5  minute: %0.2f", load_avg[1]); 
+        LOG_INFO("CPU load averages in 15 minute: %0.2f", load_avg[2]); 
+    }
+
+
+    
 }
 
 

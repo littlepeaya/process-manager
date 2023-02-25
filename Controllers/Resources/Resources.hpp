@@ -11,7 +11,7 @@
 
 #define LIMIT_RAM_FREE 50 //50MB 
 #define LIMIT_CPU_IN_USE 50 // 50 % 
-#define TIME_CHECK 1*100 //20s 
+#define TIME_CHECK 1*1000 //20s 
 
 #define CP_USER   0
 #define CP_NICE   1 
@@ -21,8 +21,11 @@
 #define TIME_COUNT 10 
 
 typedef struct {
-    float used_mem;
-    float total_mem;
+    unsigned long long  mem_total;
+    unsigned long long  mem_free;
+    unsigned long long  mem_available; 
+    unsigned long long  buffers; 
+    unsigned long long  cached;
 } MemnoryStatus; 
 
 enum MEMORY_MODE
@@ -46,10 +49,12 @@ private:
 
     static int HandleStatusRAMIsOver(void *user_data); 
     static int HandleStatusCPUusage(void *user_data); 
+    static int LoadAverages(void *user_data); 
 
     bool is_stable_; 
     Timer timer_check_RAM_;
     Timer timer_check_CPU_; 
+    Timer timer_check_Load_Avereages_; 
     LogHistory log_tranfer_; 
 };
 
