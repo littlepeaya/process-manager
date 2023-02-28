@@ -259,7 +259,9 @@ CMakeFiles/process-manager.dir/Controllers/Controllers.cpp.o: ../Controllers/Con
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/codecvt.h \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/basic_file.h \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/c++io.h \
-  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/fstream.tcc
+  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/fstream.tcc \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/reboot.h \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/reboot.h
 
 CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o: ../Controllers/KeepAlive/KeepAlive.cpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdc-predef.h \
@@ -1315,7 +1317,9 @@ CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o: ../Control
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/codecvt.h \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/basic_file.h \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/c++io.h \
-  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/fstream.tcc
+  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/fstream.tcc \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/reboot.h \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/reboot.h
 
 CMakeFiles/process-manager.dir/Session/Session.cpp.o: ../Session/Session.cpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdc-predef.h
@@ -10931,6 +10935,8 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/basic_file.h \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/c++io.h \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/fstream.tcc \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/reboot.h \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/reboot.h \
   ../Controllers/Controllers.hpp \
   ../Libraries/JsonConfiguration/JsonConfiguration.hpp \
   ../Libraries/Log/Log.hpp \
@@ -11273,6 +11279,8 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/multi.h:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/easy.h:
+
+/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/curlver.h:
 
 /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/basic_file.h:
 
@@ -11740,6 +11748,8 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 
 /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/cpp_type_traits.h:
 
+/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/reboot.h:
+
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/glib/gfileutils.h:
 
 /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_relops.h:
@@ -11849,6 +11859,8 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/gio/gdbusserver.h:
 
 /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cstddef:
+
+/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/reboot.h:
 
 /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/std_abs.h:
 
@@ -11983,6 +11995,10 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/local_lim.h:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/gio/gdbusnamewatching.h:
+
+/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/system.h:
+
+/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/limits.h:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/glib/gconvert.h:
 
@@ -12453,9 +12469,3 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/array:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/net/if.h:
-
-/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/curlver.h:
-
-/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/limits.h:
-
-/home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/system.h:

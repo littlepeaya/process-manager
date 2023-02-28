@@ -40,15 +40,16 @@ KeepAlive::HandleKeepAlive(void *user_data) {
     auto config = JsonConfiguration::GetInstance()->Read(); 
         for (int i = 0; i < config["services"].size(); ++i) {
             std::string service; 
-            service = config["services"][i].asString(); 
-            std::string command = "pidof " + std::string(service);
-            // int ret = std::stoi(ExecuteCommand(command.c_str())); 
+            service = config["services"][i]["name"].asString(); 
+            if(config["services"][i]["monitor"].isBool()) {
+            std::string command = "pidof " + std::string(service); 
             if (Execute(command)) 
                 LOG_INFO("Service %s is active", service.c_str());
             else {
                 LOG_DBUG("Service %s is not active. Trying Start......", service.c_str()); 
                 StartService(service);
                 usleep(1000);
+            }
             }
         }
     return 0; 

@@ -1,6 +1,12 @@
 #ifndef __MAV3_PROCESS_MANAGER_RESOURCES_HPP__
 #define __MAV3_PROCESS_MANAGER_RESOURCES_HPP__
 
+/*
+total memory in used formula : = +total + shmem - free - buffer - cached - sreclaimable  
+load avagers is help to know process is running and how much processed is in message queue. But it is not im
+important as it shows. < following loadavg of linux git > 
+*/
+
 #include<Libraries/Log/LogPlus.hpp>
 #include<Libraries/Timer/Timer.hpp>
 #include<Controllers/LogHistory/LogHistory.hpp>
@@ -8,10 +14,13 @@
 #include<unistd.h> 
 #include<fstream>
 #include<string>
+#include<sys/reboot.h> 
+#include<linux/reboot.h> 
 
 #define LIMIT_RAM_FREE 50 //50MB 
 #define LIMIT_CPU_IN_USE 50 // 50 % 
 #define TIME_CHECK 1*1000 //20s 
+#define CORE 3 
 
 #define CP_USER   0
 #define CP_NICE   1 
@@ -52,9 +61,9 @@ private:
     static int LoadAverages(void *user_data); 
 
     bool is_stable_; 
-    Timer timer_check_RAM_;
-    Timer timer_check_CPU_; 
-    Timer timer_check_Load_Avereages_; 
+    Timer timer_check_RAM_; //important 
+    Timer timer_check_CPU_; //important 
+    Timer timer_check_Load_Averages_; // not important 
     LogHistory log_tranfer_; 
 };
 

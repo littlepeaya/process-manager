@@ -7,7 +7,7 @@ Resources::Resources() :
                         is_stable_(true) { 
     timer_check_RAM_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
     timer_check_CPU_.RegisterTimerHandler(HandleStatusCPUusage,this); 
-    timer_check_Load_Avereages_.RegisterTimerHandler(LoadAverages, this); 
+    timer_check_Load_Averages_.RegisterTimerHandler(LoadAverages, this); 
 }
 
 Resources::~Resources()
@@ -22,14 +22,14 @@ Resources::Start() {
         return -1; 
     } 
 
-    // if(timer_check_RAM_.Start(150,TIME_CHECK) < 0 ) {
-    //     LOG_ERRO("Could not start time to check RAM"); 
-    //     return -1; 
-    // } 
-    if(timer_check_Load_Avereages_.Start(150, TIME_CHECK) < 0 ) {
-        LOG_ERRO("Could not start timer to check CPU"); 
+    if(timer_check_RAM_.Start(150,TIME_CHECK) < 0 ) {
+        LOG_ERRO("Could not start time to check RAM"); 
         return -1; 
     } 
+    if(timer_check_Load_Averages_.Start(150, TIME_CHECK) < 0 ) {
+        LOG_ERRO("Could not start timer to check CPU"); 
+        return -1; 
+    }
 
     return 1; 
 }
@@ -84,34 +84,59 @@ int
 Resources::HandleStatusRAMIsOver(void *user_data) {
     auto data = (Resources *) user_data; 
     std::string line; 
-    size_t substr_start; 
-    size_t substr_len; 
+    std::string substr;
+    size_t substr_start;
+    size_t substr_len;
 
-    std::ifstream meminfo_file("/proc/meminfo"); 
-    getline(meminfo_file, line); 
-    meminfo_file.close(); 
+    unsigned int total_mem;
+    unsigned int actually_in_used_mem = 0; 
 
-    for ( int i = 0; i < 4; ++i ) {
-        substr_start = 0; 
-        substr_len = line.find("MemTotal:", 10); 
-        substr_start = line.find_first_not_of(" ", substr_len); 
-    
+    std::ifstream memory_info("/proc/meminfo");
+
+    while (std::getline ( memory_info, line)) {
+        substr_start = 0;
+        substr_len = line.find_first_of(':'); 
+        substr = line.substr(substr_start, substr_len); 
+        substr_start = line.find_first_not_of(" ", substr_len + 1); 
+        substr_len = line.find_first_of('k') - substr_start; 
+
+        if( std::strcmp( substr.c_str(), "MemTotal") == 0) {
+            actually_in_used_mem += std::stoi(line.substr(substr_start, substr_len)); 
+        }
+        if( std::strcmp( substr.c_str(), "Shmem") == 0) {
+            actually_in_used_mem += std::stoi(line.substr(substr_start, substr_len)); 
+        }
+        if( std::strcmp( substr.c_str(), "MemFree") == 0) {
+            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len)); 
+        }
+        if( std::strcmp( substr.c_str(), "Buffers") == 0) {
+            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len));  
+        }
+        if( std::strcmp( substr.c_str(), "Cached") == 0) {
+            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len)); 
+        }
+        if( std::strcmp( substr.c_str(), "SReclaimable") == 0) {
+            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len)); 
+        }
     }
 
+    actually_in_used_mem = static_cast<int> (actually_in_used_mem/1024);  // convert to MB 
+    LOG_INFO("actually memory in used is : %d", actually_in_used_mem); 
+
+
 }
+
 
 int
 Resources::LoadAverages(void *user_data) {
     auto data = (Resources *) user_data; 
     double load_avg[3];
-    if (getloadavg(load_avg, 3) != -1) {
-        LOG_INFO("CPU load averages in 1  minute: %0.2f", load_avg[0]); 
-        LOG_INFO("CPU load averages in 5  minute: %0.2f", load_avg[1]); 
-        LOG_INFO("CPU load averages in 15 minute: %0.2f", load_avg[2]); 
+    getloadavg(load_avg, 3); 
+    if(load_avg[1] > CORE) {
+        LOG_ERRO("The system has a problem. Trying reboot ..."); 
+        reboot(LINUX_REBOOT_CMD_RESTART); 
+        
     }
-
-
-    
 }
 
 
