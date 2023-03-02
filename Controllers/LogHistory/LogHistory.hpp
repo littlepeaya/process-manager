@@ -5,6 +5,7 @@
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Timer/Timer.hpp"
 
+
 #define LOG_SIZE 50 //mb 
 #define PERIODIC_UPLOAD 7*24*60*60 // 1 week 
 
@@ -17,11 +18,16 @@ public:
     int Start();
     void Stop();
 private: 
-    int log_periority_;
     std::string url_server_; 
-    unsigned int log_size_;
 
-    Timer time_upload_file_log_;
+    static unsigned int log_size_;
+    static std::string log_path_;
+
+    static int CheckLogSize(void *user_data); 
+    static void LogTransfer(); 
+
+    Timer time_upload_file_log_; 
+
 }; 
 
 #endif //__MAV3_PROCESS_MANAGER_LOG_HISTORY__ 

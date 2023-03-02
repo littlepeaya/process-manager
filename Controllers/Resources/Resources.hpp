@@ -56,6 +56,7 @@ private:
     static int check_RAM_;
     static int check_CPU_;
 
+
     static int HandleStatusRAMIsOver(void *user_data); 
     static int HandleStatusCPUusage(void *user_data); 
     static int LoadAverages(void *user_data); 
@@ -64,7 +65,7 @@ private:
     Timer timer_check_RAM_; //important 
     Timer timer_check_CPU_; //important 
     Timer timer_check_Load_Averages_; // not important 
-    LogHistory log_tranfer_; 
+    LogHistory log_transfer_; 
 };
 
 #endif //__MAV3_PROCESS_MANAGER_RESOURCES_HPP__
