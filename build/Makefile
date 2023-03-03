@@ -225,6 +225,54 @@ Controllers/Resources/Resources.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.s
 .PHONY : Controllers/Resources/Resources.cpp.s
 
+Session/LMainBus/LMainBus.o: Session/LMainBus/LMainBus.cpp.o
+.PHONY : Session/LMainBus/LMainBus.o
+
+# target to build an object file
+Session/LMainBus/LMainBus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o
+.PHONY : Session/LMainBus/LMainBus.cpp.o
+
+Session/LMainBus/LMainBus.i: Session/LMainBus/LMainBus.cpp.i
+.PHONY : Session/LMainBus/LMainBus.i
+
+# target to preprocess a source file
+Session/LMainBus/LMainBus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.i
+.PHONY : Session/LMainBus/LMainBus.cpp.i
+
+Session/LMainBus/LMainBus.s: Session/LMainBus/LMainBus.cpp.s
+.PHONY : Session/LMainBus/LMainBus.s
+
+# target to generate assembly for a file
+Session/LMainBus/LMainBus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.s
+.PHONY : Session/LMainBus/LMainBus.cpp.s
+
+Session/LocalNetwork.o: Session/LocalNetwork.cpp.o
+.PHONY : Session/LocalNetwork.o
+
+# target to build an object file
+Session/LocalNetwork.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o
+.PHONY : Session/LocalNetwork.cpp.o
+
+Session/LocalNetwork.i: Session/LocalNetwork.cpp.i
+.PHONY : Session/LocalNetwork.i
+
+# target to preprocess a source file
+Session/LocalNetwork.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.i
+.PHONY : Session/LocalNetwork.cpp.i
+
+Session/LocalNetwork.s: Session/LocalNetwork.cpp.s
+.PHONY : Session/LocalNetwork.s
+
+# target to generate assembly for a file
+Session/LocalNetwork.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.s
+.PHONY : Session/LocalNetwork.cpp.s
+
 Session/Session.o: Session/Session.cpp.o
 .PHONY : Session/Session.o
 
@@ -1350,6 +1398,12 @@ help:
 	@echo "... Controllers/Resources/Resources.o"
 	@echo "... Controllers/Resources/Resources.i"
 	@echo "... Controllers/Resources/Resources.s"
+	@echo "... Session/LMainBus/LMainBus.o"
+	@echo "... Session/LMainBus/LMainBus.i"
+	@echo "... Session/LMainBus/LMainBus.s"
+	@echo "... Session/LocalNetwork.o"
+	@echo "... Session/LocalNetwork.i"
+	@echo "... Session/LocalNetwork.s"
 	@echo "... Session/Session.o"
 	@echo "... Session/Session.i"
 	@echo "... Session/Session.s"

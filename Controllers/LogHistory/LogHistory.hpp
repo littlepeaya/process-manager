@@ -5,9 +5,8 @@
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Timer/Timer.hpp"
 
-
 #define LOG_SIZE 50 //mb 
-#define PERIODIC_UPLOAD 7*24*60*60 // 1 week 
+#define PERIODIC_UPLOAD 5*24*60*60*1000 // 1 week 
 
 
 class LogHistory {

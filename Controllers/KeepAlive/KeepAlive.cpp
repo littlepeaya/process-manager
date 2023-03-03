@@ -55,6 +55,18 @@ KeepAlive::HandleKeepAlive(void *user_data) {
     return 0; 
 }
 
+
+GVariant *
+KeepAlive::HandleStopOnlyService (LBus::Message * message, void * user_data) {
+    auto data = (KeepAlive *) user_data; 
+
+}
+
+GVariant * 
+KeepAlive::StatusService( std::string &name, void *user_data) {
+    
+}
+
 void
 KeepAlive::StartService(std::string name) {
     std::string command; 
@@ -80,26 +92,6 @@ KeepAlive::RestartService(std::string name) {
     LOG_DBUG("%s", result.c_str()); 
 }
 
-
-
-/*
-if(!active_) {
-    auto configuration = JsonConfiguration::GetInstance()->Read();
-    std::string service; 
-    for(int i = 0; i < configuration["services"].size(); ++i) {
-        service = configuration["services"][i].asString();
-        StartService(service);
-        LOG_INFO("Service %s: Start", service.c_str());   
-    }
-    return 0; 
-    }
-
-    // for(int i = 0; i < configuration["services"].size(); ++i) {
-    //     name_services[i] = configuration["services"][i].asString();
-    //     LOG_INFO("Service %s is started", name_services[i].c_str()); 
-    // }
-    // LOG_INFO("%d", (int)all_active_); 
-*/
 
 
 

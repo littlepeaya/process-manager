@@ -125,10 +125,38 @@ CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.s: cmake_forc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.s"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/littlepea/MAv3/Dev/process-manager/Controllers/Resources/Resources.cpp -o CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.s
 
+CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o: CMakeFiles/process-manager.dir/flags.make
+CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o: ../Session/LMainBus/LMainBus.cpp
+CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o"
+	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o -MF CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o.d -o CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Session/LMainBus/LMainBus.cpp
+
+CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.i"
+	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/littlepea/MAv3/Dev/process-manager/Session/LMainBus/LMainBus.cpp > CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.i
+
+CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.s"
+	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/littlepea/MAv3/Dev/process-manager/Session/LMainBus/LMainBus.cpp -o CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.s
+
+CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: CMakeFiles/process-manager.dir/flags.make
+CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: ../Session/LocalNetwork.cpp
+CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o"
+	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o -MF CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o.d -o CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Session/LocalNetwork.cpp
+
+CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.i"
+	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/littlepea/MAv3/Dev/process-manager/Session/LocalNetwork.cpp > CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.i
+
+CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.s"
+	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/littlepea/MAv3/Dev/process-manager/Session/LocalNetwork.cpp -o CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.s
+
 CMakeFiles/process-manager.dir/Session/Session.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Session/Session.cpp.o: ../Session/Session.cpp
 CMakeFiles/process-manager.dir/Session/Session.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/process-manager.dir/Session/Session.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/process-manager.dir/Session/Session.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Session/Session.cpp.o -MF CMakeFiles/process-manager.dir/Session/Session.cpp.o.d -o CMakeFiles/process-manager.dir/Session/Session.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Session/Session.cpp
 
 CMakeFiles/process-manager.dir/Session/Session.cpp.i: cmake_force
@@ -142,7 +170,7 @@ CMakeFiles/process-manager.dir/Session/Session.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o: ../Sources/Atomic/Atomic.cpp
 CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Atomic/Atomic.cpp
 
 CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.i: cmake_force
@@ -156,7 +184,7 @@ CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o: ../Sources/Atomic/AtomicBase.cpp
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Atomic/AtomicBase.cpp
 
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.i: cmake_force
@@ -170,7 +198,7 @@ CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o: ../Sources/Atomic/AtomicCounter.cpp
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Atomic/AtomicCounter.cpp
 
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.i: cmake_force
@@ -184,7 +212,7 @@ CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o: ../Sources/Atomic/AtomicOp.cpp
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Atomic/AtomicOp.cpp
 
 CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.i: cmake_force
@@ -198,7 +226,7 @@ CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o: ../Sources/Database/Database.cpp
 CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Database/Database.cpp
 
 CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.i: cmake_force
@@ -212,7 +240,7 @@ CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o: ../Sources/HTTP/Client.cpp
 CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o -MF CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/HTTP/Client.cpp
 
 CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.i: cmake_force
@@ -226,7 +254,7 @@ CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o: ../Sources/JsonConfiguration/JsonConfigration.cpp
 CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o -MF CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/JsonConfiguration/JsonConfigration.cpp
 
 CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.i: cmake_force
@@ -240,7 +268,7 @@ CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.s:
 CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o: ../Sources/LBus/LBus.cpp
 CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o -MF CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/LBus/LBus.cpp
 
 CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.i: cmake_force
@@ -254,7 +282,7 @@ CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o: ../Sources/LBus/LBusNode.cpp
 CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o -MF CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/LBus/LBusNode.cpp
 
 CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.i: cmake_force
@@ -268,7 +296,7 @@ CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o: ../Sources/Log/Log.cpp
 CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Log/Log.cpp
 
 CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.i: cmake_force
@@ -282,7 +310,7 @@ CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o: ../Sources/Log/LogImpl.cpp
 CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Log/LogImpl.cpp
 
 CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.i: cmake_force
@@ -296,7 +324,7 @@ CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o: ../Sources/Timer/Timer.cpp
 CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Timer/Timer.cpp
 
 CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.i: cmake_force
@@ -310,7 +338,7 @@ CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o: ../Sources/Utils/Application.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Application.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.i: cmake_force
@@ -324,7 +352,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o: ../Sources/Utils/Condition.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Condition.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.i: cmake_force
@@ -338,7 +366,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o: ../Sources/Utils/Core.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Core.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.i: cmake_force
@@ -352,7 +380,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o: ../Sources/Utils/CoreImpl.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/CoreImpl.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.i: cmake_force
@@ -366,7 +394,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o: ../Sources/Utils/Counter.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Counter.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.i: cmake_force
@@ -380,7 +408,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o: ../Sources/Utils/Exception.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Exception.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.i: cmake_force
@@ -394,7 +422,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o: ../Sources/Utils/HardwareInfo.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/HardwareInfo.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.i: cmake_force
@@ -408,7 +436,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o: ../Sources/Utils/IObserver.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/IObserver.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.i: cmake_force
@@ -422,7 +450,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o: ../Sources/Utils/Locker.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Locker.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.i: cmake_force
@@ -436,7 +464,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o: ../Sources/Utils/LockerImpl_POSIX.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/LockerImpl_POSIX.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.i: cmake_force
@@ -450,7 +478,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o: ../Sources/Utils/Notification.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Notification.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.i: cmake_force
@@ -464,7 +492,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o: ../Sources/Utils/NotificationQueue.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/NotificationQueue.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.i: cmake_force
@@ -478,7 +506,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.s: cmake_forc
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o: ../Sources/Utils/NotificationQueuePriority.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/NotificationQueuePriority.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.i: cmake_force
@@ -492,7 +520,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.s: cm
 CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o: ../Sources/Utils/Option.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Option.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.i: cmake_force
@@ -506,7 +534,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o: ../Sources/Utils/Runnable.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Runnable.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.i: cmake_force
@@ -520,7 +548,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o: ../Sources/Utils/RwLocker.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/RwLocker.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.i: cmake_force
@@ -534,7 +562,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o: ../Sources/Utils/RwLockerImpl_POSIX.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/RwLockerImpl_POSIX.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.i: cmake_force
@@ -548,7 +576,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.s: cmake_for
 CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o: ../Sources/Utils/TimeSpan.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/TimeSpan.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.i: cmake_force
@@ -562,7 +590,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o: ../Sources/Utils/TimeStamp.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/TimeStamp.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.i: cmake_force
@@ -576,7 +604,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o: ../Sources/Utils/TimeTick.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/TimeTick.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.i: cmake_force
@@ -590,7 +618,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o: ../Sources/Utils/TimeZone.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/TimeZone.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.i: cmake_force
@@ -604,7 +632,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o: ../Sources/Utils/TimeZoneInfo.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/TimeZoneInfo.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.i: cmake_force
@@ -618,7 +646,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o: ../Sources/Utils/Waiter.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/Waiter.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.i: cmake_force
@@ -632,7 +660,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o: ../Sources/Utils/WaiterImpl_POSIX.cpp
 CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Utils/WaiterImpl_POSIX.cpp
 
 CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.i: cmake_force
@@ -646,7 +674,7 @@ CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o: ../Sources/Values/Value.cpp
 CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Values/Value.cpp
 
 CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.i: cmake_force
@@ -660,7 +688,7 @@ CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o: ../Sources/Values/ValueBool.cpp
 CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Values/ValueBool.cpp
 
 CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.i: cmake_force
@@ -674,7 +702,7 @@ CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o: ../Sources/Values/ValueByte.cpp
 CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Values/ValueByte.cpp
 
 CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.i: cmake_force
@@ -688,7 +716,7 @@ CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o: ../Sources/Values/ValueDword.cpp
 CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Values/ValueDword.cpp
 
 CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.i: cmake_force
@@ -702,7 +730,7 @@ CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o: ../Sources/Values/ValueInt.cpp
 CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Values/ValueInt.cpp
 
 CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.i: cmake_force
@@ -716,7 +744,7 @@ CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o: ../Sources/Values/ValueString.cpp
 CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Values/ValueString.cpp
 
 CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.i: cmake_force
@@ -730,7 +758,7 @@ CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o: ../Sources/Values/ValueWord.cpp
 CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o -MF CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/Values/ValueWord.cpp
 
 CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.i: cmake_force
@@ -744,7 +772,7 @@ CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o: ../Sources/WPA/WPA.cpp
 CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o -MF CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o.d -o CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/Sources/WPA/WPA.cpp
 
 CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.i: cmake_force
@@ -758,7 +786,7 @@ CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.s: cmake_force
 CMakeFiles/process-manager.dir/main.cpp.o: CMakeFiles/process-manager.dir/flags.make
 CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp
 CMakeFiles/process-manager.dir/main.cpp.o: CMakeFiles/process-manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/process-manager.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/process-manager.dir/main.cpp.o"
 	/home/littlepea/MAv3/host/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/process-manager.dir/main.cpp.o -MF CMakeFiles/process-manager.dir/main.cpp.o.d -o CMakeFiles/process-manager.dir/main.cpp.o -c /home/littlepea/MAv3/Dev/process-manager/main.cpp
 
 CMakeFiles/process-manager.dir/main.cpp.i: cmake_force
@@ -775,6 +803,8 @@ process__manager_OBJECTS = \
 "CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o" \
 "CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.o" \
 "CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o" \
+"CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o" \
+"CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o" \
 "CMakeFiles/process-manager.dir/Session/Session.cpp.o" \
 "CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o" \
 "CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o" \
@@ -829,6 +859,8 @@ process-manager: CMakeFiles/process-manager.dir/Controllers/Controllers.cpp.o
 process-manager: CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o
 process-manager: CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.o
 process-manager: CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o
+process-manager: CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o
+process-manager: CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o
 process-manager: CMakeFiles/process-manager.dir/Session/Session.cpp.o
 process-manager: CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o
 process-manager: CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o
@@ -877,7 +909,7 @@ process-manager: CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o
 process-manager: CMakeFiles/process-manager.dir/main.cpp.o
 process-manager: CMakeFiles/process-manager.dir/build.make
 process-manager: CMakeFiles/process-manager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Linking CXX executable process-manager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Linking CXX executable process-manager"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/process-manager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

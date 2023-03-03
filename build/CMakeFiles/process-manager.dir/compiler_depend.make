@@ -1615,6 +1615,12 @@ CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o: ../Control
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/reboot.h \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/reboot.h
 
+CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o: ../Session/LMainBus/LMainBus.cpp \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdc-predef.h
+
+CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: ../Session/LocalNetwork.cpp \
+  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdc-predef.h
+
 CMakeFiles/process-manager.dir/Session/Session.cpp.o: ../Session/Session.cpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdc-predef.h
 
@@ -11231,7 +11237,6 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/fstream.tcc \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/reboot.h \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/reboot.h \
-  ../Controllers/Controllers.hpp \
   ../Libraries/JsonConfiguration/JsonConfiguration.hpp \
   ../Libraries/Log/Log.hpp \
   ../Generic.hpp \
@@ -12450,6 +12455,8 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/glib/gversion.h:
 
+../Session/LocalNetwork.cpp:
+
 /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_queue.h:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/glib/deprecated/gallocator.h:
@@ -12595,6 +12602,8 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 /home/littlepea/MAv3/host/opt/ext-toolchain/lib/gcc/arm-linux-gnueabihf/7.1.1/include/float.h:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/gio/gfileicon.h:
+
+../Session/LMainBus/LMainBus.cpp:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/gio/gfileinfo.h:
 

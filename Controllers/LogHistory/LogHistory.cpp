@@ -38,23 +38,24 @@ LogHistory::Stop() {
 
 int 
 LogHistory::CheckLogSize(void *user_data) {
-    auto data = (LogHistory *) user_data; 
-    std::string command = "du -m " + std::string(log_path_); 
-    log_size_ = std::stoi(ExecuteCommand(command.c_str())); 
-    if (log_size_ > LOG_SIZE) {
-        LOG_INFO("Size of log is over limited. Trying push log into the server");
-        LogTransfer();
+    // auto data = (LogHistory *) user_data; 
+    // std::string command = "du -m " + std::string(log_path_); 
+    // log_size_ = std::stoi(ExecuteCommand(command.c_str())); 
+    // LOG_INFO("size of log %s", log_size_);  
+    // if (log_size_ > LOG_SIZE) {
+    //     LOG_INFO("Size of log is over limited. Trying push log into the server");
+    //     LogTransfer();
     } 
 
-}
+// }
 
 void 
 LogHistory::LogTransfer() {
     // prepare: 
     
-    std::string command; 
-    command = " cd " + log_path_;
-    command += " tar -zcvf *.log";
+    // std::string command; 
+    // command = " cd " + log_path_;
+    // command += " tar -zcvf *.log";
     
 
 }

@@ -3,15 +3,24 @@
 
 #include "Controllers/Controllers.hpp"
 
+#include <iostream>
+
+#include "Session/LMainBus/LMainBus.hpp"
+#include "Libraries/JsonConfiguration/JsonConfiguration.hpp" 
+#include "Session/LocalNetwork.hpp"
+
 class Session {
 public: 
-    Session() {};
-    ~Session() {};
+    Session();
+    ~Session();
 
     int Start();
     void Stop();
 
 private:
+    LocalNetwork local_network;
+    LBus *main_bus; 
+
 
 }; 
 

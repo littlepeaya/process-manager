@@ -12,6 +12,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/littlepea/MAv3/Dev/process-manager/Controllers/KeepAlive/KeepAlive.cpp" "CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o.d"
   "/home/littlepea/MAv3/Dev/process-manager/Controllers/LogHistory/LogHistory.cpp" "CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.o.d"
   "/home/littlepea/MAv3/Dev/process-manager/Controllers/Resources/Resources.cpp" "CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o.d"
+  "/home/littlepea/MAv3/Dev/process-manager/Session/LMainBus/LMainBus.cpp" "CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o.d"
+  "/home/littlepea/MAv3/Dev/process-manager/Session/LocalNetwork.cpp" "CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o.d"
   "/home/littlepea/MAv3/Dev/process-manager/Session/Session.cpp" "CMakeFiles/process-manager.dir/Session/Session.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Session/Session.cpp.o.d"
   "/home/littlepea/MAv3/Dev/process-manager/Sources/Atomic/Atomic.cpp" "CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o.d"
   "/home/littlepea/MAv3/Dev/process-manager/Sources/Atomic/AtomicBase.cpp" "CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o" "gcc" "CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o.d"

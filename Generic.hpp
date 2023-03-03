@@ -71,6 +71,13 @@
 
 #define COM_AUDIO_OTA_CONTROLLER_INTERFACE          "com.audio.upgrade.Controller1"
 
+//TODO: PROCESS-MANAGER 
+#define COM_AUDIO_PROCESS_BUS_NAME                  "com.audio.process"
+
+#define COM_AUDIO_PROCESS_OBJECT_PATH               "/"
+
+#define COME_AUDIO_PROCESS_CONTROLLER_INTERFACE     "com.audio.process.Controller1"
+
 // TODO: modules
 #define PLAYERS_MODULE                              "players"
 
@@ -103,6 +110,8 @@
 #define EQUALIZER_MODULE                            "equalizer"
 
 #define IO_MODULE                                   "io"
+
+#define PROCESS_MODULE                              "process"
 
 typedef enum {
     OWNTONE = 0,

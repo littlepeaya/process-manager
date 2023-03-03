@@ -4,7 +4,9 @@
 #include<string.h>
 #include<iostream>
 #include<unistd.h>
+#include "Generic.hpp"
 
+#include "Libraries/LBus/LBus.hpp"
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Log/LogPlus.hpp"
 #include "Libraries/Timer/Timer.hpp"
@@ -33,6 +35,9 @@ private:
     void StopService(std::string name);
     void RestartService(std::string name); 
     static int HandleKeepAlive(void *user_data); 
+
+    static GVariant *HandleStopOnlyService(LBus::Message* message, void *user_data); 
+    static GVariant *StatusService(std::string &name, void *user_data); 
 
     Timer check_priodic_time_;
     Service service_; 
