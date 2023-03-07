@@ -77,7 +77,9 @@ Resources::HandleStatusCPUusage(void *user_data) {
     for( int i = 0; i < TIME_COUNT; ++i) {
         percent_cpu += percent_cpu_init[i]; 
     }
-    LOG_INFO("Percent CPU avager is: %0.8f percent", (float)percent_cpu/TIME_COUNT);    
+    LOG_INFO("Percent CPU avager is: %0.8f percent", (float)percent_cpu/TIME_COUNT);   
+    
+     
 }
 
 int  

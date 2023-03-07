@@ -507,7 +507,7 @@ Execute(const String& command) {
     if (WIFEXITED(result) && WEXITSTATUS(result) == EXIT_SUCCESS)
         return true;
 
-    // LOG_ERRO("Could not execute command: %d - %d - %s", result, errno, strerror(errno));
+    LOG_ERRO("Could not execute command: %d - %d - %s", result, errno, strerror(errno));
     return false;
 }
 
@@ -595,6 +595,14 @@ ExecuteCommand(const char *cmd) {
         LOG_ERRO(ex.what());
         return String();
     }
+}
+
+inline time_t
+GetLocalTimestamp() {
+    time_t utc_timestamp = time(NULL);    
+    struct tm *local_time = localtime(&utc_timestamp);
+
+    return utc_timestamp + local_time->tm_gmtoff;
 }
 
 #endif // GENERIC_HPP
