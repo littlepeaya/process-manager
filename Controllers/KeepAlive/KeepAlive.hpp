@@ -27,13 +27,16 @@ public:
     int Start();
     void Stop();
 
+    static void StartService(std::string name);
+    static void StopService(std::string name);
+    static void RestartService(std::string name);
+
 private: 
     bool keep_;
     bool all_active_; 
+    int count; 
 
-    static void StartService(std::string name);
-    void StopService(std::string name);
-    void RestartService(std::string name); 
+     
     static int HandleKeepAlive(void *user_data); 
 
     static GVariant *HandleStopOnlyService(LBus::Message* message, void *user_data); 

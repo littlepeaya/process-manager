@@ -2,9 +2,12 @@
 
 int Resources::check_RAM_ = 0;
 int Resources::check_CPU_ = 0; 
+KeepAlive Resources::keep_alive_ ; 
 
-Resources::Resources() : 
-                        is_stable_(true) { 
+Resources::Resources() : percent_cpu_avg_(0),  
+                         count_(0),
+                         ready_restart_(false), 
+                         is_stable_(true) { 
     timer_check_RAM_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
     timer_check_CPU_.RegisterTimerHandler(HandleStatusCPUusage,this); 
     timer_check_Load_Averages_.RegisterTimerHandler(LoadAverages, this); 
@@ -17,20 +20,19 @@ Resources::~Resources()
 
 int 
 Resources::Start() {
+    LOG_CRIT("==========Resources module===============");
     if(timer_check_CPU_.Start(100, TIME_CHECK) < 0 ) {
         LOG_ERRO("Could not start timer to check CPU"); 
         return -1; 
     } 
-
-    if(timer_check_RAM_.Start(150,TIME_CHECK) < 0 ) {
+    if(timer_check_RAM_.Start(100,TIME_CHECK) < 0 ) {
         LOG_ERRO("Could not start time to check RAM"); 
         return -1; 
     } 
-    if(timer_check_Load_Averages_.Start(150, TIME_CHECK) < 0 ) {
+    if(timer_check_Load_Averages_.Start(100, TIME_CHECK) < 0 ) {
         LOG_ERRO("Could not start timer to check CPU"); 
         return -1; 
     }
-
     return 1; 
 }
 
@@ -42,6 +44,8 @@ Resources::Stop() {
 int 
 Resources::HandleStatusCPUusage(void *user_data) {
     auto data = (Resources *) user_data;
+    time_t time_; 
+    time_ = time(NULL); 
     std::string line;
     size_t substr_start = 0;
     size_t substr_len;
@@ -67,19 +71,27 @@ Resources::HandleStatusCPUusage(void *user_data) {
             stats_all += stats[i];
 
         }
-        
-
         percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.0 ;
-        time_count++;
-        // sleep(0.01); 
+        time_count++; 
     }
 
     for( int i = 0; i < TIME_COUNT; ++i) {
         percent_cpu += percent_cpu_init[i]; 
     }
-    LOG_INFO("Percent CPU avager is: %0.8f percent", (float)percent_cpu/TIME_COUNT);   
-    
-     
+   
+    data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
+     LOG_INFO("CPU is %0.2f", data->percent_cpu_avg_ ); 
+
+    if(data->percent_cpu_avg_ >= LIMIT_CPU_IN_USE) { 
+        data->count_++; 
+        LOG_WARN("CPU is over high at %s", ctime(&time_)); 
+    } 
+
+    if(data->count_ >= OVER_TIMES) {
+        LOG_ERRO("CPU is very high during 1 hour. Upload Log and reboot device"); 
+        reboot(LINUX_REBOOT_CMD_RESTART); 
+    }
+
 }
 
 int  
@@ -123,7 +135,7 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     }
 
     actually_in_used_mem = static_cast<int> (actually_in_used_mem/1024);  // convert to MB 
-    LOG_INFO("actually memory in used is : %d", actually_in_used_mem); 
+    LOG_INFO("actually memory in used is : %d (megabytes)", actually_in_used_mem); 
 
 
 }

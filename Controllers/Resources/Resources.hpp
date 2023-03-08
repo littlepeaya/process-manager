@@ -10,6 +10,7 @@ important as it shows. < following loadavg of linux git >
 #include<Libraries/Log/LogPlus.hpp>
 #include<Libraries/Timer/Timer.hpp>
 #include<Controllers/LogHistory/LogHistory.hpp>
+#include<Controllers/KeepAlive/KeepAlive.hpp>
 
 #include<unistd.h> 
 #include<fstream>
@@ -18,8 +19,8 @@ important as it shows. < following loadavg of linux git >
 #include<linux/reboot.h> 
 
 #define LIMIT_RAM_FREE 50 //50MB 
-#define LIMIT_CPU_IN_USE 50 // 50 % 
-#define TIME_CHECK 1*1000 //20s 
+#define LIMIT_CPU_IN_USE 1.72 // 50 % 
+#define TIME_CHECK 1*1000 //1s 
 #define CORE 3 
 
 #define CP_USER   0
@@ -28,6 +29,7 @@ important as it shows. < following loadavg of linux git >
 #define CP_IDLE   3
 #define CP_STATES 4
 #define TIME_COUNT 10 
+#define OVER_TIMES 60*60 //1 hour 
 
 typedef struct {
     unsigned long long  mem_total;
@@ -61,11 +63,15 @@ private:
     static int HandleStatusCPUusage(void *user_data); 
     static int LoadAverages(void *user_data); 
 
+    int count_; 
     bool is_stable_; 
+    bool ready_restart_; 
+    float percent_cpu_avg_; 
     Timer timer_check_RAM_; //important 
     Timer timer_check_CPU_; //important 
     Timer timer_check_Load_Averages_; // not important 
     LogHistory log_transfer_; 
-};
+    static KeepAlive keep_alive_; 
+}; 
 
 #endif //__MAV3_PROCESS_MANAGER_RESOURCES_HPP__

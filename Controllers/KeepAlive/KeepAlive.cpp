@@ -6,33 +6,36 @@ KeepAlive::KeepAlive() :
                         keep_(true), 
                         all_active_(false) {
     check_priodic_time_.RegisterTimerHandler(HandleKeepAlive, this);
-
 }
 
-
-KeepAlive::~KeepAlive(){
+KeepAlive::~KeepAlive() {
 
 }
 
 int 
 KeepAlive::Start() { 
-    auto configuration = JsonConfiguration::GetInstance()->Read();
+    auto config = JsonConfiguration::GetInstance()->Read();
+    LOG_CRIT("==========Check Keep Alive===============");
+
+    for (int i = 0; i < config["services"].size(); ++i) {
+            std::string service; 
+            service = config["services"][i]["name"].asString(); 
+            LOG_CRIT("Component service: %s", service.c_str()); 
+    }
+
     check_priodic_time_.Start(100, CHECK_PERIODIC_TIME);
     if(!all_active_) {
         all_active_ = false;
     } 
-    else   
-        LOG_INFO("Check Keep Alive"); 
+     
     
     return 1;   
 }
-
 
 void 
 KeepAlive::Stop() {
     keep_ = false;
 }
-
 
 int 
 KeepAlive::HandleKeepAlive(void *user_data) {
@@ -55,7 +58,6 @@ KeepAlive::HandleKeepAlive(void *user_data) {
     return 0; 
 }
 
-
 GVariant *
 KeepAlive::HandleStopOnlyService (LBus::Message * message, void * user_data) {
     auto data = (KeepAlive *) user_data; 
@@ -74,7 +76,6 @@ KeepAlive::StartService(std::string name) {
     std::string result = ExecuteCommand(command.c_str()); 
     LOG_DBUG("%s", result.c_str()); 
 }
-
 
 void 
 KeepAlive::StopService(std::string name) {

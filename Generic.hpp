@@ -21,6 +21,10 @@
 
 #include "Libraries/Log/LogPlus.hpp"
 
+#define WLAN_IFACE_ADDRESS_PATH     "/sys/class/net/wlan0/address" 
+
+#define WLAN_IFACE_ADDRESS_LEN 17
+
 // TODO: owntone
 #define COM_AUDIO_OWNTONE_BUS_NAME                  "com.audio.owntone"
 
@@ -605,4 +609,38 @@ GetLocalTimestamp() {
     return utc_timestamp + local_time->tm_gmtoff;
 }
 
+inline std::string 
+GetLocalTime() {
+    std::string result = ""; 
+    char buf[100]; 
+    time_t time_; 
+    struct tm *tm;
+
+    time_ = time(NULL); 
+    tm = localtime(&time_); 
+    if (tm == NULL)
+        return NULL;
+    strftime(buf, 100,"%a_%d_%b_%T_%Y", tm); 
+    result = std::string(buf); 
+    return result; 
+}
+
+inline 
+std::string getMacAddress() {
+    int fd, len;
+    char macaddr[64] = {0};
+
+    fd = open(WLAN_IFACE_ADDRESS_PATH, O_RDONLY);
+    if (fd < 0) {
+        LOG_ERRO("Could not open the '%s'.", WLAN_IFACE_ADDRESS_PATH);
+    }
+
+    len = read(fd, macaddr, WLAN_IFACE_ADDRESS_LEN);
+    close(fd);
+    if (len != WLAN_IFACE_ADDRESS_LEN) {
+        LOG_ERRO("Error reading the '%s'.", WLAN_IFACE_ADDRESS_PATH);
+    }
+
+    return std::string(macaddr); 
+}
 #endif // GENERIC_HPP
