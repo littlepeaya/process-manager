@@ -28,13 +28,14 @@ KeepAlive::Start() {
         all_active_ = false;
     } 
      
-    
     return 1;   
 }
 
 void 
 KeepAlive::Stop() {
     keep_ = false;
+    check_priodic_time_.Stop(); 
+    // check_priodic_time_.CancelTimerHandler(); 
 }
 
 int 
@@ -78,7 +79,9 @@ KeepAlive::StartService(std::string name) {
 }
 
 void 
-KeepAlive::StopService(std::string name) {
+KeepAlive::StopService(std::string name
+
+) {
     std::string command; 
     command = "/etc/init.d/" + std::string(name) + " " + "stop";
     std::string result = ExecuteCommand(command.c_str()); 

@@ -19,15 +19,16 @@ public:
 
     int Start();
     void Stop();
+    static void LogTransfer(void *user_data); 
 private: 
     static std::string url_server_; 
-    static const char *full_log_path; 
-
+    int count; 
+    static const char *full_log_path_; 
     static unsigned int log_size_;
     static char *log_path_;
 
     static int CheckLogSize(void *user_data); 
-    static void LogTransfer(); 
+   
 
     Timer time_upload_file_log_; 
 

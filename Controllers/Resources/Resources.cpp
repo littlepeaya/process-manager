@@ -3,8 +3,10 @@
 int Resources::check_RAM_ = 0;
 int Resources::check_CPU_ = 0; 
 KeepAlive Resources::keep_alive_ ; 
+LogHistory Resources::log_transfer_; 
 
 Resources::Resources() : percent_cpu_avg_(0),  
+                         free_ram_(0), 
                          count_(0),
                          ready_restart_(false), 
                          is_stable_(true) { 
@@ -80,16 +82,19 @@ Resources::HandleStatusCPUusage(void *user_data) {
     }
    
     data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
-     LOG_INFO("CPU is %0.2f", data->percent_cpu_avg_ ); 
+     
 
     if(data->percent_cpu_avg_ >= LIMIT_CPU_IN_USE) { 
         data->count_++; 
+        LOG_INFO("CPU is %0.2f", data->percent_cpu_avg_ ); 
         LOG_WARN("CPU is over high at %s", ctime(&time_)); 
     } 
 
-    if(data->count_ >= OVER_TIMES) {
+    if(data->count_ >= 10) {
+        log_transfer_.LogTransfer(data); 
         LOG_ERRO("CPU is very high during 1 hour. Upload Log and reboot device"); 
-        reboot(LINUX_REBOOT_CMD_RESTART); 
+        data->count_ = 0; 
+        // reboot(LINUX_REBOOT_CMD_RESTART); 
     }
 
 }
@@ -103,6 +108,7 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     size_t substr_len;
 
     unsigned int total_mem;
+    data->free_ram_ = 0; 
     unsigned int actually_in_used_mem = 0; 
 
     std::ifstream memory_info("/proc/meminfo");
@@ -135,7 +141,28 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     }
 
     actually_in_used_mem = static_cast<int> (actually_in_used_mem/1024);  // convert to MB 
-    LOG_INFO("actually memory in used is : %d (megabytes)", actually_in_used_mem); 
+    data->free_ram_ = total_mem - actually_in_used_mem; 
+    if(data->free_ram_ > LIMIT_RAM_FREE) {
+        std::string command; 
+
+        log_transfer_.LogTransfer(data);    
+
+        command = "sync; ";
+        command += "echo 3 > /proc/sys/vm/drop_caches ; " ; 
+        if(Execute(command)) {
+            LOG_INFO("Success free cache "); 
+        }
+        else 
+            data->count_ ++; 
+    }
+    if(data->count_ >= 5) {
+        LOG_WARN("RAM is not free. Trying reboot ..."); 
+        data->count_ = 0;
+        // log_transfer_.LogTransfer(data); 
+        // reboot(LINUX_REBOOT_CMD_RESTART);  
+    }  
+
+
 
 
 }
@@ -147,7 +174,7 @@ Resources::LoadAverages(void *user_data) {
     double load_avg[3];
     getloadavg(load_avg, 3); 
     if(load_avg[1] > CORE) {
-        LOG_ERRO("The system has a problem. Trying reboot ..."); 
+        LOG_WARN("The system has a problem. Trying reboot ..."); 
         reboot(LINUX_REBOOT_CMD_RESTART); 
         
     }
