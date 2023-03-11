@@ -37,15 +37,12 @@ LogHistory::CheckLogSize(void *user_data) {
     auto config = JsonConfiguration::GetInstance()->Read();
     url_server_ = config["logtransfer"]["server"].asCString();
     log_path_ = (char *)config["logtransfer"]["path"].asCString();   
-    char *log_file = "*.log"; 
-    full_log_path_ = (const char *)std::strcat(log_path_, log_file); 
+    full_log_path_ = (const char *)std::strcat(log_path_, "/*.log"); 
     std::string command = "du -c " + std::string(full_log_path_) + " |grep total | awk '{print $1}' "; 
     int log_size_ = std::stoi(ExecuteCommand(command.c_str())); 
     if (log_size_ >= LOG_SIZE) {
-        LOG_INFO("Size of log is over limited. Trying push log into the server");
+        LOG_WARN("Size of log is over limited. Trying push log into the server");
         LogTransfer(data);
-      
-        
     } 
 }
 
@@ -53,9 +50,12 @@ void
 LogHistory::LogTransfer(void *user_data) {
     CURL *curl; 
     CURLcode res; 
-    std::string response;  
     std::string command; 
-    struct curl_httppost *form = NULL, *lastptr = NULL;
+    std::string response; 
+    long resCode = 0; 
+    struct curl_httppost *formpost = NULL, *lastptr = NULL;
+    struct curl_slist *headerlist = NULL;
+    static const char buf[] = "Expect:";
     char *dir_path; 
     std::string date = GetLocalTime(); 
     std::string macaddr = getMacAddress(); 
@@ -68,54 +68,74 @@ LogHistory::LogTransfer(void *user_data) {
     std::string port = config["port"].asString(); 
 
     std::strcpy(dir_path, log_path); 
-    std::string full_log_path = full_log_path_; 
-    command = "mkdir -p " + std::string(dir_path) + uploadFoler ; 
-    bool result = Execute(command);
-    LOG_INFO("Execute: %d", result); 
-    command = "cp -R " + std::string(full_log_path) + " " + std::string(dir_path) + uploadFoler;  
-    result = Execute(command);
-    LOG_INFO("Execute: %d", result); 
-    command = "tar -cvf " + std::string(dir_path) + std::string(uploadFoler) + ".tar " + std::string(dir_path) + uploadFoler; 
-    LOG_INFO("%s", command.c_str()); 
-    result = Execute(command);
-    LOG_INFO("Execute: %d", result); 
+    std::string full_log_path = full_log_path_ ; 
+    command += "mkdir -p " + std::string(dir_path) + "/" + uploadFoler + "; " ; 
+    command += "cp -R " + std::string(full_log_path) + " " + std::string(dir_path) +  "/" + uploadFoler + "; ";  
+    command += "tar -cvf " + std::string(dir_path) + std::string(uploadFoler) + ".tar " + std::string(dir_path) +  "/" + uploadFoler + "; "; 
+    LOG_INFO("Execute: %s", command.c_str());  
+    if (!Execute(command)) 
+        LOG_ERRO("Failed to tar file log"); 
     std::string url = url_server_ + ":" + port + "/logs?mac=" + macaddr; 
     LOG_INFO("Prepare upload log file to %s", url.c_str());  
-    curl = curl_easy_init();
-        if (curl) {
-            curl_formadd(&form, &lastptr,
+
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    curl_formadd(&formpost, &lastptr,
                 CURLFORM_COPYNAME, "file",
-                CURLFORM_FILE, dir_path, 
-                CURLFORM_END); 
-            curl_easy_setopt(curl, CURLOPT_URL, (dir_path));
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response); 
-            curl_easy_setopt(curl, CURLOPT_HTTPPOST, form);
-            curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5L);
-            LOG_INFO("push log into server"); 
-            res = curl_easy_perform(curl);
-            LOG_INFO("push log into server"); 
-            if (res != CURLE_OK){
-                LOG_INFO("Failed to upload file %d - %s", res, curl_easy_strerror(res)); 
-                goto clean;
-            }
-            LOG_INFO("push log into server");  
+                CURLFORM_FILE, (std::string(dir_path) + std::string(uploadFoler) + ".tar ").c_str(), // + /var/log/7c53_wed.tar 
+                CURLFORM_END); // create a http request 
+
+    curl = curl_easy_init();
+
+    if (curl) {
+        headerlist = curl_slist_append(headerlist, buf); 
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist);
+        curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5L);
+        LOG_INFO("push log into server");
+
+        res = curl_easy_perform(curl); //executable 
+        LOG_INFO("push log into server");
+        if (res != CURLE_OK)
+        {
+            LOG_INFO("Failed to upload file %d - %s", res, curl_easy_strerror(res));
+            goto clean;
         }
-    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &res);
-    LOG_INFO("Response: %d - %s", res, response.c_str());
+        LOG_INFO("Sucess push log into server");
+        // goto clean;
+    }
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &resCode); //get response 
+    LOG_INFO("Response: %d - %s", resCode, *headerlist);
 
-    command = "cat /dev/null > " + std::string(full_log_path_); 
-    system(command.c_str()); 
 
-    clean:
-        curl_formfree(form); 
-        curl_easy_cleanup(curl); 
+clean:
+    curl_formfree(formpost);
+    curl_easy_cleanup(curl);
+    curl_slist_free_all(headerlist);
+    curl_global_cleanup();
 
-        free(dir_path); 
-        // remove(dir_path); 
-        remove((dir_path + uploadFoler).c_str()); 
-        remove((dir_path + uploadFoler + ".tar").c_str()); 
-        command = "echo \"\"  >> " + std::string(full_log_path_); 
-        Execute(command); 
+    command.clear(); 
+    std::strcat(dir_path, "/"); 
+    Execute("rm -rf "+ std::string(dir_path) +  uploadFoler );    
+    remove((dir_path +  uploadFoler + ".tar").c_str());
+    
+    DIR* dir;
+    struct dirent* ent;
+    if ((dir = opendir(log_path)) != nullptr) {
+        while ((ent = readdir(dir)) != nullptr) {
+            std::string fname = ent->d_name; 
+            if(fname.find(".log") != std::string::npos) {
+                LOG_INFO("%s", fname.c_str()); 
+                command += "cat /dev/null > " + std::string(log_path) + "/" + String(ent->d_name) + "; ";
+            }
+        } 
+    }
+    
+    LOG_INFO("%s", command.c_str()); 
+     if (!Execute(command)) 
+        LOG_ERRO("Failed to tar file log"); 
+    free(dir_path);
 }
 
 
