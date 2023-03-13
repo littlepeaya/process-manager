@@ -35,6 +35,7 @@ private:
     bool keep_;
     bool all_active_; 
     int count; 
+    GDBusProxy *proxy_;
 
      
     static int HandleKeepAlive(void *user_data); 

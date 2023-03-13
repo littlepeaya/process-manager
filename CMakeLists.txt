@@ -4,7 +4,8 @@ set(PROJECT_NAME process-manager)
 
 project(${PROJECT_NAME})
 
-add_definitions(-DUSE_LOG_FILE)
+add_definitions(-DUSE_LOG_FILE
+                -DUSE_INITD)
 
 if (BOARD STREQUAL MT9050)
     set(CMAKE_SYSTEM_NAME Linux)
