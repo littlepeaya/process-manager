@@ -549,6 +549,7 @@ CMakeFiles/process-manager.dir/Controllers/Controllers.cpp.o: ../Controllers/Con
   ../Libraries/JsonConfiguration/JsonConfiguration.hpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h \
   ../Libraries/Timer/Timer.hpp \
+  ../Libraries/Utils/Vector.hpp \
   ../Controllers/LogHistory/LogHistory.hpp \
   ../Controllers/Resources/Resources.hpp \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/fstream \
@@ -1105,7 +1106,8 @@ CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o: ../Control
   ../Libraries/Log/LogPlus.hpp \
   ../Libraries/JsonConfiguration/JsonConfiguration.hpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h \
-  ../Libraries/Timer/Timer.hpp
+  ../Libraries/Timer/Timer.hpp \
+  ../Libraries/Utils/Vector.hpp
 
 CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.o: ../Controllers/LogHistory/LogHistory.cpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdc-predef.h \
@@ -2202,6 +2204,7 @@ CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o: ../Control
   ../Libraries/Log/LogPlus.hpp \
   ../Libraries/LBus/LBus.hpp \
   ../Libraries/Queue/BlockingQueue.hpp \
+  ../Libraries/Utils/Vector.hpp \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/fstream \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/codecvt.h \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/basic_file.h \
@@ -3520,6 +3523,7 @@ CMakeFiles/process-manager.dir/Session/Session.cpp.o: ../Session/Session.cpp \
   ../Libraries/JsonConfiguration/JsonConfiguration.hpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h \
   ../Libraries/Timer/Timer.hpp \
+  ../Libraries/Utils/Vector.hpp \
   ../Controllers/LogHistory/LogHistory.hpp \
   ../Controllers/Resources/Resources.hpp \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/fstream \
@@ -13560,6 +13564,7 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
   ../Libraries/JsonConfiguration/JsonConfiguration.hpp \
   /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h \
   ../Libraries/Timer/Timer.hpp \
+  ../Libraries/Utils/Vector.hpp \
   ../Controllers/LogHistory/LogHistory.hpp \
   ../Controllers/Resources/Resources.hpp \
   /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/fstream \
@@ -13673,8 +13678,6 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 
 ../Libraries/Values/ValueArray.hpp:
 
-../Libraries/Utils/Vector.hpp:
-
 ../Libraries/Utils/List.hpp:
 
 ../Sources/Log/Log.cpp:
@@ -13720,6 +13723,8 @@ CMakeFiles/process-manager.dir/main.cpp.o: ../main.cpp \
 ../Libraries/Log/LogImpl.hpp:
 
 ../Controllers/LogHistory/LogHistory.hpp:
+
+../Libraries/Utils/Vector.hpp:
 
 /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/glib/ggettext.h:
 

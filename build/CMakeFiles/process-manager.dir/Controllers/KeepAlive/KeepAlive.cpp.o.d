@@ -545,4 +545,5 @@ CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o: \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogPlus.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/JsonConfiguration/JsonConfiguration.hpp \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Timer/Timer.hpp
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Timer/Timer.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Vector.hpp

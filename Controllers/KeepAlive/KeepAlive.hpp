@@ -10,14 +10,10 @@
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Log/LogPlus.hpp"
 #include "Libraries/Timer/Timer.hpp"
+#include "Libraries/Utils/Vector.hpp"
 
 #define CHECK_PERIODIC_TIME  15*1000 //15s 
 
-typedef struct {
-    std::string name; 
-    int periority; 
-    bool is_monitor; 
-} Service; 
 
 class KeepAlive {
 public: 
@@ -36,7 +32,6 @@ private:
     bool all_active_; 
     int count; 
     GDBusProxy *proxy_;
-
      
     static int HandleKeepAlive(void *user_data); 
 
@@ -44,7 +39,7 @@ private:
     static GVariant *StatusService(std::string &name, void *user_data); 
 
     Timer check_priodic_time_;
-    Service service_; 
+    
 };
 
 

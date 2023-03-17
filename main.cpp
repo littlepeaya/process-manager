@@ -120,11 +120,11 @@ int main(int argc, char *argv[]) {
     Log::Create(root["log"]["path"].asString(), true, true, level, level);
     LOG_INFO("The log is contained in the '%s'.", root["log"]["path"].asCString());
 
-    // Session session; 
-    // if (session.Start() < 0) {
-    //     fprintf(stderr, "Error starting session\n");
-    //     exit(1);
-    // }
+    Session session; 
+    if (session.Start() < 0) {
+        fprintf(stderr, "Error starting session\n");
+        exit(1);
+    }
 
     Controllers controller;
     if (controller.Start() < 0) {

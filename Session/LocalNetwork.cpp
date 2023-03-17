@@ -14,11 +14,12 @@ GDBusNodeInfo *LocalNetwork::controller_introspection_data_ = nullptr;
 const gchar *LocalNetwork::controller_introspection_xml_ = 
 "<node>"
     "<interface name='com.audio.process.Controller1'>"
-        "<property name='StopService' type='s' access='read'/>"
-        "<property name='StartService' type='s' access='read'/>"
-        "<property name='RestartService' type='s' access='read'/>"
+        "<method name='StopService'>"
+            "<arg type='aa{sv}' direction='in' />"
+        "</method>"
+        "<property name = 'Version' type='u' access='read'/>"
     "</interface>"
-"</node>";
+"</node>";  
 
 LocalNetwork::LocalNetwork() {
 
@@ -118,7 +119,22 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
                                         GVariant *paramenter,
                                         GDBusMethodInvocation *invocation,
                                         gpointer user_data) {
+    auto self = (LocalNetwork *)user_data;
 
+    LOG_INFO("Handler call method: sender (%s), obj_path (%s), interface_name (%s), method_name (%s), type_string (%s)", sender, 
+                                                                                                                        object_path, 
+                                                                                                                        interface_name, 
+                                                                                                                        method_name, 
+                                                                                                                        g_variant_get_type_string(paramenter));
+    if(g_strcmp0(method_name, "StopService") == 0) {
+        GVariantIter *iter; 
+        GVariant *dict; 
+        std::string service; 
+
+        g_variant_get(paramenter, "(aa{sv})", &iter); 
+        // g_variant_lookup(dict, "")
+
+    }
 }
     
 gboolean
@@ -133,9 +149,12 @@ LocalNetwork::HandleControllerSetProperties(GDBusConnection *connection,
     auto instance = (LocalNetwork *)user_data;
 
     LOG_INFO("%s, %s, %s, %s, %s", sender, object_path, interface_name, property_name, g_variant_get_type_string(value));
-
-out:
-    return *error == nullptr;
+    LOG_INFO("Handler set property: sender (%s), obj_path (%s), interface_name (%s), property_name (%s), type_string (%s)", sender, 
+                                                                                                                            object_path, 
+                                                                                                                            interface_name, 
+                                                                                                                            property_name, 
+                                                                                                                            g_variant_get_type_string(value));
+     
 }
 
 GVariant *
@@ -143,8 +162,14 @@ LocalNetwork::HandleControllerGetProperties(GDBusConnection *connection,
                                                     const gchar *sender,
                                                     const gchar *object_path,
                                                     const gchar *interface_name,
-                                                    const gchar *proterty_name,
+                                                    const gchar *property_name,
                                                     GError **error,
                                                     gpointer user_data) {
+    GVariant *ret = NULL;
+
+    if (g_strcmp0(property_name, "Version") == 0)
+        ret = g_variant_new_int32(0);
+
+    return ret; 
 
 }

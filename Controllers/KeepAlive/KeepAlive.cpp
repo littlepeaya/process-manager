@@ -1,8 +1,5 @@
 #include "Controllers/KeepAlive/KeepAlive.hpp" 
 
-
-
-
 KeepAlive::KeepAlive() :
                         proxy_(nullptr), 
                         keep_(true), 
@@ -18,7 +15,6 @@ int
 KeepAlive::Start() { 
     auto config = JsonConfiguration::GetInstance()->Read();
     LOG_CRIT("==========Check Keep Alive===============");
-
     for (int i = 0; i < config["services"].size(); ++i) {
             std::string service; 
             service = config["services"][i]["name"].asString(); 
@@ -59,7 +55,6 @@ KeepAlive::HandleKeepAlive(void *user_data) {
         for (int i = 0; i < config["services"].size(); ++i ) {
             std::string service; 
             service = config["services"][i]["name"].asString(); 
-            if(config["services"][i]["monitor"].isBool()) {
             std::string command = "pidof " + std::string(service); 
             if (Execute(command)) 
                 LOG_INFO("Service %s is active", service.c_str());
@@ -67,7 +62,6 @@ KeepAlive::HandleKeepAlive(void *user_data) {
                 LOG_DBUG("Service %s is not active. Trying Start......", service.c_str()); 
                 StartService(service);
                 usleep(1000);
-            }
             }
         }
     return 0; 
@@ -89,7 +83,7 @@ void
 KeepAlive::StartService(std::string name) {
 #ifdef USE_SYSTEMD 
     std::string command; 
-    command = "systemctl start" + " " + std::string(name) ;
+    command = "sudo systemctl " + std::string(name) + ".service" + " start";
     std::string result = ExecuteCommand(command.c_str()); 
     LOG_DBUG("%s", result.c_str()); 
 #elif USE_INITD 
@@ -105,7 +99,7 @@ KeepAlive::StopService(std::string name) {
     auto config = JsonConfiguration::GetInstance()->Read(); 
 #ifdef USE_SYSTEMD 
     std::string command; 
-    command = "systemctl stop" + " " + std::string(name) ;
+    command = "sudo systemctl " + std::string(name) + ".service" + " stop";
     std::string result = ExecuteCommand(command.c_str()); 
     LOG_DBUG("%s", result.c_str()); 
 #elif USE_INITD 
@@ -120,7 +114,7 @@ void
 KeepAlive::RestartService(std::string name) {
 #ifdef USE_SYSTEMD 
     std::string command; 
-    command = "systemctl restart" + " " + std::string(name) ;
+    command = "sudo systemctl " + std::string(name) + ".service" + " restart";
     std::string result = ExecuteCommand(command.c_str()); 
     LOG_DBUG("%s", result.c_str()); 
 #elif USE_INITD 

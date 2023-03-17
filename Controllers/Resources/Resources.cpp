@@ -2,13 +2,16 @@
 
 int Resources::check_RAM_ = 0;
 int Resources::check_CPU_ = 0; 
-KeepAlive Resources::keep_alive_ ; 
+KeepAlive Resources::keep_alive_  ; 
 LogHistory Resources::log_transfer_; 
 
 Resources::Resources() : percent_cpu_avg_(0),  
                          free_ram_(0), 
                          count_(0),
                          ready_restart_(false), 
+                         cpu_limitted_(0), 
+                         ram_limmited_(0), 
+                         mem_info_(), 
                          is_stable_(true) { 
     timer_check_RAM_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
     timer_check_CPU_.RegisterTimerHandler(HandleStatusCPUusage,this); 
@@ -35,6 +38,11 @@ Resources::Start() {
         LOG_ERRO("Could not start timer to check CPU"); 
         return -1; 
     }
+    auto config = JsonConfiguration::GetInstance()->Read();
+    ram_limmited_ = config["resources"]["ram"].asInt(); 
+    cpu_limitted_ = config["resources"]["cpu"].asInt(); 
+    LOG_INFO("RAM LIMITTED: %d MB", ram_limmited_); 
+    LOG_INFO("CPU LIMITTED: %d percent", ram_limmited_); 
     return 1; 
 }
 
@@ -73,26 +81,25 @@ Resources::HandleStatusCPUusage(void *user_data) {
             stats_all += stats[i];
 
         }
-        percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.0 ;
+        percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.00;
+        usleep(1000); 
         time_count++; 
     }
-
     for( int i = 0; i < TIME_COUNT; ++i) {
         percent_cpu += percent_cpu_init[i]; 
     }
-   
     data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
-     
-
+    
     if(data->percent_cpu_avg_ >= LIMIT_CPU_IN_USE) { 
         data->count_++; 
         LOG_INFO("CPU is %0.2f", data->percent_cpu_avg_ ); 
         LOG_WARN("CPU is over high at %s", ctime(&time_)); 
+        
+        
     } 
-
     if(data->count_ >= 10) {
-        log_transfer_.LogTransfer(data); 
         LOG_ERRO("CPU is very high during 1 hour. Upload Log and reboot device"); 
+        // log_transfer_.LogTransfer(data); 
         data->count_ = 0; 
         // reboot(LINUX_REBOOT_CMD_RESTART); 
     }
@@ -108,9 +115,11 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     size_t substr_len;
 
     unsigned int total_mem;
+    data->count_ = -1; 
+    
+    do {
     data->free_ram_ = 0; 
     unsigned int actually_in_used_mem = 0; 
-
     std::ifstream memory_info("/proc/meminfo");
 
     while (std::getline ( memory_info, line)) {
@@ -121,50 +130,40 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
         substr_len = line.find_first_of('k') - substr_start; 
 
         if( std::strcmp( substr.c_str(), "MemTotal") == 0) {
-            actually_in_used_mem += std::stoi(line.substr(substr_start, substr_len)); 
+            data->mem_info_.mem_total = std::stoi(line.substr(substr_start, substr_len));
         }
-        if( std::strcmp( substr.c_str(), "Shmem") == 0) {
-            actually_in_used_mem += std::stoi(line.substr(substr_start, substr_len)); 
+        if (std::strcmp(substr.c_str(), "MemFree") == 0) {
+            data->mem_info_.mem_free = std::stoi(line.substr(substr_start, substr_len));
         }
-        if( std::strcmp( substr.c_str(), "MemFree") == 0) {
-            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len)); 
+        if (std::strcmp(substr.c_str(), "Buffers") == 0) {
+            data->mem_info_.buffers = std::stoi(line.substr(substr_start, substr_len));
         }
-        if( std::strcmp( substr.c_str(), "Buffers") == 0) {
-            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len));  
+        if (std::strcmp(substr.c_str(), "Cached") == 0) {
+            data->mem_info_.cached = std::stoi(line.substr(substr_start, substr_len));
         }
-        if( std::strcmp( substr.c_str(), "Cached") == 0) {
-            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len)); 
-        }
-        if( std::strcmp( substr.c_str(), "SReclaimable") == 0) {
-            actually_in_used_mem -= std::stoi(line.substr(substr_start, substr_len)); 
+        if (std::strcmp(substr.c_str(), "MemAvailable") == 0) {
+            data->mem_info_.mem_available = std::stoi(line.substr(substr_start, substr_len));
         }
     }
-
-    actually_in_used_mem = static_cast<int> (actually_in_used_mem/1024);  // convert to MB 
-    data->free_ram_ = total_mem - actually_in_used_mem; 
-    if(data->free_ram_ > LIMIT_RAM_FREE) {
-        std::string command; 
-
-        log_transfer_.LogTransfer(data);    
-
-        command = "sync; ";
-        command += "echo 3 > /proc/sys/vm/drop_caches ; " ; 
-        if(Execute(command)) {
-            LOG_INFO("Success free cache "); 
-        }
-        else 
-            data->count_ ++; 
+    data->free_ram_ = (static_cast<int>(data->mem_info_.mem_available + data->mem_info_.cached) / 1024); // convert to MB
+    LOG_INFO("ram free is %d", data->free_ram_);
+    if(data->free_ram_ >= LIMIT_RAM_FREE) {
+    std::string command;
+    command = "sync; ";
+    command += "echo 3 > /proc/sys/vm/drop_caches ; ";
+    data->LogTransfer(data);
+    ++data->count_;
     }
-    if(data->count_ >= 5) {
+
+    usleep(1000);
+
+    } while (data->free_ram_ >= LIMIT_RAM_FREE && data->count_ < 5);
+    if(data->count_ == 5) {
         LOG_WARN("RAM is not free. Trying reboot ..."); 
-        data->count_ = 0;
-        // log_transfer_.LogTransfer(data); 
+        data->count_ = 0;   
+        LOG_INFO("==============="); 
         // reboot(LINUX_REBOOT_CMD_RESTART);  
     }  
-
-
-
-
 }
 
 
@@ -175,8 +174,7 @@ Resources::LoadAverages(void *user_data) {
     getloadavg(load_avg, 3); 
     if(load_avg[1] > CORE) {
         LOG_WARN("The system has a problem. Trying reboot ..."); 
-        reboot(LINUX_REBOOT_CMD_RESTART); 
-        
+        reboot(LINUX_REBOOT_CMD_RESTART);   
     }
 }
 

@@ -12,6 +12,7 @@ int main(int argc, char** argv) {
     DBusPendingCall* pending;
     int ret;
     char* param = "parameter";
+    std::vector<std::string> summer; 
 
     // Khởi tạo kết nối với DBus
     dbus_error_init(&error);

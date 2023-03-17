@@ -1,11 +1,11 @@
-#ifndef __MAV3_PROCESS_MANAGER_RESOURCES_HPP__
-#define __MAV3_PROCESS_MANAGER_RESOURCES_HPP__
-
 /*
 total memory in used formula : = +total + shmem - free - buffer - cached - sreclaimable  
 load avagers is help to know process is running and how much processed is in message queue. But it is not im
 important as it shows. < following loadavg of linux git > 
 */
+
+#ifndef __MAV3_PROCESS_MANAGER_RESOURCES_HPP__
+#define __MAV3_PROCESS_MANAGER_RESOURCES_HPP__
 
 #include<Libraries/Log/LogPlus.hpp>
 #include<Libraries/Timer/Timer.hpp>
@@ -18,7 +18,7 @@ important as it shows. < following loadavg of linux git >
 #include<sys/reboot.h> 
 #include<linux/reboot.h> 
 
-#define LIMIT_RAM_FREE 50 //50MB 
+#define LIMIT_RAM_FREE 425 //MB 
 #define LIMIT_CPU_IN_USE 1.72 // 50 % 
 #define TIME_CHECK 1*1000 //1s 
 #define CORE 3 
@@ -37,7 +37,7 @@ typedef struct {
     unsigned long long  mem_available; 
     unsigned long long  buffers; 
     unsigned long long  cached;
-} MemnoryStatus; 
+} MemoryStatus; 
 
 enum MEMORY_MODE
 {
@@ -46,7 +46,7 @@ enum MEMORY_MODE
   MEMORY_MODE_USAGE_PERCENTAGE
 }; 
 
-class Resources {
+class Resources : public LogHistory {
 public: 
     Resources(); 
     ~Resources();
@@ -57,7 +57,6 @@ public:
 private: 
     static int check_RAM_;
     static int check_CPU_;
-
 
     static int HandleStatusRAMIsOver(void *user_data); 
     static int HandleStatusCPUusage(void *user_data); 
@@ -73,6 +72,9 @@ private:
     Timer timer_check_Load_Averages_; // not important 
     static LogHistory log_transfer_; 
     static KeepAlive keep_alive_; 
+    MemoryStatus mem_info_; 
+    int cpu_limitted_; 
+    int ram_limmited_; 
 }; 
 
 #endif //__MAV3_PROCESS_MANAGER_RESOURCES_HPP__
