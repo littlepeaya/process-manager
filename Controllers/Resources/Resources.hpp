@@ -18,7 +18,7 @@ important as it shows. < following loadavg of linux git >
 #include<sys/reboot.h> 
 #include<linux/reboot.h> 
 
-#define LIMIT_RAM_FREE 425 //MB 
+#define LIMIT_RAM_FREE 450 //MB 
 #define LIMIT_CPU_IN_USE 1.72 // 50 % 
 #define TIME_CHECK 1*1000 //1s 
 #define CORE 3 
@@ -63,6 +63,7 @@ private:
     static int LoadAverages(void *user_data); 
 
     int count_; 
+    int count_cpu_; 
     int free_ram_; 
     bool is_stable_; 
     bool ready_restart_; 
@@ -75,6 +76,7 @@ private:
     MemoryStatus mem_info_; 
     int cpu_limitted_; 
     int ram_limmited_; 
+    std::vector<Service> service_; 
 }; 
 
 #endif //__MAV3_PROCESS_MANAGER_RESOURCES_HPP__

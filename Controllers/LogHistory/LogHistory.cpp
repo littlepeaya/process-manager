@@ -1,9 +1,6 @@
 #include "LogHistory.hpp"
 #include "Generic.hpp"
 
-#define MAXIMUM_COUNT_CPU_TO_REBOOT 10 
-#define MAXIMUM_COUNT_RAM_TO_REBOOT 3 
-
 pthread_mutex_t LogHistory::log_transfer_mutex_ = PTHREAD_MUTEX_INITIALIZER; 
 
 
@@ -29,10 +26,14 @@ LogHistory::~LogHistory() {
 int 
 LogHistory::Start() {
     auto config = JsonConfiguration::GetInstance()->Read();
-    if( !config.isMember("address-server") || !config.isMember("port") || !config.isMember("dirupload") || !config.isMember("services") ) {
-        LOG_ERRO("Missing configuration "); 
+    if( !config.isMember("address-server") || 
+        !config.isMember("port") || 
+        !config.isMember("dirupload") || 
+        !config.isMember("services") ) {
+        LOG_ERRO("Missing configuration"); 
         return -1; 
     } 
+    if(!is_loaded_) {
     port_ = config["port"].asString(); 
     dir_upload_ = config["dirupload"].asString(); 
     url_server_ = config["address-server"].asString(); 
@@ -45,6 +46,9 @@ LogHistory::Start() {
         service_.push_back(ser); 
     }
     dir_upload_.append(dir_upload_.back() == '/' ? "":"/"); 
+
+    is_loaded_ = true;
+    }
  
     LOG_CRIT("==========Component Log module==========="); 
     LOG_INFO("ADDRESS SERVER: %s", url_server_.c_str()); 
@@ -72,7 +76,6 @@ LogHistory::CheckLogSize(void *user_data) {
     auto data = (LogHistory *) user_data; 
     std::string command; 
     std::string log_path; 
-
     for(int i = 0; i < (data->service_).size(); ++i) {
         log_path += (data->service_[i].logpath); 
         log_path += " "; 

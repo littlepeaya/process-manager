@@ -1,5 +1,8 @@
 #include "Resources.hpp"
 
+#define MAXIMUM_COUNT_CPU_TO_REBOOT 100 
+#define MAXIMUM_COUNT_RAM_TO_REBOOT 30 
+
 int Resources::check_RAM_ = 0;
 int Resources::check_CPU_ = 0; 
 KeepAlive Resources::keep_alive_  ; 
@@ -8,6 +11,7 @@ LogHistory Resources::log_transfer_;
 Resources::Resources() : percent_cpu_avg_(0),  
                          free_ram_(0), 
                          count_(0),
+                         count_cpu_(0), 
                          ready_restart_(false), 
                          cpu_limitted_(0), 
                          ram_limmited_(0), 
@@ -25,6 +29,7 @@ Resources::~Resources()
 
 int 
 Resources::Start() {
+    LOG_INFO("%d", __LINE__); 
     LOG_CRIT("==========Resources module===============");
     if(timer_check_CPU_.Start(100, TIME_CHECK) < 0 ) {
         LOG_ERRO("Could not start timer to check CPU"); 
@@ -39,6 +44,34 @@ Resources::Start() {
         return -1; 
     }
     auto config = JsonConfiguration::GetInstance()->Read();
+    Service ser; 
+    for(int i = 0; i < config["services"].size(); ++i) {
+        ser.logpath = config["services"][i]["pathlog"].asString(); 
+        ser.name = config["services"][i]["name"].asString(); 
+        ser.priority = config["services"][i]["priority"].asInt(); 
+
+        service_.push_back(ser); 
+    }
+    for (int i = 0; i < service_.size(); ++i) {
+        for(int j = 1; j < service_.size(); ++j) {
+            if(service_[i].priority < service_[j].priority) {
+                ser.priority = service_[i].priority; 
+                ser.name = service_[i].name; 
+                ser.logpath = service_[i].logpath; 
+
+                service_[i].logpath = service_[j].logpath; 
+                service_[i].name = service_[j].name; 
+                service_[i].priority = service_[j].priority; 
+
+                service_[j].logpath = ser.logpath; 
+                service_[j].name = ser.name; 
+                service_[j].priority = ser.priority; 
+            }
+        }
+    }
+    if(!is_stable_)
+        is_stable_ = true; 
+    LOG_DBUG("%d", __LINE__); 
     ram_limmited_ = config["resources"]["ram"].asInt(); 
     cpu_limitted_ = config["resources"]["cpu"].asInt(); 
     LOG_INFO("RAM LIMITTED: %d MB", ram_limmited_); 
@@ -91,16 +124,22 @@ Resources::HandleStatusCPUusage(void *user_data) {
     data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
     
     if(data->percent_cpu_avg_ >= LIMIT_CPU_IN_USE) { 
-        data->count_++; 
+        data->count_cpu_++; 
         LOG_INFO("CPU is %0.2f", data->percent_cpu_avg_ ); 
         LOG_WARN("CPU is over high at %s", ctime(&time_)); 
-        
+        LOG_WARN("Trying restart services dependence priority"); 
+        for(int i = 0; i < data->service_.size(); ++i) {
+            LOG_INFO("restart service %d %s", data->service_[i].priority, data->service_[i].name.c_str()); 
+            keep_alive_.RestartService(data->service_[i].name);
+        }
         
     } 
-    if(data->count_ >= 10) {
+    else 
+        data->count_cpu_ = 0; 
+    if(data->count_cpu_ >= MAXIMUM_COUNT_CPU_TO_REBOOT ) {
         LOG_ERRO("CPU is very high during 1 hour. Upload Log and reboot device"); 
-        // log_transfer_.LogTransfer(data); 
-        data->count_ = 0; 
+        log_transfer_.LogTransfer(data); 
+        data->count_cpu_ = 0; 
         // reboot(LINUX_REBOOT_CMD_RESTART); 
     }
 
@@ -115,9 +154,6 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     size_t substr_len;
 
     unsigned int total_mem;
-    data->count_ = -1; 
-    
-    do {
     data->free_ram_ = 0; 
     unsigned int actually_in_used_mem = 0; 
     std::ifstream memory_info("/proc/meminfo");
@@ -153,14 +189,14 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     command += "echo 3 > /proc/sys/vm/drop_caches ; ";
     data->LogTransfer(data);
     ++data->count_;
+    } 
+    else {
+        data->count_ = 0; 
     }
 
-    usleep(1000);
-
-    } while (data->free_ram_ >= LIMIT_RAM_FREE && data->count_ < 5);
-    if(data->count_ == 5) {
+    if(data->count_ >= MAXIMUM_COUNT_RAM_TO_REBOOT) {
         LOG_WARN("RAM is not free. Trying reboot ..."); 
-        data->count_ = 0;   
+        data->count_ = 0; 
         LOG_INFO("==============="); 
         // reboot(LINUX_REBOOT_CMD_RESTART);  
     }  
