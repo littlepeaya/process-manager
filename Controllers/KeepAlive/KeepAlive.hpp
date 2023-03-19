@@ -17,6 +17,7 @@
 
 class KeepAlive {
 public: 
+    KeepAlive(std::string name); 
     KeepAlive(); 
     ~KeepAlive();
 
@@ -30,6 +31,7 @@ public:
 private: 
     bool keep_;
     bool all_active_; 
+    std::string name_of_service_stop_; 
     int count; 
     GDBusProxy *proxy_;
      

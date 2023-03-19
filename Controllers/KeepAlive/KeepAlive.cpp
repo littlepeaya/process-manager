@@ -1,11 +1,20 @@
 #include "Controllers/KeepAlive/KeepAlive.hpp" 
 
-KeepAlive::KeepAlive() :
+KeepAlive::KeepAlive(std::string name) : 
+                        name_of_service_stop_(std::move(name)), 
                         proxy_(nullptr), 
                         keep_(true), 
                         all_active_(false) {
     check_priodic_time_.RegisterTimerHandler(HandleKeepAlive, this);
 }
+
+KeepAlive::KeepAlive() : 
+                        proxy_(nullptr), 
+                        keep_(true), 
+                        all_active_(false) {
+    check_priodic_time_.RegisterTimerHandler(HandleKeepAlive, this);
+}
+
 
 KeepAlive::~KeepAlive() {
 
@@ -15,22 +24,22 @@ int
 KeepAlive::Start() { 
     auto config = JsonConfiguration::GetInstance()->Read();
     LOG_CRIT("==========Check Keep Alive===============");
-     if(!config.isMember("services") && !config["services"].isArray()) {
+     if(!config.isMember("services") && !config["services"].isObject()) {
         LOG_ERRO("Missing configuration");
         return -1;
     }
-    for (int i = 0; i < config["services"].size(); ++i) {
-            if(!config["services"][i].isMember("execute") || 
-               !config["services"][i].isMember("kill") || 
-               !config["services"][i].isMember("name") || 
-               !config["services"][i].isMember("pathlog") || 
-               !config["services"][i].isMember("priority")) {
-                LOG_ERRO("Missing members of service"); 
-                return -1; 
-            }
-            std::string service; 
-            service = config["services"][i]["name"].asString(); 
-            LOG_INFO("Component service: %s", service.c_str()); 
+    for (auto &name : config["services"].getMemberNames()) {
+        if (!config["services"][name].isMember("execute") ||
+            !config["services"][name].isMember("kill") ||
+            !config["services"][name].isMember("pathlog") ||
+            !config["services"][name].isMember("priority")) {
+            LOG_ERRO("Missing members of service");
+            return -1;
+        }
+        if(name_of_service_stop_ == name) 
+            LOG_CRIT("Component service: %s(No monitor)", name.c_str());
+        else 
+            LOG_INFO("Component service: %s", name.c_str()); 
     }
 
     check_priodic_time_.Start(100, CHECK_PERIODIC_TIME);
@@ -43,33 +52,32 @@ KeepAlive::Start() {
                         "g-properties-changed",
                         G_CALLBACK(HandleStopOnlyService),
                         this);
-
-    
-     
     return 1;   
 }
 
 void 
 KeepAlive::Stop() {
-    keep_ = false;
     check_priodic_time_.Stop(); 
 }
 
 int 
 KeepAlive::HandleKeepAlive(void *user_data) {
     auto data = (KeepAlive *) user_data; 
+    std::string command;
     auto config = JsonConfiguration::GetInstance()->Read(); 
-        for (int i = 0; i < config["services"].size(); ++i ) {
-            std::string service; 
-            service = config["services"][i]["name"].asString(); 
-            std::string command = "pidof " + std::string(service); 
-            if (Execute(command)) 
-                LOG_INFO("Service %s is active", service.c_str());
-            else {
-                LOG_DBUG("Service %s is not active. Trying Start......", service.c_str()); 
-                StartService(service);
-                usleep(1000);
+        for( auto &name: config["services"].getMemberNames()) {
+            if(data->name_of_service_stop_ != name) { 
+                command = "pidof " + std::string(name); 
+                if (Execute(command)) 
+                    LOG_INFO("Service %s is active", name.c_str());
+                else {
+                    LOG_DBUG("Service %s is not active. Trying Start......", name.c_str()); 
+                    StartService(name);
+                    usleep(1000);
+                }
             }
+            else 
+                continue;
         }
     return 0; 
 }
@@ -77,7 +85,6 @@ KeepAlive::HandleKeepAlive(void *user_data) {
 GVariant *
 KeepAlive::HandleStopOnlyService (LBus::Message * message, void * user_data) {
     LOG_INFO("something is here"); 
-    Execute("cat /var/log/process-manager.log"); 
 }
 
 GVariant * 
@@ -89,64 +96,32 @@ void
 KeepAlive::StartService(std::string name) {
     std::string command; 
     auto config = JsonConfiguration::GetInstance()->Read(); 
-    for ( int i = 0; i < config["services"].size(); ++i) {
-            if(config["services"][i]["name"].asString() == name) {
-                command = config["services"][i]["execute"].asString(); 
+    for ( auto &find_name: config["services"].getMemberNames()) {
+            if(find_name == name) {
+                command = config["services"][name]["execute"].asString(); 
                 LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
             }
     }
-// #ifdef USE_SYSTEMD 
-//     std::string command; 
-//     command = "sudo systemctl " + std::string(name) + ".service" + " start";
-//     std::string result = ExecuteCommand(command.c_str()); 
-//     LOG_DBUG("%s", result.c_str()); 
-// #elif USE_INITD 
-//     std::string command; 
-//     command = "/etc/init.d/" + std::string(name) + " " + "start";
-//     std::string result = ExecuteCommand(command.c_str()); 
-//     LOG_DBUG("%s", result.c_str()); 
-// #endif
 }
 
 void 
 KeepAlive::StopService(std::string name) {
     std::string command; 
     auto config = JsonConfiguration::GetInstance()->Read(); 
-    for ( int i = 0; i < config["services"].size(); ++i) {
-            if(config["services"][i]["name"].asString() == name) {
-                command = config["services"][i]["kill"].asString(); 
+   for ( auto &find_name: config["services"].getMemberNames()) {
+            if(find_name == name) {
+                command = config["services"][name]["kill"].asString(); 
                 LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
             }
     }
-// #ifdef USE_SYSTEMD 
-//     std::string command; 
-//     command = "sudo systemctl " + std::string(name) + ".service" + " stop";
-//     std::string result = ExecuteCommand(command.c_str()); 
-//     LOG_DBUG("%s", result.c_str()); 
-// #elif USE_INITD 
-//     std::string command; 
-//     command = "/etc/init.d/" + std::string(name) + " " + "stop";
-//     std::string result = ExecuteCommand(command.c_str()); 
-//     LOG_DBUG("%s", result.c_str()); 
-// #endif
 }
 
 void
 KeepAlive::RestartService(std::string name) {
     StopService(name); 
     StartService(name); 
-// #ifdef USE_SYSTEMD 
-//     std::string command; 
-//     command = "sudo systemctl " + std::string(name) + ".service" + " restart";
-//     std::string result = ExecuteCommand(command.c_str()); 
-//     LOG_DBUG("%s", result.c_str()); 
-// #elif USE_INITD 
-//     std::string command; 
-//     command = "/etc/init.d/" + std::string(name) + " " + "restart";
-//     std::string result = ExecuteCommand(command.c_str()); 
-//     LOG_DBUG("%s", result.c_str());
-// #endif 
 }
+
 
 
 

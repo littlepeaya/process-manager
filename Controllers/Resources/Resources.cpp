@@ -29,7 +29,6 @@ Resources::~Resources()
 
 int 
 Resources::Start() {
-    LOG_INFO("%d", __LINE__); 
     LOG_CRIT("==========Resources module===============");
     if(timer_check_CPU_.Start(100, TIME_CHECK) < 0 ) {
         LOG_ERRO("Could not start timer to check CPU"); 
@@ -43,12 +42,13 @@ Resources::Start() {
         LOG_ERRO("Could not start timer to check CPU"); 
         return -1; 
     }
+    //sorting services bases on priorites 
     auto config = JsonConfiguration::GetInstance()->Read();
     Service ser; 
-    for(int i = 0; i < config["services"].size(); ++i) {
-        ser.logpath = config["services"][i]["pathlog"].asString(); 
-        ser.name = config["services"][i]["name"].asString(); 
-        ser.priority = config["services"][i]["priority"].asInt(); 
+    for(auto &name : config["services"].getMemberNames()) {
+        ser.logpath = config["services"][name]["pathlog"].asString(); 
+        ser.name = name;  
+        ser.priority = config["services"][name]["priority"].asInt(); 
 
         service_.push_back(ser); 
     }
@@ -71,7 +71,6 @@ Resources::Start() {
     }
     if(!is_stable_)
         is_stable_ = true; 
-    LOG_DBUG("%d", __LINE__); 
     ram_limmited_ = config["resources"]["ram"].asInt(); 
     cpu_limitted_ = config["resources"]["cpu"].asInt(); 
     LOG_INFO("RAM LIMITTED: %d MB", ram_limmited_); 
@@ -128,10 +127,10 @@ Resources::HandleStatusCPUusage(void *user_data) {
         LOG_INFO("CPU is %0.2f", data->percent_cpu_avg_ ); 
         LOG_WARN("CPU is over high at %s", ctime(&time_)); 
         LOG_WARN("Trying restart services dependence priority"); 
-        for(int i = 0; i < data->service_.size(); ++i) {
-            LOG_INFO("restart service %d %s", data->service_[i].priority, data->service_[i].name.c_str()); 
-            keep_alive_.RestartService(data->service_[i].name);
-        }
+        // for(int i = 0; i < data->service_.size(); ++i) {
+        //     LOG_INFO("restart service %d %s", data->service_[i].priority, data->service_[i].name.c_str()); 
+        //     keep_alive_.RestartService(data->service_[i].name);
+        // }
         
     } 
     else 

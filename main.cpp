@@ -22,6 +22,12 @@ void PrintHelp() {
     std::cout << "\t-h\t display the help" << std::endl;
 }
 
+void StopOnlyService(std::string name) {
+    KeepAlive keep_alive_; 
+    keep_alive_.Start();
+    keep_alive_.StopService(name);
+}
+
 int UpdateMainAddress() {
     int fd, len;
     char macaddr[64] = {0};
@@ -50,22 +56,26 @@ int main(int argc, char *argv[]) {
     bool is_option = false;
     int retval;
     
-    std::string log_path, config_path;
+    std::string log_path, config_path, name_service;
     struct option long_options[] = {
             {"config", required_argument, nullptr, 'c'},
             {"help",   no_argument,       nullptr, 'h'},
+            {"stopservice", required_argument, nullptr, 's'},
             {nullptr, 0,                  nullptr, 0}
     };
 
-    while ((opt = getopt_long(argc, argv, "hc:", long_options, nullptr)) != -1) {
+    while ((opt = getopt_long(argc, argv, "hc:s:", long_options, nullptr)) != -1) {
         is_option = true;
         switch (opt) {
             case 'c':
                 config_path.assign(optarg);
                 break;
+            case 's': 
+                name_service.assign(optarg); 
+                break;
             case 'h':
                 PrintHelp();
-                exit(0);
+                break;
             default:
                 fprintf(stderr, "audio-manager missing operand\n");
                 fprintf(stderr, "Try 'audio-manager --help' for more information\n");
@@ -114,7 +124,6 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Failed to update main address\n");
         exit(1);
     }
-    
     auto root = json_configuration->Read();
     Log::Level level = (Log::Level)root["log"]["level"].asInt();
     Log::Create(root["log"]["path"].asString(), true, true, level, level);
@@ -125,8 +134,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error starting session\n");
         exit(1);
     }
-
-    Controllers controller;
+    Controllers controller(name_service);
     if (controller.Start() < 0) {
         fprintf(stderr, "Error starting controller\n");
         exit(1);

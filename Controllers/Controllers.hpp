@@ -8,7 +8,8 @@
 
 class Controllers {
 public:
-    Controllers();
+    Controllers(std::string name);
+    Controllers(); 
     ~Controllers();
 
     int Start();

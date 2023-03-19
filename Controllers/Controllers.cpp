@@ -6,6 +6,13 @@ Controllers::Controllers() :
                 log_history_()
 {}
 
+Controllers::Controllers(std::string name) : 
+                keepalive_(std::move(name)),
+                resources_(),
+                log_history_()
+{}
+
+
 Controllers::~Controllers() 
 {}
 

@@ -38,10 +38,10 @@ LogHistory::Start() {
     dir_upload_ = config["dirupload"].asString(); 
     url_server_ = config["address-server"].asString(); 
     Service ser; 
-    for(int i = 0; i < config["services"].size(); ++i) {
-        ser.logpath = config["services"][i]["pathlog"].asString(); 
-        ser.name = config["services"][i]["name"].asString(); 
-        ser.priority = config["services"][i]["priority"].asInt(); 
+    for(auto &name : config["services"].getMemberNames()) {
+        ser.logpath = config["services"][name]["pathlog"].asString(); 
+        ser.name = name;  
+        ser.priority = config["services"][name]["priority"].asInt(); 
 
         service_.push_back(ser); 
     }
@@ -62,7 +62,6 @@ LogHistory::Start() {
         LOG_ERRO("Could not start periodic timer to start to check log");
         return -1; 
     }
-    LOG_INFO("OK"); 
     return 1; 
 }
 
@@ -83,7 +82,6 @@ LogHistory::CheckLogSize(void *user_data) {
     command = "du -c " + log_path + " |grep total | awk '{print $1}'; "; 
     LOG_INFO("Execute: %s", command.c_str()); 
     int log_size_ = std::stoi(ExecuteCommand(command.c_str())); 
-    LOG_INFO("log size: %d", log_size_); 
     if (log_size_ >= LOG_SIZE) {
         LOG_WARN("Size of log is over limited. Trying push log into the server");
         data->LogTransfer(data);
@@ -101,12 +99,12 @@ LogHistory::LogTransfer(void *user_data) {
     data->dir_upload_ = config["dirupload"].asString(); 
     (data->dir_upload_).append((data->dir_upload_).back() == '/' ? "":"/"); 
     Service ser; 
-    for(int i = 0; i < config["services"].size(); ++i) {
-        ser.logpath = config["services"][i]["pathlog"].asString(); 
-        ser.name = config["services"][i]["name"].asString(); 
-        ser.priority = config["services"][i]["priority"].asInt(); 
-        
-        (data->service_).push_back(ser); 
+    for(auto &name : config["services"].getMemberNames()) {
+        ser.logpath = config["services"][name]["pathlog"].asString(); 
+        ser.name = name;  
+        ser.priority = config["services"][name]["priority"].asInt(); 
+
+        data->service_.push_back(ser); 
     }
     data->is_loaded_ = true; 
     }
@@ -186,19 +184,6 @@ clean:
     LOG_INFO("Clean %s", (data->service_[i]).logpath.c_str()); 
     usleep(10); 
     }
-
-    // DIR *dir;
-    // struct dirent *ent; 
-    // FILE *fname; 
-    // if ((dir = opendir(data->log_path_.c_str())) != nullptr) {
-    //     while ((ent = readdir(dir)) != nullptr) {
-    //         std::string s_name = ent->d_name;
-    //         if (s_name.find(".log") != std::string::npos) {
-    //             LOG_INFO("Clean %s", s_name.c_str());
-    //             fclose(fopen((data->log_path_ + s_name).c_str(), "w"));
-    //         }
-    //     }
-    // }
 
     free(dir_path);
     pthread_mutex_unlock(&log_transfer_mutex_); 
