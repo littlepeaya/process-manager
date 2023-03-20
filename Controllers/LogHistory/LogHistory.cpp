@@ -68,6 +68,7 @@ LogHistory::Start() {
 void 
 LogHistory::Stop() {
     time_upload_file_log_.Stop(); 
+    time_upload_file_log_.CancelTimerHandler(CheckLogSize); 
 }
 
 int 
@@ -130,7 +131,6 @@ LogHistory::LogTransfer(void *user_data) {
         log_path += " "; 
     }
     
-    LOG_INFO("here"); 
     command = "tar -cvf " + std::string(dir_path) + ".tar" + " "+ log_path; 
     LOG_INFO("Execute: %s", command.c_str()); 
     if (!Execute(command)) 

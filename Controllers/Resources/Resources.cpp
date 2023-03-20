@@ -1,7 +1,7 @@
 #include "Resources.hpp"
 
-#define MAXIMUM_COUNT_CPU_TO_REBOOT 100 
-#define MAXIMUM_COUNT_RAM_TO_REBOOT 30 
+#define MAXIMUM_COUNT_CPU_TO_REBOOT 5
+#define MAXIMUM_COUNT_RAM_TO_REBOOT 5 
 
 int Resources::check_RAM_ = 0;
 int Resources::check_CPU_ = 0; 
@@ -10,13 +10,12 @@ LogHistory Resources::log_transfer_;
 
 Resources::Resources() : percent_cpu_avg_(0),  
                          free_ram_(0), 
-                         count_(0),
+                         count_ram_(0),
                          count_cpu_(0), 
-                         ready_restart_(false), 
                          cpu_limitted_(0), 
                          ram_limmited_(0), 
-                         mem_info_(), 
-                         is_stable_(true) { 
+                         core_(0), 
+                         mem_info_() { 
     timer_check_RAM_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
     timer_check_CPU_.RegisterTimerHandler(HandleStatusCPUusage,this); 
     timer_check_Load_Averages_.RegisterTimerHandler(LoadAverages, this); 
@@ -68,11 +67,10 @@ Resources::Start() {
                 service_[j].priority = ser.priority; 
             }
         }
-    }
-    if(!is_stable_)
-        is_stable_ = true; 
+    } 
     ram_limmited_ = config["resources"]["ram"].asInt(); 
     cpu_limitted_ = config["resources"]["cpu"].asInt(); 
+    core_ = config["core"].asInt(); 
     LOG_INFO("RAM LIMITTED: %d MB", ram_limmited_); 
     LOG_INFO("CPU LIMITTED: %d percent", ram_limmited_); 
     return 1; 
@@ -80,7 +78,14 @@ Resources::Start() {
 
 void 
 Resources::Stop() {
-    is_stable_ = true; 
+    timer_check_CPU_.Stop(); 
+    timer_check_CPU_.CancelTimerHandler(HandleStatusCPUusage); 
+
+    timer_check_Load_Averages_.Stop(); 
+    timer_check_Load_Averages_.CancelTimerHandler(LoadAverages); 
+
+    timer_check_RAM_.Stop(); 
+    timer_check_RAM_.CancelTimerHandler(HandleStatusRAMIsOver); 
 }
 
 int 
@@ -99,39 +104,36 @@ Resources::HandleStatusCPUusage(void *user_data) {
     int time_count = 0;
 
     while (time_count != TIME_COUNT) {
-        stats_all = 0; 
         std::ifstream stat_file("/proc/stat");
-        getline(stat_file, line);
-        stat_file.close();
+        percent_cpu_init[time_count] = 0; 
+            stats_all = 0; 
+            getline(stat_file, line);
+            substr_len = line.find_first_of(" ", 3);
 
-        substr_len = line.find_first_of(" ", 3);
-
-        for (unsigned i = 0; i < 4; i++) {
-            substr_start = line.find_first_not_of(" ", substr_len);
-            substr_len = line.find_first_of(" ", substr_start);
-            stats[i] = std::stoll(line.substr(substr_start, substr_len));
-            stats_all += stats[i];
-
-        }
-        percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.00;
-        usleep(1000); 
+            for (unsigned i = 0; i < 4; ++i) {
+                substr_start = line.find_first_not_of(" ", substr_len);
+                substr_len = line.find_first_of(" ", substr_start);
+                stats[i] = std::stoll(line.substr(substr_start, substr_len));
+                stats_all += stats[i];
+            }
+            percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.00;
+        usleep(10*1000); //10ms 
         time_count++; 
-    }
+        stat_file.close(); 
+    } 
     for( int i = 0; i < TIME_COUNT; ++i) {
         percent_cpu += percent_cpu_init[i]; 
     }
     data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
-    
+    LOG_INFO("CPU in used is %0.2f", data->percent_cpu_avg_ ); 
     if(data->percent_cpu_avg_ >= LIMIT_CPU_IN_USE) { 
-        data->count_cpu_++; 
-        LOG_INFO("CPU is %0.2f", data->percent_cpu_avg_ ); 
+        ++data->count_cpu_; 
         LOG_WARN("CPU is over high at %s", ctime(&time_)); 
         LOG_WARN("Trying restart services dependence priority"); 
         // for(int i = 0; i < data->service_.size(); ++i) {
         //     LOG_INFO("restart service %d %s", data->service_[i].priority, data->service_[i].name.c_str()); 
         //     keep_alive_.RestartService(data->service_[i].name);
-        // }
-        
+        // }       
     } 
     else 
         data->count_cpu_ = 0; 
@@ -156,6 +158,7 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     data->free_ram_ = 0; 
     unsigned int actually_in_used_mem = 0; 
     std::ifstream memory_info("/proc/meminfo");
+    
 
     while (std::getline ( memory_info, line)) {
         substr_start = 0;
@@ -180,22 +183,24 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
             data->mem_info_.mem_available = std::stoi(line.substr(substr_start, substr_len));
         }
     }
+    
+   
     data->free_ram_ = (static_cast<int>(data->mem_info_.mem_available + data->mem_info_.cached) / 1024); // convert to MB
-    LOG_INFO("ram free is %d", data->free_ram_);
+    LOG_INFO("RAM free is %d", data->free_ram_);
     if(data->free_ram_ >= LIMIT_RAM_FREE) {
-    std::string command;
-    command = "sync; ";
-    command += "echo 3 > /proc/sys/vm/drop_caches ; ";
-    data->LogTransfer(data);
-    ++data->count_;
+        std::string command;
+        command = "sync; ";
+        command += "echo 3 > /proc/sys/vm/drop_caches ; ";
+        data->LogTransfer(data);
+        ++data->count_ram_;
     } 
     else {
-        data->count_ = 0; 
+        data->count_ram_ = 0; 
     }
 
-    if(data->count_ >= MAXIMUM_COUNT_RAM_TO_REBOOT) {
+    if(data->count_ram_ >= MAXIMUM_COUNT_RAM_TO_REBOOT) {
         LOG_WARN("RAM is not free. Trying reboot ..."); 
-        data->count_ = 0; 
+        data->count_ram_ = 0; 
         LOG_INFO("==============="); 
         // reboot(LINUX_REBOOT_CMD_RESTART);  
     }  
@@ -207,7 +212,7 @@ Resources::LoadAverages(void *user_data) {
     auto data = (Resources *) user_data; 
     double load_avg[3];
     getloadavg(load_avg, 3); 
-    if(load_avg[1] > CORE) {
+    if(load_avg[1] > data->core_) {
         LOG_WARN("The system has a problem. Trying reboot ..."); 
         reboot(LINUX_REBOOT_CMD_RESTART);   
     }

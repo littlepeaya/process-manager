@@ -19,9 +19,8 @@ important as it shows. < following loadavg of linux git >
 #include<linux/reboot.h> 
 
 #define LIMIT_RAM_FREE 450 //MB 
-#define LIMIT_CPU_IN_USE 1.72 // 50 % 
-#define TIME_CHECK 1*1000 //1s 
-#define CORE 3 
+#define LIMIT_CPU_IN_USE 8 // 20 % 
+#define TIME_CHECK 10*1000 //1s 
 
 #define CP_USER   0
 #define CP_NICE   1 
@@ -39,13 +38,6 @@ typedef struct {
     unsigned long long  cached;
 } MemoryStatus; 
 
-enum MEMORY_MODE
-{
-  MEMORY_MODE_DEFAULT,
-  MEMORY_MODE_FREE_MEMORY,
-  MEMORY_MODE_USAGE_PERCENTAGE
-}; 
-
 class Resources : public LogHistory {
 public: 
     Resources(); 
@@ -62,11 +54,10 @@ private:
     static int HandleStatusCPUusage(void *user_data); 
     static int LoadAverages(void *user_data); 
 
-    int count_; 
+    int count_ram_; 
     int count_cpu_; 
     int free_ram_; 
-    bool is_stable_; 
-    bool ready_restart_; 
+    int core_; 
     float percent_cpu_avg_; 
     Timer timer_check_RAM_; //important 
     Timer timer_check_CPU_; //important 

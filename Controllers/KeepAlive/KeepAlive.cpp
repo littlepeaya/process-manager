@@ -57,7 +57,8 @@ KeepAlive::Start() {
 
 void 
 KeepAlive::Stop() {
-    check_priodic_time_.Stop(); 
+    check_priodic_time_.Stop();
+    check_priodic_time_.CancelTimerHandler(HandleKeepAlive);  
 }
 
 int 
