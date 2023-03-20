@@ -42,7 +42,7 @@ KeepAlive::Start() {
             LOG_INFO("Component service: %s", name.c_str()); 
     }
 
-    check_priodic_time_.Start(100, CHECK_PERIODIC_TIME);
+    check_priodic_time_.Start(50, CHECK_PERIODIC_TIME);
     proxy_ = GDBusProxyConnect(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH, COME_AUDIO_PROCESS_CONTROLLER_INTERFACE);
     if (proxy_ == nullptr) {
         LOG_ERRO("Failed to create proxy");
@@ -61,26 +61,25 @@ KeepAlive::Stop() {
     check_priodic_time_.CancelTimerHandler(HandleKeepAlive);  
 }
 
-int 
-KeepAlive::HandleKeepAlive(void *user_data) {
-    auto data = (KeepAlive *) user_data; 
+int KeepAlive::HandleKeepAlive(void *user_data) {
+    auto data = (KeepAlive *)user_data;
     std::string command;
-    auto config = JsonConfiguration::GetInstance()->Read(); 
-        for( auto &name: config["services"].getMemberNames()) {
-            if(data->name_of_service_stop_ != name) { 
-                command = "pidof " + std::string(name); 
-                if (Execute(command)) 
-                    LOG_INFO("Service %s is active", name.c_str());
-                else {
-                    LOG_DBUG("Service %s is not active. Trying Start......", name.c_str()); 
-                    StartService(name);
-                    usleep(1000);
-                }
+    auto config = JsonConfiguration::GetInstance()->Read();
+    for (auto &name : config["services"].getMemberNames()) {
+        if (data->name_of_service_stop_ != name) {
+            command = "pidof " + std::string(name);
+            if (Execute(command))
+                LOG_INFO("Service %s is active", name.c_str());
+            else {
+                LOG_DBUG("Service %s is not active. Trying Start......", name.c_str());
+                StartService(name);
+                usleep(1000);
             }
-            else 
-                continue;
         }
-    return 0; 
+        else
+            continue;
+    }
+    return 0;
 }
 
 GVariant *

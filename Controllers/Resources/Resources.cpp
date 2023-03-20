@@ -92,6 +92,7 @@ int
 Resources::HandleStatusCPUusage(void *user_data) {
     auto data = (Resources *) user_data;
     time_t time_; 
+    int nums_of_services; 
     time_ = time(NULL); 
     std::string line;
     size_t substr_start = 0;
@@ -117,7 +118,7 @@ Resources::HandleStatusCPUusage(void *user_data) {
                 stats_all += stats[i];
             }
             percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.00;
-        usleep(10*1000); //10ms 
+        sleep(1); //1s
         time_count++; 
         stat_file.close(); 
     } 
@@ -125,15 +126,16 @@ Resources::HandleStatusCPUusage(void *user_data) {
         percent_cpu += percent_cpu_init[i]; 
     }
     data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
-    LOG_INFO("CPU in used is %0.2f", data->percent_cpu_avg_ ); 
+    LOG_INFO("CPUavg in used is %0.2f during 10s", data->percent_cpu_avg_ ); 
+
     if(data->percent_cpu_avg_ >= LIMIT_CPU_IN_USE) { 
-        ++data->count_cpu_; 
+        nums_of_services = ++data->count_cpu_; 
         LOG_WARN("CPU is over high at %s", ctime(&time_)); 
         LOG_WARN("Trying restart services dependence priority"); 
-        // for(int i = 0; i < data->service_.size(); ++i) {
-        //     LOG_INFO("restart service %d %s", data->service_[i].priority, data->service_[i].name.c_str()); 
-        //     keep_alive_.RestartService(data->service_[i].name);
-        // }       
+        for(int i = 0; i < nums_of_services; ++i) {
+            LOG_INFO("restart service %d %s", data->service_[i].priority, data->service_[i].name.c_str()); 
+            keep_alive_.RestartService(data->service_[i].name);
+        }       
     } 
     else 
         data->count_cpu_ = 0; 

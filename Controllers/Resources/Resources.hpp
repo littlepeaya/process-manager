@@ -19,8 +19,8 @@ important as it shows. < following loadavg of linux git >
 #include<linux/reboot.h> 
 
 #define LIMIT_RAM_FREE 450 //MB 
-#define LIMIT_CPU_IN_USE 8 // 20 % 
-#define TIME_CHECK 10*1000 //1s 
+#define LIMIT_CPU_IN_USE 20 // 20 % 
+#define TIME_CHECK 60*1000 //1 minute  
 
 #define CP_USER   0
 #define CP_NICE   1 
