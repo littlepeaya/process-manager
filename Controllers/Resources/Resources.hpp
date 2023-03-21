@@ -11,15 +11,13 @@ important as it shows. < following loadavg of linux git >
 #include<Libraries/Timer/Timer.hpp>
 #include<Controllers/LogHistory/LogHistory.hpp>
 #include<Controllers/KeepAlive/KeepAlive.hpp>
-
+#include "Generic.hpp"
 #include<unistd.h> 
 #include<fstream>
 #include<string>
 #include<sys/reboot.h> 
 #include<linux/reboot.h> 
 
-#define LIMIT_RAM_FREE 450 //MB 
-#define LIMIT_CPU_IN_USE 20 // 20 % 
 #define TIME_CHECK 60*1000 //1 minute  
 
 #define CP_USER   0
@@ -27,8 +25,8 @@ important as it shows. < following loadavg of linux git >
 #define CP_SYS    2 
 #define CP_IDLE   3
 #define CP_STATES 4
+
 #define TIME_COUNT 10 
-#define OVER_TIMES 60*60 //1 hour 
 
 typedef struct {
     unsigned long long  mem_total;
@@ -67,7 +65,7 @@ private:
     MemoryStatus mem_info_; 
     int cpu_limitted_; 
     int ram_limmited_; 
-    std::vector<Service> service_; 
+    std::map<std::string, Service> service_; 
 }; 
 
 #endif //__MAV3_PROCESS_MANAGER_RESOURCES_HPP__

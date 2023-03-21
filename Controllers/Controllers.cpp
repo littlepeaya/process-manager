@@ -1,17 +1,10 @@
 #include "Controllers.hpp"
 
 Controllers::Controllers() : 
-                keepalive_(),
+                keepalive_(), 
                 resources_(),
                 log_history_()
 {}
-
-Controllers::Controllers(std::string name) : 
-                keepalive_(std::move(name)),
-                resources_(),
-                log_history_()
-{}
-
 
 Controllers::~Controllers() 
 {}

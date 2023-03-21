@@ -127,14 +127,18 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
                                                                                                                         method_name, 
                                                                                                                         g_variant_get_type_string(paramenter));
     if(g_strcmp0(method_name, "StopService") == 0) {
+        // struct Service *service; 
+        std::map<std::string, Service> *service; 
         GVariantIter *iter; 
         GVariant *dict; 
-        std::string service; 
+        std::string name; 
 
-        g_variant_get(paramenter, "(aa{sv})", &iter); 
-        // g_variant_lookup(dict, "")
+        g_variant_get(paramenter, "(aa{sv})", &iter);
+        while ((dict = g_variant_iter_next_value(iter))) {
+            
 
     }
+}
 }
     
 gboolean

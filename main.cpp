@@ -22,11 +22,6 @@ void PrintHelp() {
     std::cout << "\t-h\t display the help" << std::endl;
 }
 
-void StopOnlyService(std::string name) {
-    KeepAlive keep_alive_; 
-    keep_alive_.Start();
-    keep_alive_.StopService(name);
-}
 
 int UpdateMainAddress() {
     int fd, len;
@@ -64,14 +59,11 @@ int main(int argc, char *argv[]) {
             {nullptr, 0,                  nullptr, 0}
     };
 
-    while ((opt = getopt_long(argc, argv, "hc:s:", long_options, nullptr)) != -1) {
+    while ((opt = getopt_long(argc, argv, "hc:", long_options, nullptr)) != -1) {
         is_option = true;
         switch (opt) {
             case 'c':
                 config_path.assign(optarg);
-                break;
-            case 's': 
-                name_service.assign(optarg); 
                 break;
             case 'h':
                 PrintHelp();
@@ -134,7 +126,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error starting session\n");
         exit(1);
     }
-    Controllers controller(name_service);
+    Controllers controller;
     if (controller.Start() < 0) {
         fprintf(stderr, "Error starting controller\n");
         exit(1);

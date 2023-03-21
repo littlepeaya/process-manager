@@ -4,12 +4,11 @@
 #include "Libraries/Log/LogPlus.hpp"
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Timer/Timer.hpp"
+#include "Generic.hpp" 
 #include <vector>
 #include <string>
 #define LOG_SIZE 40 //mb 
 #define PERIODIC_UPLOAD 60*1000  // 60s 
-
-
 
 class LogHistory {
 public: 
@@ -20,18 +19,11 @@ public:
     void Stop();
     int LogTransfer(void *user_data); 
 
-    typedef struct {
-    std::string name; 
-    int priority; 
-    std::string logpath; 
-    } Service; 
-
 private: 
     
     std::string url_server_; 
-    int count; 
     std::string full_log_path_; 
-    std::vector<Service> service_; 
+    std::map<std::string, Service> service_; 
     std::string dir_upload_; 
     unsigned int log_size_;
     std::string port_; 

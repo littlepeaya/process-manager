@@ -3,6 +3,7 @@
 
 #include <gio/gio.h>
 
+#include "Generic.hpp"
 #include "Libraries/LBus/LBusNode.hpp"
 #include "Libraries/LBus/LBus.hpp" 
 

@@ -643,4 +643,14 @@ std::string getMacAddress() {
 
     return std::string(macaddr); 
 }
+
+typedef struct {
+    std::string execute; 
+    std::string kill; 
+    int priority; 
+    std::string logpath; 
+} Service; 
+
+
+
 #endif // GENERIC_HPP

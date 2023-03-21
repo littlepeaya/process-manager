@@ -8,7 +8,6 @@
 
 class Controllers {
 public:
-    Controllers(std::string name);
     Controllers(); 
     ~Controllers();
 

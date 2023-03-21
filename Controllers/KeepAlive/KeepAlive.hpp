@@ -17,7 +17,6 @@
 
 class KeepAlive {
 public: 
-    KeepAlive(std::string name); 
     KeepAlive(); 
     ~KeepAlive();
 
@@ -29,13 +28,11 @@ public:
     static void RestartService(std::string name);
 
 private: 
-    bool keep_;
-    bool all_active_; 
-    std::string name_of_service_stop_; 
     int count; 
     GDBusProxy *proxy_;
-     
+    static std::map<std::string, Service> service_; 
     static int HandleKeepAlive(void *user_data); 
+    void BlockingService(std::string name); 
 
     static GVariant *HandleStopOnlyService(LBus::Message* message, void *user_data); 
     static GVariant *StatusService(std::string &name, void *user_data); 
@@ -44,5 +41,4 @@ private:
     
 };
 
-
-#endif //__MAV3_PROCESS_MANAGER_KEEP_ALIVE_HPP__ 
+#endif //__MAV3_PROCESS_MANAGER_KEEP_ALIVE_HPP__  

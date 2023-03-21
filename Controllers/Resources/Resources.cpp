@@ -9,6 +9,7 @@ KeepAlive Resources::keep_alive_  ;
 LogHistory Resources::log_transfer_; 
 
 Resources::Resources() : percent_cpu_avg_(0),  
+                         service_(),
                          free_ram_(0), 
                          count_ram_(0),
                          count_cpu_(0), 
@@ -28,7 +29,32 @@ Resources::~Resources()
 
 int 
 Resources::Start() {
-    LOG_CRIT("==========Resources module===============");
+    //sorting services bases on priorites 
+    auto config = JsonConfiguration::GetInstance()->Read();
+    Service ser; 
+    for (auto &name : config["services"].getMemberNames()) {
+        ser.logpath = config["services"][name]["pathlog"].asString(); 
+        ser.priority = config["services"][name]["priority"].asInt(); 
+        ser.execute = config["services"][name]["execute"].asString(); 
+        ser.kill = config["services"][name]["kill"].asString(); 
+
+        service_.insert(std::pair<std::string, Service> (name,ser)); 
+    }
+    for(auto itr1 = service_.begin(); itr1 != service_.end(); ++itr1){
+        for(auto itr2 = service_.begin(); itr2 != service_.begin() && itr2 != service_.end(); ++itr2) {
+            if(itr1->second.priority < itr2->second.priority) {
+                std::swap(itr1, itr2); 
+            }
+        }
+    }
+  
+    ram_limmited_ = config["resources"]["ram"].asInt(); 
+    cpu_limitted_ = config["resources"]["cpu"].asInt(); 
+    core_ = config["core"].asInt(); 
+    LOG_INFO("RAM LIMITTED: %d MB", ram_limmited_); 
+    LOG_INFO("CPU LIMITTED: %d percent", ram_limmited_); 
+
+     LOG_CRIT("==========Resources module===============");
     if(timer_check_CPU_.Start(100, TIME_CHECK) < 0 ) {
         LOG_ERRO("Could not start timer to check CPU"); 
         return -1; 
@@ -41,38 +67,6 @@ Resources::Start() {
         LOG_ERRO("Could not start timer to check CPU"); 
         return -1; 
     }
-    //sorting services bases on priorites 
-    auto config = JsonConfiguration::GetInstance()->Read();
-    Service ser; 
-    for(auto &name : config["services"].getMemberNames()) {
-        ser.logpath = config["services"][name]["pathlog"].asString(); 
-        ser.name = name;  
-        ser.priority = config["services"][name]["priority"].asInt(); 
-
-        service_.push_back(ser); 
-    }
-    for (int i = 0; i < service_.size(); ++i) {
-        for(int j = 1; j < service_.size(); ++j) {
-            if(service_[i].priority < service_[j].priority) {
-                ser.priority = service_[i].priority; 
-                ser.name = service_[i].name; 
-                ser.logpath = service_[i].logpath; 
-
-                service_[i].logpath = service_[j].logpath; 
-                service_[i].name = service_[j].name; 
-                service_[i].priority = service_[j].priority; 
-
-                service_[j].logpath = ser.logpath; 
-                service_[j].name = ser.name; 
-                service_[j].priority = ser.priority; 
-            }
-        }
-    } 
-    ram_limmited_ = config["resources"]["ram"].asInt(); 
-    cpu_limitted_ = config["resources"]["cpu"].asInt(); 
-    core_ = config["core"].asInt(); 
-    LOG_INFO("RAM LIMITTED: %d MB", ram_limmited_); 
-    LOG_INFO("CPU LIMITTED: %d percent", ram_limmited_); 
     return 1; 
 }
 
@@ -128,14 +122,13 @@ Resources::HandleStatusCPUusage(void *user_data) {
     data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
     LOG_INFO("CPUavg in used is %0.2f during 10s", data->percent_cpu_avg_ ); 
 
-    if(data->percent_cpu_avg_ >= LIMIT_CPU_IN_USE) { 
-        nums_of_services = ++data->count_cpu_; 
+    if(data->percent_cpu_avg_ >= data->cpu_limitted_) { 
         LOG_WARN("CPU is over high at %s", ctime(&time_)); 
-        LOG_WARN("Trying restart services dependence priority"); 
-        for(int i = 0; i < nums_of_services; ++i) {
-            LOG_INFO("restart service %d %s", data->service_[i].priority, data->service_[i].name.c_str()); 
-            keep_alive_.RestartService(data->service_[i].name);
-        }       
+        LOG_WARN("Trying restart all services dependence priority"); 
+        for (auto &itr : data->service_) {
+            LOG_INFO("Restart service %d %s", itr.second.priority, itr.first.c_str()); 
+            keep_alive_.RestartService(itr.first); 
+        }     
     } 
     else 
         data->count_cpu_ = 0; 
@@ -189,10 +182,11 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
    
     data->free_ram_ = (static_cast<int>(data->mem_info_.mem_available + data->mem_info_.cached) / 1024); // convert to MB
     LOG_INFO("RAM free is %d", data->free_ram_);
-    if(data->free_ram_ >= LIMIT_RAM_FREE) {
+    if(data->free_ram_ >= data->ram_limmited_) {
         std::string command;
         command = "sync; ";
         command += "echo 3 > /proc/sys/vm/drop_caches ; ";
+        Execute(command); 
         data->LogTransfer(data);
         ++data->count_ram_;
     } 

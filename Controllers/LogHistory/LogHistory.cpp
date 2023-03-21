@@ -1,25 +1,19 @@
 #include "LogHistory.hpp"
-#include "Generic.hpp"
 
 pthread_mutex_t LogHistory::log_transfer_mutex_ = PTHREAD_MUTEX_INITIALIZER; 
 
-
 LogHistory::LogHistory() : 
-                        count(0),
                         full_log_path_(), 
                         log_size_(0), 
                         url_server_(), 
                         dir_upload_(), 
                         port_(), 
                         is_loaded_(false),
-                        modifying_mutex_(PTHREAD_MUTEX_INITIALIZER)
-                        
-
-{
+                        modifying_mutex_(PTHREAD_MUTEX_INITIALIZER) {
     time_upload_file_log_.RegisterTimerHandler(CheckLogSize, this); 
 }
 
-LogHistory::~LogHistory() {
+LogHistory::~LogHistory() { 
 
 }
 
@@ -40,10 +34,11 @@ LogHistory::Start() {
     Service ser; 
     for(auto &name : config["services"].getMemberNames()) {
         ser.logpath = config["services"][name]["pathlog"].asString(); 
-        ser.name = name;  
         ser.priority = config["services"][name]["priority"].asInt(); 
+        ser.execute = config["services"][name]["execute"].asString(); 
+        ser.kill = config["services"][name]["kill"].asString(); 
 
-        service_.push_back(ser); 
+        service_.insert(std::pair<std::string, Service> (name,ser)); 
     }
     dir_upload_.append(dir_upload_.back() == '/' ? "":"/"); 
 
@@ -55,8 +50,8 @@ LogHistory::Start() {
     LOG_INFO("PORT: %s", port_.c_str()); 
     LOG_INFO("DIR UPLOAD: %s", dir_upload_.c_str()); 
     LOG_INFO("LOG PATH: "); 
-    for(int i = 0; i < service_.size(); ++i) {
-        LOG_INFO("%s", (service_[i].logpath).c_str()); 
+    for(auto it = service_.begin(); it != service_.end(); ++it) {
+        LOG_INFO("%s", it->second.logpath.c_str()); 
     }
     if ( time_upload_file_log_.Start(100, PERIODIC_UPLOAD) < 0) {
         LOG_ERRO("Could not start periodic timer to start to check log");
@@ -76,8 +71,8 @@ LogHistory::CheckLogSize(void *user_data) {
     auto data = (LogHistory *) user_data; 
     std::string command; 
     std::string log_path; 
-    for(int i = 0; i < (data->service_).size(); ++i) {
-        log_path += (data->service_[i].logpath); 
+    for(auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
+        log_path += itr->second.logpath.c_str(); 
         log_path += " "; 
     }
     command = "du -c " + log_path + " |grep total | awk '{print $1}'; "; 
@@ -102,12 +97,13 @@ LogHistory::LogTransfer(void *user_data) {
     Service ser; 
     for(auto &name : config["services"].getMemberNames()) {
         ser.logpath = config["services"][name]["pathlog"].asString(); 
-        ser.name = name;  
         ser.priority = config["services"][name]["priority"].asInt(); 
+        ser.execute = config["services"][name]["execute"].asString(); 
+        ser.kill = config["services"][name]["kill"].asString(); 
 
-        data->service_.push_back(ser); 
+        service_.insert(std::pair<std::string, Service> (name,ser)); 
     }
-    data->is_loaded_ = true; 
+    data->is_loaded_ = true;
     }
     pthread_mutex_lock(&log_transfer_mutex_); 
     CURL *curl; 
@@ -125,12 +121,11 @@ LogHistory::LogTransfer(void *user_data) {
     dir_path = (char *)malloc((data->dir_upload_).length() + uploadFolder.length() + 1); 
     std::strcpy(dir_path, data->dir_upload_.c_str()); 
     std::strcat(dir_path, uploadFolder.c_str()); 
-    std::string log_path ; 
-    for(int i = 0; i < (data->service_).size(); ++i) {
-        log_path += (data->service_[i].logpath); 
+    std::string log_path;
+    for(auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
+        log_path += itr->second.logpath.c_str(); 
         log_path += " "; 
-    }
-    
+    } 
     command = "tar -cvf " + std::string(dir_path) + ".tar" + " "+ log_path; 
     LOG_INFO("Execute: %s", command.c_str()); 
     if (!Execute(command)) 
@@ -179,10 +174,10 @@ clean:
     command.clear();
     Execute("rm -rf " + std::string(dir_path));
     remove(dir_upload.c_str());
-    for( int i = 0; i < (data->service_).size() ; ++i) {
-    fclose(fopen(((data->service_[i]).logpath).c_str(), "w"));
-    LOG_INFO("Clean %s", (data->service_[i]).logpath.c_str()); 
-    usleep(10); 
+    for( auto itr = data->service_.begin(); itr != data->service_.end() ; ++itr) {
+        fclose(fopen((itr->second.logpath).c_str(), "w"));
+        LOG_INFO("Clean %s", itr->second.logpath.c_str());
+        usleep(10);
     }
 
     free(dir_path);
