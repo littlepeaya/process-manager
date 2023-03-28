@@ -18,7 +18,9 @@ important as it shows. < following loadavg of linux git >
 #include<sys/reboot.h> 
 #include<linux/reboot.h> 
 
-#define TIME_CHECK 60*1000 //1 minute  
+#define TIME_CHECK_RAM 60*1000 // 1 minute  
+#define TIME_CHECK_LOADAVG 15*60*1000 // 15 minutes
+#define TIME_GET_CPU 1*1000 // 1s 
 
 #define CP_USER   0
 #define CP_NICE   1 
@@ -47,13 +49,16 @@ public:
 private: 
     static int check_RAM_;
     static int check_CPU_;
+    bool is_started_; 
 
     static int HandleStatusRAMIsOver(void *user_data); 
-    static int HandleStatusCPUusage(void *user_data); 
+    static int PeriodicStatusCPUusage(void *user_data); 
+    static bool HandleStatusCPUusage(void *user_data); 
     static int LoadAverages(void *user_data); 
 
     int count_ram_; 
     int count_cpu_; 
+    int count_; 
     int free_ram_; 
     int core_; 
     float percent_cpu_avg_; 

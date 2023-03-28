@@ -80,7 +80,7 @@
 
 #define COM_AUDIO_PROCESS_OBJECT_PATH               "/"
 
-#define COME_AUDIO_PROCESS_CONTROLLER_INTERFACE     "com.audio.process.Controller1"
+#define COME_AUDIO_PROCESS_CONTROLLER_INTERFACE     "com.audio.process.Controller1" 
 
 // TODO: modules
 #define PLAYERS_MODULE                              "players"
@@ -115,7 +115,7 @@
 
 #define IO_MODULE                                   "io"
 
-#define PROCESS_MODULE                              "process"
+#define KEEPALIVE_MODULE                            "keepalive" 
 
 typedef enum {
     OWNTONE = 0,
@@ -217,8 +217,8 @@ GDBusProxyConnect(std::string bus_name, std::string object_path, std::string int
                                                         bus_name.c_str(),
                                                         object_path.c_str(),
                                                         interface.c_str(),
-                                                        nullptr,
-                                                        &error);
+                                                        nullptr, 
+                                                        &error); 
     if (proxy == nullptr) {
         error != nullptr ? g_error_free(error) : (void)nullptr;
         return nullptr;

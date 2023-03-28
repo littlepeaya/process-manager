@@ -540,9 +540,12 @@ CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o: \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Exception.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Atomic/AtomicCounter.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogFile.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBusNode.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Queue/BlockingQueue.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogPlus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Session/LMainBus/LMainBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/JsonConfiguration/JsonConfiguration.hpp \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Timer/Timer.hpp \

@@ -6,7 +6,8 @@
 #include<unistd.h>
 #include "Generic.hpp"
 
-#include "Libraries/LBus/LBus.hpp"
+#include "Libraries/LBus/LBusNode.hpp"
+#include "Session/LMainBus/LMainBus.hpp"
 #include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
 #include "Libraries/Log/LogPlus.hpp"
 #include "Libraries/Timer/Timer.hpp"
@@ -15,7 +16,7 @@
 #define CHECK_PERIODIC_TIME  15*1000 //15s 
 
 
-class KeepAlive {
+class KeepAlive : public LBusNode::Server, public LBusNode::Client {
 public: 
     KeepAlive(); 
     ~KeepAlive();
@@ -32,11 +33,15 @@ private:
     GDBusProxy *proxy_;
     static std::map<std::string, Service> service_; 
     static int HandleKeepAlive(void *user_data); 
-    void BlockingService(std::string name); 
-
-    static GVariant *HandleStopOnlyService(LBus::Message* message, void *user_data); 
-    static GVariant *StatusService(std::string &name, void *user_data); 
-
+    static GDBusInterfaceVTable handle_interface_vtable; 
+    static GDBusNodeInfo *controller_introspection_data_; 
+    static GDBusInterfaceVTable controller_interface_vtable_;  
+    void HandleGetListOfServices( void *user_data); 
+    static void HandleGetListOfService( const LBus::Message *message, void *user_data); 
+    static void HandleKeepAlivePropertiesChanged(GDBusProxy *proxy,
+                                                GVariant *changed_properties,
+                                                const gchar* const *invalidated_properties,
+                                                gpointer user_data); 
     Timer check_priodic_time_;
     
 };

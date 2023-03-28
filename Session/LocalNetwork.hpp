@@ -5,9 +5,9 @@
 
 #include "Generic.hpp"
 #include "Libraries/LBus/LBusNode.hpp"
-#include "Libraries/LBus/LBus.hpp" 
+#include "Session/LMainBus/LMainBus.hpp"
 
-class LocalNetwork {
+class LocalNetwork : public LBusNode::Server, public LBusNode::Client {
 public:
     LocalNetwork();
     ~LocalNetwork();
@@ -17,7 +17,7 @@ public:
 
 private:
     guint bus_id_;
-    GDBusConnection *connection_;
+    GDBusConnection *connection_; 
 
     static GDBusNodeInfo *controller_introspection_data_;
     static const gchar *controller_introspection_xml_;
@@ -57,6 +57,8 @@ private:
                                                     const gchar *proterty_name,
                                                     GError **error,
                                                     gpointer user_data);
+    
+    
 
 };
 

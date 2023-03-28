@@ -11,22 +11,27 @@
 
 GDBusNodeInfo *LocalNetwork::controller_introspection_data_ = nullptr;
 
-const gchar *LocalNetwork::controller_introspection_xml_ = 
-"<node>"
-    "<interface name='com.audio.process.Controller1'>"
-        "<method name='StopService'>"
-            "<arg type='aa{sv}' direction='in' />"
+const gchar *LocalNetwork::controller_introspection_xml_ =
+    "<node>"
+        "<interface name='com.audio.process.Controller1'>"
+            "<method name='GetListOfService'>"
+            "<arg type='aa{sv}' direction='out' />"
         "</method>"
-        "<property name = 'Version' type='u' access='read'/>"
-    "</interface>"
-"</node>";  
+            "<property name= 'GetListOfServices' type='a{sv}' access='read'/>"
+            "<property name= 'StopServices' type='a{sv}' access='readwrite'/>"
+            "<property name= 'StartServices' type='a{sv}' access='readwrite'/>"
+            "<property name= 'RestartServices' type='a{sv}' access='readwrite'/>"
+        "</interface>"
+    "</node>";
 
-LocalNetwork::LocalNetwork() {
-
+LocalNetwork::LocalNetwork() : 
+                                LBusNode::Server(LMainBus::GetInstance()), 
+                                LBusNode::Client(LMainBus::GetInstance()) {
+        
 }
 
 LocalNetwork::~LocalNetwork() {
-
+        
 }
 
 int 
@@ -125,21 +130,17 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
                                                                                                                         object_path, 
                                                                                                                         interface_name, 
                                                                                                                         method_name, 
-                                                                                                                        g_variant_get_type_string(paramenter));
-    if(g_strcmp0(method_name, "StopService") == 0) {
-        // struct Service *service; 
-        std::map<std::string, Service> *service; 
-        GVariantIter *iter; 
-        GVariant *dict; 
-        std::string name; 
-
-        g_variant_get(paramenter, "(aa{sv})", &iter);
-        while ((dict = g_variant_iter_next_value(iter))) {
-            
-
+                                                                                                       g_variant_get_type_string(paramenter));
+   
+    int ret; 
+    LBus::Transaction response; 
+    if (g_strcmp0(method_name, "GetListOfService") == 0) {
+        ret = self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "get-list-of-services", LBus::GET, 50, {nullptr, 0, nullptr}, &response); 
+        auto builder = (GVariantBuilder **)LBus::GetTransaction(&response);  
+        g_dbus_method_invocation_return_value(invocation, g_variant_new("(aa{sv})", *builder)); 
     }
 }
-}
+
     
 gboolean
 LocalNetwork::HandleControllerSetProperties(GDBusConnection *connection,
@@ -158,8 +159,24 @@ LocalNetwork::HandleControllerSetProperties(GDBusConnection *connection,
                                                                                                                             interface_name, 
                                                                                                                             property_name, 
                                                                                                                             g_variant_get_type_string(value));
+   
+     if(g_strcmp0(property_name, "StopServices") == 0) {
+        GVariantIter *iter = g_variant_iter_new(value);
+        const gchar *name; 
+        GVariant *service_erase;
+        while ((service_erase = g_variant_iter_next_value(iter))) {
+            if (g_variant_is_of_type(service_erase, G_VARIANT_TYPE_STRING)) {
+                name = g_variant_get_string(service_erase, NULL);
+                g_print("Service to be erased: %s\n", name);
+            }
+            g_variant_unref(service_erase);
+        }
+        g_variant_iter_free(iter);
+    }   
      
-}
+    return TRUE;
+}  
+     
 
 GVariant *
 LocalNetwork::HandleControllerGetProperties(GDBusConnection *connection,
@@ -170,10 +187,15 @@ LocalNetwork::HandleControllerGetProperties(GDBusConnection *connection,
                                                     GError **error,
                                                     gpointer user_data) {
     GVariant *ret = NULL;
-
-    if (g_strcmp0(property_name, "Version") == 0)
-        ret = g_variant_new_int32(0);
-
+    auto self = (LocalNetwork *) user_data; 
+    LBus::Transaction response; 
+    if (g_strcmp0(property_name, "GetListOfServices") == 0) {
+        self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "get-list-of-services", LBus::GET, 50, {nullptr, 0, nullptr}, &response); 
+        auto builder = (GVariantBuilder **)LBus::GetTransaction(&response); 
+        ret = g_variant_new("(aa{sv})", *builder); 
+        GDBusMethodInvocation *invocation; 
+        g_dbus_method_invocation_return_value(invocation, ret); 
+    }
     return ret; 
 
 }

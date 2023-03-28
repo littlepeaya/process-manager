@@ -546,8 +546,11 @@ CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o: \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/falloc.h \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogPlus.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Controllers/KeepAlive/KeepAlive.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBusNode.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Queue/BlockingQueue.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Session/LMainBus/LMainBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
  /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Vector.hpp \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/fstream \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/codecvt.h \

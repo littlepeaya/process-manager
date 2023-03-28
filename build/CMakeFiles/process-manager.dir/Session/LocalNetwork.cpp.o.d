@@ -313,17 +313,27 @@ CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/gio/glistmodel.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/gio/gliststore.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/glib-2.0/gio/gio-autocleanups.h \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBusNode.hpp \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/functional \
+ /home/littlepea/MAv3/Dev/process-manager/Generic.hpp \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/json.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/autolink.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/config.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cstddef \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/c++config.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/os_defines.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/cpu_defines.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_function.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/move.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/concept_check.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/type_traits \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/backward/binders.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/new \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cstdint \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/lib/gcc/arm-linux-gnueabihf/7.1.1/include/stdint.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdint.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/wchar.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/istream \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ios \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/iosfwd \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stringfwd.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/memoryfwd.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/postypes.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cwchar \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/wchar.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdio.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/exception \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/exception.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/exception_ptr.h \
@@ -331,23 +341,18 @@ CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/cxxabi_init_exception.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/typeinfo \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/hash_bytes.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/new \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/nested_exception.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/tuple \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/utility \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_relops.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_pair.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/initializer_list \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/array \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/stdexcept \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/string \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stringfwd.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/memoryfwd.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/move.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/concept_check.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/type_traits \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/char_traits.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_algobase.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/functexcept.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/cpp_type_traits.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/type_traits.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/numeric_traits.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_pair.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_iterator_base_types.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_iterator_base_funcs.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/debug/assertions.h \
@@ -355,33 +360,30 @@ CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/ptr_traits.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/debug/debug.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/predefined_ops.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/postypes.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cwchar \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/wchar.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdio.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/wchar.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cstdint \
- /home/littlepea/MAv3/host/opt/ext-toolchain/lib/gcc/arm-linux-gnueabihf/7.1.1/include/stdint.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/stdint.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/allocator.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/c++allocator.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/new_allocator.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/localefwd.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/c++locale.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/clocale \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/locale.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/locale.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/iosfwd \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cctype \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/ctype.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/ostream_insert.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/cxxabi_forced.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/range_access.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/basic_string.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/ios_base.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/atomicity.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/gthr.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/gthr-default.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/atomic_word.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/locale_classes.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/string \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/allocator.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/c++allocator.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/new_allocator.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/ostream_insert.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/cxxabi_forced.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_function.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/backward/binders.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/range_access.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/initializer_list \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/basic_string.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/alloc_traits.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/alloc_traits.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/string_conversions.h \
@@ -405,24 +407,10 @@ CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/asm-generic/errno-base.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/functional_hash.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/basic_string.tcc \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/uses_allocator.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/invoke.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/std_function.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/refwrap.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/map \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_tree.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/aligned_buffer.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_map.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_multimap.h \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Queue/BlockingQueue.hpp \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/iostream \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ostream \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ios \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/ios_base.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/locale_classes.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/locale_classes.tcc \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/system_error \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/error_constants.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/stdexcept \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/streambuf \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/streambuf.tcc \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/basic_ios.h \
@@ -434,83 +422,55 @@ CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/arm-linux-gnueabihf/bits/ctype_inline.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/locale_facets.tcc \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/basic_ios.tcc \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ostream \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/ostream.tcc \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/istream \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/istream.tcc \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/queue \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/deque \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/memory \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_construct.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_uninitialized.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_deque.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/deque.tcc \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/vector \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_vector.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_bvector.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/vector.tcc \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_heap.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_queue.h \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogPlus.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Typedefs.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/time.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/list \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_list.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/allocated_ptr.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/list.tcc \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/set \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_set.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_multiset.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/atomic \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/atomic_base.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/atomic_lockfree_defines.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/string.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/algorithm \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_algo.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/algorithmfwd.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_tempbuf.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/uniform_int_dist.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/limits \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogStdo.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogMacro.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/String.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/Log.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Locker.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Core.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/ScopedPtr.hpp \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/assert.h \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/SharedPtr.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Exception.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Atomic/AtomicCounter.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogFile.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/JsonConfiguration/JsonConfiguration.hpp \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/json.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/autolink.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/config.h \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cstddef \
- /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/memory \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_raw_storage_iter.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/concurrence.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/uses_allocator.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/unique_ptr.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/utility \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_relops.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/tuple \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/array \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/invoke.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/shared_ptr.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/shared_ptr_base.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/allocated_ptr.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/refwrap.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/ext/aligned_buffer.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/shared_ptr_atomic.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/atomic_base.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/atomic_lockfree_defines.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/backward/auto_ptr.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/sstream \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/sstream.tcc \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/allocator.h \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/cstring \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/string.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/version.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/json_features.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/forwards.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/reader.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/value.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/vector \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_vector.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_bvector.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/vector.tcc \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/map \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_tree.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_map.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_multimap.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/deque \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_deque.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/deque.tcc \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/stack \
  /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_stack.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/json/writer.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h \
- /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/stat.h \
- /home/littlepea/MAv3/Dev/process-manager/Generic.hpp \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/socket.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/uio.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/uio.h \
@@ -538,6 +498,7 @@ CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/curl.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/curlver.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/system.h \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/time.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/easy.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/multi.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/curl/curl.h \
@@ -546,4 +507,44 @@ CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o: \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/fcntl.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/fcntl-linux.h \
  /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/linux/falloc.h \
- /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogPlus.hpp
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/bits/stat.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/functional \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/std_function.h \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogPlus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Typedefs.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/iostream \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/list \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_list.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/list.tcc \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/queue \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_heap.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_queue.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/set \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_set.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_multiset.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/atomic \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/algorithm \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/stl_algo.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/algorithmfwd.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/bits/uniform_int_dist.h \
+ /home/littlepea/MAv3/host/opt/ext-toolchain/arm-linux-gnueabihf/include/c++/7.1.1/limits \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogStdo.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogMacro.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/String.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/Log.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Locker.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Core.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/ScopedPtr.hpp \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/assert.h \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/SharedPtr.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Utils/Exception.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Atomic/AtomicCounter.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogFile.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBusNode.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Queue/BlockingQueue.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/Log/LogPlus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Session/LMainBus/LMainBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/LBus/LBus.hpp \
+ /home/littlepea/MAv3/Dev/process-manager/Libraries/JsonConfiguration/JsonConfiguration.hpp \
+ /home/littlepea/MAv3/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include/sys/stat.h
