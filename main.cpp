@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
     Log::Level level = (Log::Level)root["log"]["level"].asInt();
     Log::Create(root["log"]["path"].asString(), true, true, level, level);
     LOG_INFO("The log is contained in the '%s'.", root["log"]["path"].asCString());
-
+    LOG_INFO("hellold"); 
     Controllers controller;
     if (controller.Start() < 0) {
         fprintf(stderr, "Error starting controller\n");

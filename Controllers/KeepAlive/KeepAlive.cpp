@@ -7,6 +7,8 @@ KeepAlive::KeepAlive():
                         LBusNode::Server(LMainBus::GetInstance()), 
                         LBusNode::Client(LMainBus::GetInstance()) {
     Subscribe("get-list-of-services", LBus::GET, HandleGetListOfService, this); 
+    Subscribe("get-list-services", LBus::SET, HandleStopListOfService, this);
+    Subscribe("stop-service", LBus::SET, HandleStopService, this);
     check_priodic_time_.RegisterTimerHandler(HandleKeepAlive, this);
     
 }
@@ -55,7 +57,6 @@ KeepAlive::Start() {
                     "g-properties-changed", 
                     G_CALLBACK(HandleKeepAlivePropertiesChanged), 
                     this); 
-    HandleGetListOfServices(this);
     return 1;  
 }
 
@@ -82,6 +83,35 @@ int KeepAlive::HandleKeepAlive(void *user_data) {
 }
 
 void 
+KeepAlive::HandleStopService(const LBus::Message *message, void *user_data) {
+    auto request = (GVariant *)LBus::GetTransaction(&message->request);
+    auto data = (KeepAlive *)user_data; 
+    const gchar *name; 
+    g_variant_get(request, "s", name);
+    for (auto &ser : data->service_) {
+        if(ser.first.c_str() == name) 
+            data->service_.erase(name); 
+    }
+    GVariantBuilder *builders = g_variant_builder_new(G_VARIANT_TYPE("aa{sv}"));
+    g_variant_builder_init(builders, G_VARIANT_TYPE("aa{sv}"));
+    for(auto &ser: data->service_) {  
+        GVariantBuilder *buil = g_variant_builder_new(G_VARIANT_TYPE("a{sv}")); 
+        g_variant_builder_init(buil, G_VARIANT_TYPE("a{sv}"));
+        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
+        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
+        g_variant_builder_add(builders, "a{sv}", buil); 
+    }
+    LOG_INFO("got response");  
+    data->LBusNode::Server::Response(message, &builders, sizeof(&builders), [] (void * buff) {
+        auto builders = (GVariantBuilder **)buff; 
+        g_variant_builder_unref(*builders); 
+        g_free(*builders);
+    }); 
+}
+void 
 KeepAlive::HandleGetListOfService(const LBus::Message *message, void *user_data) {
     auto request = (GVariant *)LBus::GetTransaction(&message->request); 
     GVariantIter *iter; 
@@ -89,43 +119,52 @@ KeepAlive::HandleGetListOfService(const LBus::Message *message, void *user_data)
     const gchar *name; 
     int ret; 
     auto data = (KeepAlive *)user_data; 
-    GVariantBuilder *builder; 
-    g_variant_builder_init(builder, G_VARIANT_TYPE("aa{sv}"));
+    GVariantBuilder *builders = g_variant_builder_new(G_VARIANT_TYPE("aa{sv}"));
+    g_variant_builder_init(builders, G_VARIANT_TYPE("aa{sv}"));
     for(auto &ser: data->service_) {  
-        GVariantBuilder buil; 
-        g_variant_builder_init(&buil, G_VARIANT_TYPE("a{sv}"));
-        g_variant_builder_add(&buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
-        g_variant_builder_add(&buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
-        g_variant_builder_add(&buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
-        g_variant_builder_add(&buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
-        g_variant_builder_add(&buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
-        g_variant_builder_add(builder, "a{sv}", &buil); 
+        GVariantBuilder *buil = g_variant_builder_new(G_VARIANT_TYPE("a{sv}")); 
+        g_variant_builder_init(buil, G_VARIANT_TYPE("a{sv}"));
+        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
+        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
+        g_variant_builder_add(builders, "a{sv}", buil); 
     }
-    data->LBusNode::Server::Response(message, &builder, sizeof(&builder), [] (void *buff) {
-        auto builder = (GVariantBuilder **)buff; 
-        delete *builder; 
-    });  
-    
+    LOG_INFO("got response");  
+    data->LBusNode::Server::Response(message, &builders, sizeof(&builders), [] (void * buff) {
+        auto builders = (GVariantBuilder **)buff; 
+        g_variant_builder_unref(*builders); 
+        g_free(*builders);
+    }); 
 }
 void 
-KeepAlive::HandleGetListOfServices( void *user_data) {
+KeepAlive::HandleStopListOfService(const LBus::Message *message, void *user_data) {
+    auto request = (GVariant *)LBus::GetTransaction(&message->request); 
+    GVariantIter *iter; 
+    std::string sname; 
+    const gchar *name; 
+    int ret; 
     auto data = (KeepAlive *)user_data; 
-    GVariantBuilder builder; 
-    g_variant_builder_init(&builder, G_VARIANT_TYPE("aa{sv}"));
+    GVariantBuilder *builders = g_variant_builder_new(G_VARIANT_TYPE("aa{sv}"));
+    g_variant_builder_init(builders, G_VARIANT_TYPE("aa{sv}"));
     for(auto &ser: data->service_) {  
-        GVariantBuilder buil; 
-        g_variant_builder_init(&buil, G_VARIANT_TYPE("a{sv}"));
-        g_variant_builder_add(&buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
-        g_variant_builder_add(&buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
-        g_variant_builder_add(&buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
-        g_variant_builder_add(&buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
-        g_variant_builder_add(&buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
-        g_variant_builder_add(&builder, "a{sv}", &buil); 
-    } 
-    LOG_INFO("%s", g_variant_print(g_variant_builder_end(&builder), true)); 
-
+        GVariantBuilder *buil = g_variant_builder_new(G_VARIANT_TYPE("a{sv}")); 
+        g_variant_builder_init(buil, G_VARIANT_TYPE("a{sv}"));
+        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
+        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
+        g_variant_builder_add(builders, "a{sv}", buil); 
+    }
+    LOG_INFO("got response");  
+    data->LBusNode::Server::Response(message, &builders, sizeof(&builders), [] (void * buff) {
+        auto builders = (GVariantBuilder **)buff; 
+        g_variant_builder_unref(*builders); 
+        g_free(*builders);
+    });
 }
-
 
 void
 KeepAlive::StartService(std::string name) {
