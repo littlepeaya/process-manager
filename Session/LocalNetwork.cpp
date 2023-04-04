@@ -15,7 +15,7 @@ const gchar *LocalNetwork::controller_introspection_xml_ =
     "<node>"
         "<interface name='com.audio.process.Controller1'>"
             "<method name='GetListOfService'>"
-            "<arg type='s' direction='in' />"
+            "<arg type='as' direction='in' />"
         "</method>"
             "<property name= 'GetListOfServices' type='aa{sv}' access='read'/>"
             "<property name= 'StopServices' type='s' access='readwrite'/>"
@@ -131,35 +131,29 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
                                                                                                                         interface_name, 
                                                                                                                         method_name, 
                                                                                                        g_variant_get_type_string(paramenters));
-   
-    int ret; 
-    GVariant * res = nullptr; 
-    LBus::Transaction response; 
+
+    int ret;
+    GVariant *res = nullptr;
+    GVariant *a = nullptr; 
+    LBus::Transaction response;
     GVariantIter *iter;
     if (g_strcmp0(method_name, "GetListOfService") == 0) {
+        g_variant_get(paramenters, "(as)", &iter); 
         const gchar *name;
-        g_variant_get(paramenters, "({s})", name); 
-        GVariant *dict;
-        while ((dict = g_variant_iter_next_value(iter))) {
-            GVariant *service_erase = g_variant_lookup_value(dict, "&s", G_VARIANT_TYPE_STRING);
-            if (service_erase) {
-                self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "stop-service", LBus::SET, 50, {&service_erase, sizeof(&service_erase), [](void *buffer) {
-                                                                                                      auto service_erase = (GVariant **)buffer;
-                                                                                                      g_variant_unref(*service_erase);
-                                                                                                     }},
-                                                                                                    &response);
-                auto ser = (GVariant **)LBus::GetTransaction(&response); 
-               LOG_INFO("%s", g_variant_print(*ser, true)); 
-                g_variant_unref(service_erase);
-            }
-            g_variant_unref(dict);
+        while (g_variant_iter_next(iter, "s", &name)) { 
+            res = g_variant_new("(s)", name); 
+            self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "stop-service", LBus::SET, 50, {&res, sizeof(&res),[] (void * buffer) {
+            auto res = (GVariant **)buffer;
+            g_variant_unref(*res); 
+            }}, &response); 
+        auto builder = (GVariant **)LBus::GetTransaction(&response); 
+        a = g_variant_new("(aa{sv})", *builder); 
+            LOG_INFO("%s", name);
         }
-        g_dbus_method_invocation_return_value(invocation, NULL);
+        g_dbus_method_invocation_return_value(invocation, nullptr); 
         g_variant_iter_free(iter);
     }
 }
-
-
     
 gboolean
 LocalNetwork::HandleControllerSetProperties(GDBusConnection *connection,
@@ -208,12 +202,8 @@ LocalNetwork::HandleControllerGetProperties(GDBusConnection *connection,
                                                     gpointer user_data) {
     GVariant* ret = NULL;
     auto self = (LocalNetwork *) user_data; 
-    LOG_INFO("Handler get the property: sender (%s), obj_path (%s), interface_name (%s), property_name (%s)", sender, 
-                                                                                                                            object_path, 
-                                                                                                                            interface_name, 
-                                                                                                                            property_name);
+    LOG_INFO("Handler get the property: sender (%s), obj_path (%s), interface_name (%s), property_name (%s)", sender, object_path, interface_name, property_name);
    
-    
     if(g_strcmp0(property_name, "GetListOfServices") == 0) {
          LBus::Transaction response; 
         auto res = g_variant_new_string("GetListOfServices"); 
@@ -223,7 +213,8 @@ LocalNetwork::HandleControllerGetProperties(GDBusConnection *connection,
             }}, &response); 
         auto builder = (GVariant **)LBus::GetTransaction(&response); 
         ret = g_variant_new("(aa{sv})", *builder); 
+        LOG_INFO("%s", g_variant_print(ret, TRUE));
     } 
+    
     return ret; 
-
 }

@@ -200,7 +200,7 @@ GDBusProxyGetProperty(GDBusProxy *proxy, std::string property) {
         error != nullptr ? g_error_free(error) : (void)nullptr;
         return nullptr;
     }
-
+    
     GVariant *utemp;
     g_variant_get(response, "(v)", &utemp);
     g_variant_unref(response);
@@ -211,7 +211,7 @@ inline GDBusProxy *
 GDBusProxyConnect(std::string bus_name, std::string object_path, std::string interface) {
     GError *error = nullptr;
     
-    GDBusProxy *proxy = g_dbus_proxy_new_for_bus_sync(G_BUS_TYPE_SYSTEM,
+    GDBusProxy *proxy = g_dbus_proxy_new_for_bus_sync(G_BUS_TYPE_SYSTEM ,
                                                         G_DBUS_PROXY_FLAGS_NONE,
                                                         nullptr,
                                                         bus_name.c_str(),

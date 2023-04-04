@@ -1,8 +1,19 @@
+#include <unistd.h>
+#include <getopt.h>
+#include <glib.h>
+
+#include <iostream>
+
+#include "Session/Session.hpp"
+#include "Controllers/Controllers.hpp"
+#include "Libraries/JsonConfiguration/JsonConfiguration.hpp"
+#include "Libraries/Log/Log.hpp"
+#include "Generic.hpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <dbus/dbus.h>
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
 
     // Định nghĩa các biến và thông tin về module
     DBusConnection* connection;
@@ -14,7 +25,7 @@ int main(int argc, char** argv) {
     char* param = "parameter";
     std::vector<std::string> summer; 
 
-    // Khởi tạo kết nối với DBus
+    // Khởi tạo kết nối với DBus 
     dbus_error_init(&error);
     connection = dbus_bus_get(DBUS_BUS_SESSION, &error);
 
@@ -25,8 +36,9 @@ int main(int argc, char** argv) {
     }
 
     // Gửi yêu cầu đến module
-    message = dbus_message_new_method_call("com.example.MyModule", "/com/example/MyModule",
-                                            "com.example.MyInterface", "MyMethod");
+    for(int i= 0; i < agrc; ++i ) {
+    message = dbus_message_new_method_call(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH,
+                                            COME_AUDIO_PROCESS_CONTROLLER_INTERFACE, argv[i]);
 
     if (message == NULL) {
         fprintf(stderr, "Error creating D-Bus message\n");
@@ -72,5 +84,6 @@ int main(int argc, char** argv) {
     dbus_connection_unref(connection);
 
     return EXIT_SUCCESS;
+    }
 }
 

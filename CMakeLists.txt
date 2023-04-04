@@ -40,5 +40,9 @@ message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
 add_executable(${PROJECT_NAME} ${SOURCES} main.cpp)
 
+add_executable(client ${SOURCES} client.cpp)
+
 target_link_libraries(process-manager pthread glib-2.0 httpserver jsoncpp gobject-2.0 gio-2.0 wpa_client curl rt sqlite3 asound boost_system z)
+
+target_link_libraries(client pthread glib-2.0 httpserver jsoncpp gobject-2.0 gio-2.0 wpa_client curl rt sqlite3 asound boost_system z)
 

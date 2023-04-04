@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /home/littlepea/MAv3/Dev/process-manager/build
 
 # The main recursive "all" target.
 all: CMakeFiles/process-manager.dir/all
+all: CMakeFiles/client.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -72,6 +73,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/process-manager.dir/clean
+clean: CMakeFiles/client.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -81,12 +83,12 @@ clean: CMakeFiles/process-manager.dir/clean
 CMakeFiles/process-manager.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53 "Built target process-manager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target process-manager"
 .PHONY : CMakeFiles/process-manager.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/process-manager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles 53
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles 50
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/process-manager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles 0
 .PHONY : CMakeFiles/process-manager.dir/rule
@@ -99,6 +101,32 @@ process-manager: CMakeFiles/process-manager.dir/rule
 CMakeFiles/process-manager.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/clean
 .PHONY : CMakeFiles/process-manager.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/client.dir
+
+# All Build rule for target.
+CMakeFiles/client.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50 "Built target client"
+.PHONY : CMakeFiles/client.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles 50
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/littlepea/MAv3/Dev/process-manager/build/CMakeFiles 0
+.PHONY : CMakeFiles/client.dir/rule
+
+# Convenience name for target.
+client: CMakeFiles/client.dir/rule
+.PHONY : client
+
+# clean rule for target.
+CMakeFiles/client.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/clean
+.PHONY : CMakeFiles/client.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -121,38 +121,12 @@ int main(int argc, char *argv[])
     Log::Level level = (Log::Level)root["log"]["level"].asInt();
     Log::Create(root["log"]["path"].asString(), true, true, level, level);
     LOG_INFO("The log is contained in the '%s'.", root["log"]["path"].asCString());
-    LOG_INFO("hellold"); 
     Controllers controller;
     if (controller.Start() < 0) {
         fprintf(stderr, "Error starting controller\n");
         exit(1);
     }
 
-    // GError **error; 
-   
-    // if (introspection_data == nullptr)
-    // {
-    //     std::cerr << "Failed to create introspection data." << std::endl;
-    // }
-    // GDBusConnection *connection = g_bus_get_sync(G_BUS_TYPE_SESSION, nullptr, error);
-    // if (connection == nullptr)
-    // {
-    //     std::cerr << "Failed to get bus connection: " <<  std::endl; 
-    // }
-
-    // guint owner_id = g_dbus_connection_register_object(
-    //     connection,
-    //     "/",
-    //     introspection_data->interfaces[0],
-    //     NULL,
-    //     &controller,
-    //     nullptr,
-    //     error);
-    // if (owner_id == 0)
-    // {
-    //     std::cerr << "Failed to register object: " << (*error)->message << std::endl;
-    //     return 1;
-    // }
 
     Session session; 
     if (session.Start() < 0) {

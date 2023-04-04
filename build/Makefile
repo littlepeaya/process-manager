@@ -129,12 +129,26 @@ process-manager/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/build
 .PHONY : process-manager/fast
 
+#=============================================================================
+# Target rules for targets named client
+
+# Build rule for target.
+client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
+.PHONY : client
+
+# fast build rule for target.
+client/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
+
 Controllers/Controllers.o: Controllers/Controllers.cpp.o
 .PHONY : Controllers/Controllers.o
 
 # target to build an object file
 Controllers/Controllers.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/Controllers.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/Controllers.cpp.o
 .PHONY : Controllers/Controllers.cpp.o
 
 Controllers/Controllers.i: Controllers/Controllers.cpp.i
@@ -143,6 +157,7 @@ Controllers/Controllers.i: Controllers/Controllers.cpp.i
 # target to preprocess a source file
 Controllers/Controllers.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/Controllers.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/Controllers.cpp.i
 .PHONY : Controllers/Controllers.cpp.i
 
 Controllers/Controllers.s: Controllers/Controllers.cpp.s
@@ -151,6 +166,7 @@ Controllers/Controllers.s: Controllers/Controllers.cpp.s
 # target to generate assembly for a file
 Controllers/Controllers.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/Controllers.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/Controllers.cpp.s
 .PHONY : Controllers/Controllers.cpp.s
 
 Controllers/KeepAlive/KeepAlive.o: Controllers/KeepAlive/KeepAlive.cpp.o
@@ -159,6 +175,7 @@ Controllers/KeepAlive/KeepAlive.o: Controllers/KeepAlive/KeepAlive.cpp.o
 # target to build an object file
 Controllers/KeepAlive/KeepAlive.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/KeepAlive/KeepAlive.cpp.o
 .PHONY : Controllers/KeepAlive/KeepAlive.cpp.o
 
 Controllers/KeepAlive/KeepAlive.i: Controllers/KeepAlive/KeepAlive.cpp.i
@@ -167,6 +184,7 @@ Controllers/KeepAlive/KeepAlive.i: Controllers/KeepAlive/KeepAlive.cpp.i
 # target to preprocess a source file
 Controllers/KeepAlive/KeepAlive.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/KeepAlive/KeepAlive.cpp.i
 .PHONY : Controllers/KeepAlive/KeepAlive.cpp.i
 
 Controllers/KeepAlive/KeepAlive.s: Controllers/KeepAlive/KeepAlive.cpp.s
@@ -175,6 +193,7 @@ Controllers/KeepAlive/KeepAlive.s: Controllers/KeepAlive/KeepAlive.cpp.s
 # target to generate assembly for a file
 Controllers/KeepAlive/KeepAlive.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/KeepAlive/KeepAlive.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/KeepAlive/KeepAlive.cpp.s
 .PHONY : Controllers/KeepAlive/KeepAlive.cpp.s
 
 Controllers/LogHistory/LogHistory.o: Controllers/LogHistory/LogHistory.cpp.o
@@ -183,6 +202,7 @@ Controllers/LogHistory/LogHistory.o: Controllers/LogHistory/LogHistory.cpp.o
 # target to build an object file
 Controllers/LogHistory/LogHistory.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/LogHistory/LogHistory.cpp.o
 .PHONY : Controllers/LogHistory/LogHistory.cpp.o
 
 Controllers/LogHistory/LogHistory.i: Controllers/LogHistory/LogHistory.cpp.i
@@ -191,6 +211,7 @@ Controllers/LogHistory/LogHistory.i: Controllers/LogHistory/LogHistory.cpp.i
 # target to preprocess a source file
 Controllers/LogHistory/LogHistory.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/LogHistory/LogHistory.cpp.i
 .PHONY : Controllers/LogHistory/LogHistory.cpp.i
 
 Controllers/LogHistory/LogHistory.s: Controllers/LogHistory/LogHistory.cpp.s
@@ -199,6 +220,7 @@ Controllers/LogHistory/LogHistory.s: Controllers/LogHistory/LogHistory.cpp.s
 # target to generate assembly for a file
 Controllers/LogHistory/LogHistory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/LogHistory/LogHistory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/LogHistory/LogHistory.cpp.s
 .PHONY : Controllers/LogHistory/LogHistory.cpp.s
 
 Controllers/Resources/Resources.o: Controllers/Resources/Resources.cpp.o
@@ -207,6 +229,7 @@ Controllers/Resources/Resources.o: Controllers/Resources/Resources.cpp.o
 # target to build an object file
 Controllers/Resources/Resources.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/Resources/Resources.cpp.o
 .PHONY : Controllers/Resources/Resources.cpp.o
 
 Controllers/Resources/Resources.i: Controllers/Resources/Resources.cpp.i
@@ -215,6 +238,7 @@ Controllers/Resources/Resources.i: Controllers/Resources/Resources.cpp.i
 # target to preprocess a source file
 Controllers/Resources/Resources.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/Resources/Resources.cpp.i
 .PHONY : Controllers/Resources/Resources.cpp.i
 
 Controllers/Resources/Resources.s: Controllers/Resources/Resources.cpp.s
@@ -223,6 +247,7 @@ Controllers/Resources/Resources.s: Controllers/Resources/Resources.cpp.s
 # target to generate assembly for a file
 Controllers/Resources/Resources.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Controllers/Resources/Resources.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Controllers/Resources/Resources.cpp.s
 .PHONY : Controllers/Resources/Resources.cpp.s
 
 Session/LMainBus/LMainBus.o: Session/LMainBus/LMainBus.cpp.o
@@ -231,6 +256,7 @@ Session/LMainBus/LMainBus.o: Session/LMainBus/LMainBus.cpp.o
 # target to build an object file
 Session/LMainBus/LMainBus.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/LMainBus/LMainBus.cpp.o
 .PHONY : Session/LMainBus/LMainBus.cpp.o
 
 Session/LMainBus/LMainBus.i: Session/LMainBus/LMainBus.cpp.i
@@ -239,6 +265,7 @@ Session/LMainBus/LMainBus.i: Session/LMainBus/LMainBus.cpp.i
 # target to preprocess a source file
 Session/LMainBus/LMainBus.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/LMainBus/LMainBus.cpp.i
 .PHONY : Session/LMainBus/LMainBus.cpp.i
 
 Session/LMainBus/LMainBus.s: Session/LMainBus/LMainBus.cpp.s
@@ -247,6 +274,7 @@ Session/LMainBus/LMainBus.s: Session/LMainBus/LMainBus.cpp.s
 # target to generate assembly for a file
 Session/LMainBus/LMainBus.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LMainBus/LMainBus.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/LMainBus/LMainBus.cpp.s
 .PHONY : Session/LMainBus/LMainBus.cpp.s
 
 Session/LocalNetwork.o: Session/LocalNetwork.cpp.o
@@ -255,6 +283,7 @@ Session/LocalNetwork.o: Session/LocalNetwork.cpp.o
 # target to build an object file
 Session/LocalNetwork.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/LocalNetwork.cpp.o
 .PHONY : Session/LocalNetwork.cpp.o
 
 Session/LocalNetwork.i: Session/LocalNetwork.cpp.i
@@ -263,6 +292,7 @@ Session/LocalNetwork.i: Session/LocalNetwork.cpp.i
 # target to preprocess a source file
 Session/LocalNetwork.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/LocalNetwork.cpp.i
 .PHONY : Session/LocalNetwork.cpp.i
 
 Session/LocalNetwork.s: Session/LocalNetwork.cpp.s
@@ -271,6 +301,7 @@ Session/LocalNetwork.s: Session/LocalNetwork.cpp.s
 # target to generate assembly for a file
 Session/LocalNetwork.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/LocalNetwork.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/LocalNetwork.cpp.s
 .PHONY : Session/LocalNetwork.cpp.s
 
 Session/Session.o: Session/Session.cpp.o
@@ -279,6 +310,7 @@ Session/Session.o: Session/Session.cpp.o
 # target to build an object file
 Session/Session.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/Session.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/Session.cpp.o
 .PHONY : Session/Session.cpp.o
 
 Session/Session.i: Session/Session.cpp.i
@@ -287,6 +319,7 @@ Session/Session.i: Session/Session.cpp.i
 # target to preprocess a source file
 Session/Session.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/Session.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/Session.cpp.i
 .PHONY : Session/Session.cpp.i
 
 Session/Session.s: Session/Session.cpp.s
@@ -295,6 +328,7 @@ Session/Session.s: Session/Session.cpp.s
 # target to generate assembly for a file
 Session/Session.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Session/Session.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Session/Session.cpp.s
 .PHONY : Session/Session.cpp.s
 
 Sources/Atomic/Atomic.o: Sources/Atomic/Atomic.cpp.o
@@ -303,6 +337,7 @@ Sources/Atomic/Atomic.o: Sources/Atomic/Atomic.cpp.o
 # target to build an object file
 Sources/Atomic/Atomic.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/Atomic.cpp.o
 .PHONY : Sources/Atomic/Atomic.cpp.o
 
 Sources/Atomic/Atomic.i: Sources/Atomic/Atomic.cpp.i
@@ -311,6 +346,7 @@ Sources/Atomic/Atomic.i: Sources/Atomic/Atomic.cpp.i
 # target to preprocess a source file
 Sources/Atomic/Atomic.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/Atomic.cpp.i
 .PHONY : Sources/Atomic/Atomic.cpp.i
 
 Sources/Atomic/Atomic.s: Sources/Atomic/Atomic.cpp.s
@@ -319,6 +355,7 @@ Sources/Atomic/Atomic.s: Sources/Atomic/Atomic.cpp.s
 # target to generate assembly for a file
 Sources/Atomic/Atomic.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/Atomic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/Atomic.cpp.s
 .PHONY : Sources/Atomic/Atomic.cpp.s
 
 Sources/Atomic/AtomicBase.o: Sources/Atomic/AtomicBase.cpp.o
@@ -327,6 +364,7 @@ Sources/Atomic/AtomicBase.o: Sources/Atomic/AtomicBase.cpp.o
 # target to build an object file
 Sources/Atomic/AtomicBase.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicBase.cpp.o
 .PHONY : Sources/Atomic/AtomicBase.cpp.o
 
 Sources/Atomic/AtomicBase.i: Sources/Atomic/AtomicBase.cpp.i
@@ -335,6 +373,7 @@ Sources/Atomic/AtomicBase.i: Sources/Atomic/AtomicBase.cpp.i
 # target to preprocess a source file
 Sources/Atomic/AtomicBase.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicBase.cpp.i
 .PHONY : Sources/Atomic/AtomicBase.cpp.i
 
 Sources/Atomic/AtomicBase.s: Sources/Atomic/AtomicBase.cpp.s
@@ -343,6 +382,7 @@ Sources/Atomic/AtomicBase.s: Sources/Atomic/AtomicBase.cpp.s
 # target to generate assembly for a file
 Sources/Atomic/AtomicBase.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicBase.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicBase.cpp.s
 .PHONY : Sources/Atomic/AtomicBase.cpp.s
 
 Sources/Atomic/AtomicCounter.o: Sources/Atomic/AtomicCounter.cpp.o
@@ -351,6 +391,7 @@ Sources/Atomic/AtomicCounter.o: Sources/Atomic/AtomicCounter.cpp.o
 # target to build an object file
 Sources/Atomic/AtomicCounter.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicCounter.cpp.o
 .PHONY : Sources/Atomic/AtomicCounter.cpp.o
 
 Sources/Atomic/AtomicCounter.i: Sources/Atomic/AtomicCounter.cpp.i
@@ -359,6 +400,7 @@ Sources/Atomic/AtomicCounter.i: Sources/Atomic/AtomicCounter.cpp.i
 # target to preprocess a source file
 Sources/Atomic/AtomicCounter.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicCounter.cpp.i
 .PHONY : Sources/Atomic/AtomicCounter.cpp.i
 
 Sources/Atomic/AtomicCounter.s: Sources/Atomic/AtomicCounter.cpp.s
@@ -367,6 +409,7 @@ Sources/Atomic/AtomicCounter.s: Sources/Atomic/AtomicCounter.cpp.s
 # target to generate assembly for a file
 Sources/Atomic/AtomicCounter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicCounter.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicCounter.cpp.s
 .PHONY : Sources/Atomic/AtomicCounter.cpp.s
 
 Sources/Atomic/AtomicOp.o: Sources/Atomic/AtomicOp.cpp.o
@@ -375,6 +418,7 @@ Sources/Atomic/AtomicOp.o: Sources/Atomic/AtomicOp.cpp.o
 # target to build an object file
 Sources/Atomic/AtomicOp.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicOp.cpp.o
 .PHONY : Sources/Atomic/AtomicOp.cpp.o
 
 Sources/Atomic/AtomicOp.i: Sources/Atomic/AtomicOp.cpp.i
@@ -383,6 +427,7 @@ Sources/Atomic/AtomicOp.i: Sources/Atomic/AtomicOp.cpp.i
 # target to preprocess a source file
 Sources/Atomic/AtomicOp.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicOp.cpp.i
 .PHONY : Sources/Atomic/AtomicOp.cpp.i
 
 Sources/Atomic/AtomicOp.s: Sources/Atomic/AtomicOp.cpp.s
@@ -391,6 +436,7 @@ Sources/Atomic/AtomicOp.s: Sources/Atomic/AtomicOp.cpp.s
 # target to generate assembly for a file
 Sources/Atomic/AtomicOp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Atomic/AtomicOp.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Atomic/AtomicOp.cpp.s
 .PHONY : Sources/Atomic/AtomicOp.cpp.s
 
 Sources/Database/Database.o: Sources/Database/Database.cpp.o
@@ -399,6 +445,7 @@ Sources/Database/Database.o: Sources/Database/Database.cpp.o
 # target to build an object file
 Sources/Database/Database.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Database/Database.cpp.o
 .PHONY : Sources/Database/Database.cpp.o
 
 Sources/Database/Database.i: Sources/Database/Database.cpp.i
@@ -407,6 +454,7 @@ Sources/Database/Database.i: Sources/Database/Database.cpp.i
 # target to preprocess a source file
 Sources/Database/Database.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Database/Database.cpp.i
 .PHONY : Sources/Database/Database.cpp.i
 
 Sources/Database/Database.s: Sources/Database/Database.cpp.s
@@ -415,6 +463,7 @@ Sources/Database/Database.s: Sources/Database/Database.cpp.s
 # target to generate assembly for a file
 Sources/Database/Database.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Database/Database.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Database/Database.cpp.s
 .PHONY : Sources/Database/Database.cpp.s
 
 Sources/HTTP/Client.o: Sources/HTTP/Client.cpp.o
@@ -423,6 +472,7 @@ Sources/HTTP/Client.o: Sources/HTTP/Client.cpp.o
 # target to build an object file
 Sources/HTTP/Client.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/HTTP/Client.cpp.o
 .PHONY : Sources/HTTP/Client.cpp.o
 
 Sources/HTTP/Client.i: Sources/HTTP/Client.cpp.i
@@ -431,6 +481,7 @@ Sources/HTTP/Client.i: Sources/HTTP/Client.cpp.i
 # target to preprocess a source file
 Sources/HTTP/Client.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/HTTP/Client.cpp.i
 .PHONY : Sources/HTTP/Client.cpp.i
 
 Sources/HTTP/Client.s: Sources/HTTP/Client.cpp.s
@@ -439,6 +490,7 @@ Sources/HTTP/Client.s: Sources/HTTP/Client.cpp.s
 # target to generate assembly for a file
 Sources/HTTP/Client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/HTTP/Client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/HTTP/Client.cpp.s
 .PHONY : Sources/HTTP/Client.cpp.s
 
 Sources/JsonConfiguration/JsonConfigration.o: Sources/JsonConfiguration/JsonConfigration.cpp.o
@@ -447,6 +499,7 @@ Sources/JsonConfiguration/JsonConfigration.o: Sources/JsonConfiguration/JsonConf
 # target to build an object file
 Sources/JsonConfiguration/JsonConfigration.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/JsonConfiguration/JsonConfigration.cpp.o
 .PHONY : Sources/JsonConfiguration/JsonConfigration.cpp.o
 
 Sources/JsonConfiguration/JsonConfigration.i: Sources/JsonConfiguration/JsonConfigration.cpp.i
@@ -455,6 +508,7 @@ Sources/JsonConfiguration/JsonConfigration.i: Sources/JsonConfiguration/JsonConf
 # target to preprocess a source file
 Sources/JsonConfiguration/JsonConfigration.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/JsonConfiguration/JsonConfigration.cpp.i
 .PHONY : Sources/JsonConfiguration/JsonConfigration.cpp.i
 
 Sources/JsonConfiguration/JsonConfigration.s: Sources/JsonConfiguration/JsonConfigration.cpp.s
@@ -463,6 +517,7 @@ Sources/JsonConfiguration/JsonConfigration.s: Sources/JsonConfiguration/JsonConf
 # target to generate assembly for a file
 Sources/JsonConfiguration/JsonConfigration.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/JsonConfiguration/JsonConfigration.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/JsonConfiguration/JsonConfigration.cpp.s
 .PHONY : Sources/JsonConfiguration/JsonConfigration.cpp.s
 
 Sources/LBus/LBus.o: Sources/LBus/LBus.cpp.o
@@ -471,6 +526,7 @@ Sources/LBus/LBus.o: Sources/LBus/LBus.cpp.o
 # target to build an object file
 Sources/LBus/LBus.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/LBus/LBus.cpp.o
 .PHONY : Sources/LBus/LBus.cpp.o
 
 Sources/LBus/LBus.i: Sources/LBus/LBus.cpp.i
@@ -479,6 +535,7 @@ Sources/LBus/LBus.i: Sources/LBus/LBus.cpp.i
 # target to preprocess a source file
 Sources/LBus/LBus.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/LBus/LBus.cpp.i
 .PHONY : Sources/LBus/LBus.cpp.i
 
 Sources/LBus/LBus.s: Sources/LBus/LBus.cpp.s
@@ -487,6 +544,7 @@ Sources/LBus/LBus.s: Sources/LBus/LBus.cpp.s
 # target to generate assembly for a file
 Sources/LBus/LBus.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/LBus/LBus.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/LBus/LBus.cpp.s
 .PHONY : Sources/LBus/LBus.cpp.s
 
 Sources/LBus/LBusNode.o: Sources/LBus/LBusNode.cpp.o
@@ -495,6 +553,7 @@ Sources/LBus/LBusNode.o: Sources/LBus/LBusNode.cpp.o
 # target to build an object file
 Sources/LBus/LBusNode.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/LBus/LBusNode.cpp.o
 .PHONY : Sources/LBus/LBusNode.cpp.o
 
 Sources/LBus/LBusNode.i: Sources/LBus/LBusNode.cpp.i
@@ -503,6 +562,7 @@ Sources/LBus/LBusNode.i: Sources/LBus/LBusNode.cpp.i
 # target to preprocess a source file
 Sources/LBus/LBusNode.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/LBus/LBusNode.cpp.i
 .PHONY : Sources/LBus/LBusNode.cpp.i
 
 Sources/LBus/LBusNode.s: Sources/LBus/LBusNode.cpp.s
@@ -511,6 +571,7 @@ Sources/LBus/LBusNode.s: Sources/LBus/LBusNode.cpp.s
 # target to generate assembly for a file
 Sources/LBus/LBusNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/LBus/LBusNode.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/LBus/LBusNode.cpp.s
 .PHONY : Sources/LBus/LBusNode.cpp.s
 
 Sources/Log/Log.o: Sources/Log/Log.cpp.o
@@ -519,6 +580,7 @@ Sources/Log/Log.o: Sources/Log/Log.cpp.o
 # target to build an object file
 Sources/Log/Log.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Log/Log.cpp.o
 .PHONY : Sources/Log/Log.cpp.o
 
 Sources/Log/Log.i: Sources/Log/Log.cpp.i
@@ -527,6 +589,7 @@ Sources/Log/Log.i: Sources/Log/Log.cpp.i
 # target to preprocess a source file
 Sources/Log/Log.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Log/Log.cpp.i
 .PHONY : Sources/Log/Log.cpp.i
 
 Sources/Log/Log.s: Sources/Log/Log.cpp.s
@@ -535,6 +598,7 @@ Sources/Log/Log.s: Sources/Log/Log.cpp.s
 # target to generate assembly for a file
 Sources/Log/Log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Log/Log.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Log/Log.cpp.s
 .PHONY : Sources/Log/Log.cpp.s
 
 Sources/Log/LogImpl.o: Sources/Log/LogImpl.cpp.o
@@ -543,6 +607,7 @@ Sources/Log/LogImpl.o: Sources/Log/LogImpl.cpp.o
 # target to build an object file
 Sources/Log/LogImpl.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Log/LogImpl.cpp.o
 .PHONY : Sources/Log/LogImpl.cpp.o
 
 Sources/Log/LogImpl.i: Sources/Log/LogImpl.cpp.i
@@ -551,6 +616,7 @@ Sources/Log/LogImpl.i: Sources/Log/LogImpl.cpp.i
 # target to preprocess a source file
 Sources/Log/LogImpl.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Log/LogImpl.cpp.i
 .PHONY : Sources/Log/LogImpl.cpp.i
 
 Sources/Log/LogImpl.s: Sources/Log/LogImpl.cpp.s
@@ -559,6 +625,7 @@ Sources/Log/LogImpl.s: Sources/Log/LogImpl.cpp.s
 # target to generate assembly for a file
 Sources/Log/LogImpl.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Log/LogImpl.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Log/LogImpl.cpp.s
 .PHONY : Sources/Log/LogImpl.cpp.s
 
 Sources/Timer/Timer.o: Sources/Timer/Timer.cpp.o
@@ -567,6 +634,7 @@ Sources/Timer/Timer.o: Sources/Timer/Timer.cpp.o
 # target to build an object file
 Sources/Timer/Timer.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Timer/Timer.cpp.o
 .PHONY : Sources/Timer/Timer.cpp.o
 
 Sources/Timer/Timer.i: Sources/Timer/Timer.cpp.i
@@ -575,6 +643,7 @@ Sources/Timer/Timer.i: Sources/Timer/Timer.cpp.i
 # target to preprocess a source file
 Sources/Timer/Timer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Timer/Timer.cpp.i
 .PHONY : Sources/Timer/Timer.cpp.i
 
 Sources/Timer/Timer.s: Sources/Timer/Timer.cpp.s
@@ -583,6 +652,7 @@ Sources/Timer/Timer.s: Sources/Timer/Timer.cpp.s
 # target to generate assembly for a file
 Sources/Timer/Timer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Timer/Timer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Timer/Timer.cpp.s
 .PHONY : Sources/Timer/Timer.cpp.s
 
 Sources/Utils/Application.o: Sources/Utils/Application.cpp.o
@@ -591,6 +661,7 @@ Sources/Utils/Application.o: Sources/Utils/Application.cpp.o
 # target to build an object file
 Sources/Utils/Application.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Application.cpp.o
 .PHONY : Sources/Utils/Application.cpp.o
 
 Sources/Utils/Application.i: Sources/Utils/Application.cpp.i
@@ -599,6 +670,7 @@ Sources/Utils/Application.i: Sources/Utils/Application.cpp.i
 # target to preprocess a source file
 Sources/Utils/Application.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Application.cpp.i
 .PHONY : Sources/Utils/Application.cpp.i
 
 Sources/Utils/Application.s: Sources/Utils/Application.cpp.s
@@ -607,6 +679,7 @@ Sources/Utils/Application.s: Sources/Utils/Application.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Application.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Application.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Application.cpp.s
 .PHONY : Sources/Utils/Application.cpp.s
 
 Sources/Utils/Condition.o: Sources/Utils/Condition.cpp.o
@@ -615,6 +688,7 @@ Sources/Utils/Condition.o: Sources/Utils/Condition.cpp.o
 # target to build an object file
 Sources/Utils/Condition.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Condition.cpp.o
 .PHONY : Sources/Utils/Condition.cpp.o
 
 Sources/Utils/Condition.i: Sources/Utils/Condition.cpp.i
@@ -623,6 +697,7 @@ Sources/Utils/Condition.i: Sources/Utils/Condition.cpp.i
 # target to preprocess a source file
 Sources/Utils/Condition.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Condition.cpp.i
 .PHONY : Sources/Utils/Condition.cpp.i
 
 Sources/Utils/Condition.s: Sources/Utils/Condition.cpp.s
@@ -631,6 +706,7 @@ Sources/Utils/Condition.s: Sources/Utils/Condition.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Condition.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Condition.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Condition.cpp.s
 .PHONY : Sources/Utils/Condition.cpp.s
 
 Sources/Utils/Core.o: Sources/Utils/Core.cpp.o
@@ -639,6 +715,7 @@ Sources/Utils/Core.o: Sources/Utils/Core.cpp.o
 # target to build an object file
 Sources/Utils/Core.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Core.cpp.o
 .PHONY : Sources/Utils/Core.cpp.o
 
 Sources/Utils/Core.i: Sources/Utils/Core.cpp.i
@@ -647,6 +724,7 @@ Sources/Utils/Core.i: Sources/Utils/Core.cpp.i
 # target to preprocess a source file
 Sources/Utils/Core.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Core.cpp.i
 .PHONY : Sources/Utils/Core.cpp.i
 
 Sources/Utils/Core.s: Sources/Utils/Core.cpp.s
@@ -655,6 +733,7 @@ Sources/Utils/Core.s: Sources/Utils/Core.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Core.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Core.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Core.cpp.s
 .PHONY : Sources/Utils/Core.cpp.s
 
 Sources/Utils/CoreImpl.o: Sources/Utils/CoreImpl.cpp.o
@@ -663,6 +742,7 @@ Sources/Utils/CoreImpl.o: Sources/Utils/CoreImpl.cpp.o
 # target to build an object file
 Sources/Utils/CoreImpl.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/CoreImpl.cpp.o
 .PHONY : Sources/Utils/CoreImpl.cpp.o
 
 Sources/Utils/CoreImpl.i: Sources/Utils/CoreImpl.cpp.i
@@ -671,6 +751,7 @@ Sources/Utils/CoreImpl.i: Sources/Utils/CoreImpl.cpp.i
 # target to preprocess a source file
 Sources/Utils/CoreImpl.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/CoreImpl.cpp.i
 .PHONY : Sources/Utils/CoreImpl.cpp.i
 
 Sources/Utils/CoreImpl.s: Sources/Utils/CoreImpl.cpp.s
@@ -679,6 +760,7 @@ Sources/Utils/CoreImpl.s: Sources/Utils/CoreImpl.cpp.s
 # target to generate assembly for a file
 Sources/Utils/CoreImpl.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/CoreImpl.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/CoreImpl.cpp.s
 .PHONY : Sources/Utils/CoreImpl.cpp.s
 
 Sources/Utils/Counter.o: Sources/Utils/Counter.cpp.o
@@ -687,6 +769,7 @@ Sources/Utils/Counter.o: Sources/Utils/Counter.cpp.o
 # target to build an object file
 Sources/Utils/Counter.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Counter.cpp.o
 .PHONY : Sources/Utils/Counter.cpp.o
 
 Sources/Utils/Counter.i: Sources/Utils/Counter.cpp.i
@@ -695,6 +778,7 @@ Sources/Utils/Counter.i: Sources/Utils/Counter.cpp.i
 # target to preprocess a source file
 Sources/Utils/Counter.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Counter.cpp.i
 .PHONY : Sources/Utils/Counter.cpp.i
 
 Sources/Utils/Counter.s: Sources/Utils/Counter.cpp.s
@@ -703,6 +787,7 @@ Sources/Utils/Counter.s: Sources/Utils/Counter.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Counter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Counter.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Counter.cpp.s
 .PHONY : Sources/Utils/Counter.cpp.s
 
 Sources/Utils/Exception.o: Sources/Utils/Exception.cpp.o
@@ -711,6 +796,7 @@ Sources/Utils/Exception.o: Sources/Utils/Exception.cpp.o
 # target to build an object file
 Sources/Utils/Exception.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Exception.cpp.o
 .PHONY : Sources/Utils/Exception.cpp.o
 
 Sources/Utils/Exception.i: Sources/Utils/Exception.cpp.i
@@ -719,6 +805,7 @@ Sources/Utils/Exception.i: Sources/Utils/Exception.cpp.i
 # target to preprocess a source file
 Sources/Utils/Exception.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Exception.cpp.i
 .PHONY : Sources/Utils/Exception.cpp.i
 
 Sources/Utils/Exception.s: Sources/Utils/Exception.cpp.s
@@ -727,6 +814,7 @@ Sources/Utils/Exception.s: Sources/Utils/Exception.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Exception.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Exception.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Exception.cpp.s
 .PHONY : Sources/Utils/Exception.cpp.s
 
 Sources/Utils/HardwareInfo.o: Sources/Utils/HardwareInfo.cpp.o
@@ -735,6 +823,7 @@ Sources/Utils/HardwareInfo.o: Sources/Utils/HardwareInfo.cpp.o
 # target to build an object file
 Sources/Utils/HardwareInfo.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/HardwareInfo.cpp.o
 .PHONY : Sources/Utils/HardwareInfo.cpp.o
 
 Sources/Utils/HardwareInfo.i: Sources/Utils/HardwareInfo.cpp.i
@@ -743,6 +832,7 @@ Sources/Utils/HardwareInfo.i: Sources/Utils/HardwareInfo.cpp.i
 # target to preprocess a source file
 Sources/Utils/HardwareInfo.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/HardwareInfo.cpp.i
 .PHONY : Sources/Utils/HardwareInfo.cpp.i
 
 Sources/Utils/HardwareInfo.s: Sources/Utils/HardwareInfo.cpp.s
@@ -751,6 +841,7 @@ Sources/Utils/HardwareInfo.s: Sources/Utils/HardwareInfo.cpp.s
 # target to generate assembly for a file
 Sources/Utils/HardwareInfo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/HardwareInfo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/HardwareInfo.cpp.s
 .PHONY : Sources/Utils/HardwareInfo.cpp.s
 
 Sources/Utils/IObserver.o: Sources/Utils/IObserver.cpp.o
@@ -759,6 +850,7 @@ Sources/Utils/IObserver.o: Sources/Utils/IObserver.cpp.o
 # target to build an object file
 Sources/Utils/IObserver.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/IObserver.cpp.o
 .PHONY : Sources/Utils/IObserver.cpp.o
 
 Sources/Utils/IObserver.i: Sources/Utils/IObserver.cpp.i
@@ -767,6 +859,7 @@ Sources/Utils/IObserver.i: Sources/Utils/IObserver.cpp.i
 # target to preprocess a source file
 Sources/Utils/IObserver.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/IObserver.cpp.i
 .PHONY : Sources/Utils/IObserver.cpp.i
 
 Sources/Utils/IObserver.s: Sources/Utils/IObserver.cpp.s
@@ -775,6 +868,7 @@ Sources/Utils/IObserver.s: Sources/Utils/IObserver.cpp.s
 # target to generate assembly for a file
 Sources/Utils/IObserver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/IObserver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/IObserver.cpp.s
 .PHONY : Sources/Utils/IObserver.cpp.s
 
 Sources/Utils/Locker.o: Sources/Utils/Locker.cpp.o
@@ -783,6 +877,7 @@ Sources/Utils/Locker.o: Sources/Utils/Locker.cpp.o
 # target to build an object file
 Sources/Utils/Locker.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Locker.cpp.o
 .PHONY : Sources/Utils/Locker.cpp.o
 
 Sources/Utils/Locker.i: Sources/Utils/Locker.cpp.i
@@ -791,6 +886,7 @@ Sources/Utils/Locker.i: Sources/Utils/Locker.cpp.i
 # target to preprocess a source file
 Sources/Utils/Locker.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Locker.cpp.i
 .PHONY : Sources/Utils/Locker.cpp.i
 
 Sources/Utils/Locker.s: Sources/Utils/Locker.cpp.s
@@ -799,6 +895,7 @@ Sources/Utils/Locker.s: Sources/Utils/Locker.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Locker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Locker.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Locker.cpp.s
 .PHONY : Sources/Utils/Locker.cpp.s
 
 Sources/Utils/LockerImpl_POSIX.o: Sources/Utils/LockerImpl_POSIX.cpp.o
@@ -807,6 +904,7 @@ Sources/Utils/LockerImpl_POSIX.o: Sources/Utils/LockerImpl_POSIX.cpp.o
 # target to build an object file
 Sources/Utils/LockerImpl_POSIX.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/LockerImpl_POSIX.cpp.o
 .PHONY : Sources/Utils/LockerImpl_POSIX.cpp.o
 
 Sources/Utils/LockerImpl_POSIX.i: Sources/Utils/LockerImpl_POSIX.cpp.i
@@ -815,6 +913,7 @@ Sources/Utils/LockerImpl_POSIX.i: Sources/Utils/LockerImpl_POSIX.cpp.i
 # target to preprocess a source file
 Sources/Utils/LockerImpl_POSIX.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/LockerImpl_POSIX.cpp.i
 .PHONY : Sources/Utils/LockerImpl_POSIX.cpp.i
 
 Sources/Utils/LockerImpl_POSIX.s: Sources/Utils/LockerImpl_POSIX.cpp.s
@@ -823,6 +922,7 @@ Sources/Utils/LockerImpl_POSIX.s: Sources/Utils/LockerImpl_POSIX.cpp.s
 # target to generate assembly for a file
 Sources/Utils/LockerImpl_POSIX.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/LockerImpl_POSIX.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/LockerImpl_POSIX.cpp.s
 .PHONY : Sources/Utils/LockerImpl_POSIX.cpp.s
 
 Sources/Utils/Notification.o: Sources/Utils/Notification.cpp.o
@@ -831,6 +931,7 @@ Sources/Utils/Notification.o: Sources/Utils/Notification.cpp.o
 # target to build an object file
 Sources/Utils/Notification.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Notification.cpp.o
 .PHONY : Sources/Utils/Notification.cpp.o
 
 Sources/Utils/Notification.i: Sources/Utils/Notification.cpp.i
@@ -839,6 +940,7 @@ Sources/Utils/Notification.i: Sources/Utils/Notification.cpp.i
 # target to preprocess a source file
 Sources/Utils/Notification.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Notification.cpp.i
 .PHONY : Sources/Utils/Notification.cpp.i
 
 Sources/Utils/Notification.s: Sources/Utils/Notification.cpp.s
@@ -847,6 +949,7 @@ Sources/Utils/Notification.s: Sources/Utils/Notification.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Notification.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Notification.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Notification.cpp.s
 .PHONY : Sources/Utils/Notification.cpp.s
 
 Sources/Utils/NotificationQueue.o: Sources/Utils/NotificationQueue.cpp.o
@@ -855,6 +958,7 @@ Sources/Utils/NotificationQueue.o: Sources/Utils/NotificationQueue.cpp.o
 # target to build an object file
 Sources/Utils/NotificationQueue.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/NotificationQueue.cpp.o
 .PHONY : Sources/Utils/NotificationQueue.cpp.o
 
 Sources/Utils/NotificationQueue.i: Sources/Utils/NotificationQueue.cpp.i
@@ -863,6 +967,7 @@ Sources/Utils/NotificationQueue.i: Sources/Utils/NotificationQueue.cpp.i
 # target to preprocess a source file
 Sources/Utils/NotificationQueue.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/NotificationQueue.cpp.i
 .PHONY : Sources/Utils/NotificationQueue.cpp.i
 
 Sources/Utils/NotificationQueue.s: Sources/Utils/NotificationQueue.cpp.s
@@ -871,6 +976,7 @@ Sources/Utils/NotificationQueue.s: Sources/Utils/NotificationQueue.cpp.s
 # target to generate assembly for a file
 Sources/Utils/NotificationQueue.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueue.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/NotificationQueue.cpp.s
 .PHONY : Sources/Utils/NotificationQueue.cpp.s
 
 Sources/Utils/NotificationQueuePriority.o: Sources/Utils/NotificationQueuePriority.cpp.o
@@ -879,6 +985,7 @@ Sources/Utils/NotificationQueuePriority.o: Sources/Utils/NotificationQueuePriori
 # target to build an object file
 Sources/Utils/NotificationQueuePriority.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/NotificationQueuePriority.cpp.o
 .PHONY : Sources/Utils/NotificationQueuePriority.cpp.o
 
 Sources/Utils/NotificationQueuePriority.i: Sources/Utils/NotificationQueuePriority.cpp.i
@@ -887,6 +994,7 @@ Sources/Utils/NotificationQueuePriority.i: Sources/Utils/NotificationQueuePriori
 # target to preprocess a source file
 Sources/Utils/NotificationQueuePriority.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/NotificationQueuePriority.cpp.i
 .PHONY : Sources/Utils/NotificationQueuePriority.cpp.i
 
 Sources/Utils/NotificationQueuePriority.s: Sources/Utils/NotificationQueuePriority.cpp.s
@@ -895,6 +1003,7 @@ Sources/Utils/NotificationQueuePriority.s: Sources/Utils/NotificationQueuePriori
 # target to generate assembly for a file
 Sources/Utils/NotificationQueuePriority.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/NotificationQueuePriority.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/NotificationQueuePriority.cpp.s
 .PHONY : Sources/Utils/NotificationQueuePriority.cpp.s
 
 Sources/Utils/Option.o: Sources/Utils/Option.cpp.o
@@ -903,6 +1012,7 @@ Sources/Utils/Option.o: Sources/Utils/Option.cpp.o
 # target to build an object file
 Sources/Utils/Option.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Option.cpp.o
 .PHONY : Sources/Utils/Option.cpp.o
 
 Sources/Utils/Option.i: Sources/Utils/Option.cpp.i
@@ -911,6 +1021,7 @@ Sources/Utils/Option.i: Sources/Utils/Option.cpp.i
 # target to preprocess a source file
 Sources/Utils/Option.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Option.cpp.i
 .PHONY : Sources/Utils/Option.cpp.i
 
 Sources/Utils/Option.s: Sources/Utils/Option.cpp.s
@@ -919,6 +1030,7 @@ Sources/Utils/Option.s: Sources/Utils/Option.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Option.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Option.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Option.cpp.s
 .PHONY : Sources/Utils/Option.cpp.s
 
 Sources/Utils/Runnable.o: Sources/Utils/Runnable.cpp.o
@@ -927,6 +1039,7 @@ Sources/Utils/Runnable.o: Sources/Utils/Runnable.cpp.o
 # target to build an object file
 Sources/Utils/Runnable.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Runnable.cpp.o
 .PHONY : Sources/Utils/Runnable.cpp.o
 
 Sources/Utils/Runnable.i: Sources/Utils/Runnable.cpp.i
@@ -935,6 +1048,7 @@ Sources/Utils/Runnable.i: Sources/Utils/Runnable.cpp.i
 # target to preprocess a source file
 Sources/Utils/Runnable.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Runnable.cpp.i
 .PHONY : Sources/Utils/Runnable.cpp.i
 
 Sources/Utils/Runnable.s: Sources/Utils/Runnable.cpp.s
@@ -943,6 +1057,7 @@ Sources/Utils/Runnable.s: Sources/Utils/Runnable.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Runnable.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Runnable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Runnable.cpp.s
 .PHONY : Sources/Utils/Runnable.cpp.s
 
 Sources/Utils/RwLocker.o: Sources/Utils/RwLocker.cpp.o
@@ -951,6 +1066,7 @@ Sources/Utils/RwLocker.o: Sources/Utils/RwLocker.cpp.o
 # target to build an object file
 Sources/Utils/RwLocker.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/RwLocker.cpp.o
 .PHONY : Sources/Utils/RwLocker.cpp.o
 
 Sources/Utils/RwLocker.i: Sources/Utils/RwLocker.cpp.i
@@ -959,6 +1075,7 @@ Sources/Utils/RwLocker.i: Sources/Utils/RwLocker.cpp.i
 # target to preprocess a source file
 Sources/Utils/RwLocker.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/RwLocker.cpp.i
 .PHONY : Sources/Utils/RwLocker.cpp.i
 
 Sources/Utils/RwLocker.s: Sources/Utils/RwLocker.cpp.s
@@ -967,6 +1084,7 @@ Sources/Utils/RwLocker.s: Sources/Utils/RwLocker.cpp.s
 # target to generate assembly for a file
 Sources/Utils/RwLocker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/RwLocker.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/RwLocker.cpp.s
 .PHONY : Sources/Utils/RwLocker.cpp.s
 
 Sources/Utils/RwLockerImpl_POSIX.o: Sources/Utils/RwLockerImpl_POSIX.cpp.o
@@ -975,6 +1093,7 @@ Sources/Utils/RwLockerImpl_POSIX.o: Sources/Utils/RwLockerImpl_POSIX.cpp.o
 # target to build an object file
 Sources/Utils/RwLockerImpl_POSIX.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.o
 .PHONY : Sources/Utils/RwLockerImpl_POSIX.cpp.o
 
 Sources/Utils/RwLockerImpl_POSIX.i: Sources/Utils/RwLockerImpl_POSIX.cpp.i
@@ -983,6 +1102,7 @@ Sources/Utils/RwLockerImpl_POSIX.i: Sources/Utils/RwLockerImpl_POSIX.cpp.i
 # target to preprocess a source file
 Sources/Utils/RwLockerImpl_POSIX.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.i
 .PHONY : Sources/Utils/RwLockerImpl_POSIX.cpp.i
 
 Sources/Utils/RwLockerImpl_POSIX.s: Sources/Utils/RwLockerImpl_POSIX.cpp.s
@@ -991,6 +1111,7 @@ Sources/Utils/RwLockerImpl_POSIX.s: Sources/Utils/RwLockerImpl_POSIX.cpp.s
 # target to generate assembly for a file
 Sources/Utils/RwLockerImpl_POSIX.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/RwLockerImpl_POSIX.cpp.s
 .PHONY : Sources/Utils/RwLockerImpl_POSIX.cpp.s
 
 Sources/Utils/TimeSpan.o: Sources/Utils/TimeSpan.cpp.o
@@ -999,6 +1120,7 @@ Sources/Utils/TimeSpan.o: Sources/Utils/TimeSpan.cpp.o
 # target to build an object file
 Sources/Utils/TimeSpan.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeSpan.cpp.o
 .PHONY : Sources/Utils/TimeSpan.cpp.o
 
 Sources/Utils/TimeSpan.i: Sources/Utils/TimeSpan.cpp.i
@@ -1007,6 +1129,7 @@ Sources/Utils/TimeSpan.i: Sources/Utils/TimeSpan.cpp.i
 # target to preprocess a source file
 Sources/Utils/TimeSpan.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeSpan.cpp.i
 .PHONY : Sources/Utils/TimeSpan.cpp.i
 
 Sources/Utils/TimeSpan.s: Sources/Utils/TimeSpan.cpp.s
@@ -1015,6 +1138,7 @@ Sources/Utils/TimeSpan.s: Sources/Utils/TimeSpan.cpp.s
 # target to generate assembly for a file
 Sources/Utils/TimeSpan.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeSpan.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeSpan.cpp.s
 .PHONY : Sources/Utils/TimeSpan.cpp.s
 
 Sources/Utils/TimeStamp.o: Sources/Utils/TimeStamp.cpp.o
@@ -1023,6 +1147,7 @@ Sources/Utils/TimeStamp.o: Sources/Utils/TimeStamp.cpp.o
 # target to build an object file
 Sources/Utils/TimeStamp.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeStamp.cpp.o
 .PHONY : Sources/Utils/TimeStamp.cpp.o
 
 Sources/Utils/TimeStamp.i: Sources/Utils/TimeStamp.cpp.i
@@ -1031,6 +1156,7 @@ Sources/Utils/TimeStamp.i: Sources/Utils/TimeStamp.cpp.i
 # target to preprocess a source file
 Sources/Utils/TimeStamp.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeStamp.cpp.i
 .PHONY : Sources/Utils/TimeStamp.cpp.i
 
 Sources/Utils/TimeStamp.s: Sources/Utils/TimeStamp.cpp.s
@@ -1039,6 +1165,7 @@ Sources/Utils/TimeStamp.s: Sources/Utils/TimeStamp.cpp.s
 # target to generate assembly for a file
 Sources/Utils/TimeStamp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeStamp.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeStamp.cpp.s
 .PHONY : Sources/Utils/TimeStamp.cpp.s
 
 Sources/Utils/TimeTick.o: Sources/Utils/TimeTick.cpp.o
@@ -1047,6 +1174,7 @@ Sources/Utils/TimeTick.o: Sources/Utils/TimeTick.cpp.o
 # target to build an object file
 Sources/Utils/TimeTick.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeTick.cpp.o
 .PHONY : Sources/Utils/TimeTick.cpp.o
 
 Sources/Utils/TimeTick.i: Sources/Utils/TimeTick.cpp.i
@@ -1055,6 +1183,7 @@ Sources/Utils/TimeTick.i: Sources/Utils/TimeTick.cpp.i
 # target to preprocess a source file
 Sources/Utils/TimeTick.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeTick.cpp.i
 .PHONY : Sources/Utils/TimeTick.cpp.i
 
 Sources/Utils/TimeTick.s: Sources/Utils/TimeTick.cpp.s
@@ -1063,6 +1192,7 @@ Sources/Utils/TimeTick.s: Sources/Utils/TimeTick.cpp.s
 # target to generate assembly for a file
 Sources/Utils/TimeTick.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeTick.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeTick.cpp.s
 .PHONY : Sources/Utils/TimeTick.cpp.s
 
 Sources/Utils/TimeZone.o: Sources/Utils/TimeZone.cpp.o
@@ -1071,6 +1201,7 @@ Sources/Utils/TimeZone.o: Sources/Utils/TimeZone.cpp.o
 # target to build an object file
 Sources/Utils/TimeZone.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeZone.cpp.o
 .PHONY : Sources/Utils/TimeZone.cpp.o
 
 Sources/Utils/TimeZone.i: Sources/Utils/TimeZone.cpp.i
@@ -1079,6 +1210,7 @@ Sources/Utils/TimeZone.i: Sources/Utils/TimeZone.cpp.i
 # target to preprocess a source file
 Sources/Utils/TimeZone.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeZone.cpp.i
 .PHONY : Sources/Utils/TimeZone.cpp.i
 
 Sources/Utils/TimeZone.s: Sources/Utils/TimeZone.cpp.s
@@ -1087,6 +1219,7 @@ Sources/Utils/TimeZone.s: Sources/Utils/TimeZone.cpp.s
 # target to generate assembly for a file
 Sources/Utils/TimeZone.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeZone.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeZone.cpp.s
 .PHONY : Sources/Utils/TimeZone.cpp.s
 
 Sources/Utils/TimeZoneInfo.o: Sources/Utils/TimeZoneInfo.cpp.o
@@ -1095,6 +1228,7 @@ Sources/Utils/TimeZoneInfo.o: Sources/Utils/TimeZoneInfo.cpp.o
 # target to build an object file
 Sources/Utils/TimeZoneInfo.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeZoneInfo.cpp.o
 .PHONY : Sources/Utils/TimeZoneInfo.cpp.o
 
 Sources/Utils/TimeZoneInfo.i: Sources/Utils/TimeZoneInfo.cpp.i
@@ -1103,6 +1237,7 @@ Sources/Utils/TimeZoneInfo.i: Sources/Utils/TimeZoneInfo.cpp.i
 # target to preprocess a source file
 Sources/Utils/TimeZoneInfo.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeZoneInfo.cpp.i
 .PHONY : Sources/Utils/TimeZoneInfo.cpp.i
 
 Sources/Utils/TimeZoneInfo.s: Sources/Utils/TimeZoneInfo.cpp.s
@@ -1111,6 +1246,7 @@ Sources/Utils/TimeZoneInfo.s: Sources/Utils/TimeZoneInfo.cpp.s
 # target to generate assembly for a file
 Sources/Utils/TimeZoneInfo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/TimeZoneInfo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/TimeZoneInfo.cpp.s
 .PHONY : Sources/Utils/TimeZoneInfo.cpp.s
 
 Sources/Utils/Waiter.o: Sources/Utils/Waiter.cpp.o
@@ -1119,6 +1255,7 @@ Sources/Utils/Waiter.o: Sources/Utils/Waiter.cpp.o
 # target to build an object file
 Sources/Utils/Waiter.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Waiter.cpp.o
 .PHONY : Sources/Utils/Waiter.cpp.o
 
 Sources/Utils/Waiter.i: Sources/Utils/Waiter.cpp.i
@@ -1127,6 +1264,7 @@ Sources/Utils/Waiter.i: Sources/Utils/Waiter.cpp.i
 # target to preprocess a source file
 Sources/Utils/Waiter.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Waiter.cpp.i
 .PHONY : Sources/Utils/Waiter.cpp.i
 
 Sources/Utils/Waiter.s: Sources/Utils/Waiter.cpp.s
@@ -1135,6 +1273,7 @@ Sources/Utils/Waiter.s: Sources/Utils/Waiter.cpp.s
 # target to generate assembly for a file
 Sources/Utils/Waiter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/Waiter.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/Waiter.cpp.s
 .PHONY : Sources/Utils/Waiter.cpp.s
 
 Sources/Utils/WaiterImpl_POSIX.o: Sources/Utils/WaiterImpl_POSIX.cpp.o
@@ -1143,6 +1282,7 @@ Sources/Utils/WaiterImpl_POSIX.o: Sources/Utils/WaiterImpl_POSIX.cpp.o
 # target to build an object file
 Sources/Utils/WaiterImpl_POSIX.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/WaiterImpl_POSIX.cpp.o
 .PHONY : Sources/Utils/WaiterImpl_POSIX.cpp.o
 
 Sources/Utils/WaiterImpl_POSIX.i: Sources/Utils/WaiterImpl_POSIX.cpp.i
@@ -1151,6 +1291,7 @@ Sources/Utils/WaiterImpl_POSIX.i: Sources/Utils/WaiterImpl_POSIX.cpp.i
 # target to preprocess a source file
 Sources/Utils/WaiterImpl_POSIX.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/WaiterImpl_POSIX.cpp.i
 .PHONY : Sources/Utils/WaiterImpl_POSIX.cpp.i
 
 Sources/Utils/WaiterImpl_POSIX.s: Sources/Utils/WaiterImpl_POSIX.cpp.s
@@ -1159,6 +1300,7 @@ Sources/Utils/WaiterImpl_POSIX.s: Sources/Utils/WaiterImpl_POSIX.cpp.s
 # target to generate assembly for a file
 Sources/Utils/WaiterImpl_POSIX.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Utils/WaiterImpl_POSIX.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Utils/WaiterImpl_POSIX.cpp.s
 .PHONY : Sources/Utils/WaiterImpl_POSIX.cpp.s
 
 Sources/Values/Value.o: Sources/Values/Value.cpp.o
@@ -1167,6 +1309,7 @@ Sources/Values/Value.o: Sources/Values/Value.cpp.o
 # target to build an object file
 Sources/Values/Value.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/Value.cpp.o
 .PHONY : Sources/Values/Value.cpp.o
 
 Sources/Values/Value.i: Sources/Values/Value.cpp.i
@@ -1175,6 +1318,7 @@ Sources/Values/Value.i: Sources/Values/Value.cpp.i
 # target to preprocess a source file
 Sources/Values/Value.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/Value.cpp.i
 .PHONY : Sources/Values/Value.cpp.i
 
 Sources/Values/Value.s: Sources/Values/Value.cpp.s
@@ -1183,6 +1327,7 @@ Sources/Values/Value.s: Sources/Values/Value.cpp.s
 # target to generate assembly for a file
 Sources/Values/Value.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/Value.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/Value.cpp.s
 .PHONY : Sources/Values/Value.cpp.s
 
 Sources/Values/ValueBool.o: Sources/Values/ValueBool.cpp.o
@@ -1191,6 +1336,7 @@ Sources/Values/ValueBool.o: Sources/Values/ValueBool.cpp.o
 # target to build an object file
 Sources/Values/ValueBool.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueBool.cpp.o
 .PHONY : Sources/Values/ValueBool.cpp.o
 
 Sources/Values/ValueBool.i: Sources/Values/ValueBool.cpp.i
@@ -1199,6 +1345,7 @@ Sources/Values/ValueBool.i: Sources/Values/ValueBool.cpp.i
 # target to preprocess a source file
 Sources/Values/ValueBool.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueBool.cpp.i
 .PHONY : Sources/Values/ValueBool.cpp.i
 
 Sources/Values/ValueBool.s: Sources/Values/ValueBool.cpp.s
@@ -1207,6 +1354,7 @@ Sources/Values/ValueBool.s: Sources/Values/ValueBool.cpp.s
 # target to generate assembly for a file
 Sources/Values/ValueBool.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueBool.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueBool.cpp.s
 .PHONY : Sources/Values/ValueBool.cpp.s
 
 Sources/Values/ValueByte.o: Sources/Values/ValueByte.cpp.o
@@ -1215,6 +1363,7 @@ Sources/Values/ValueByte.o: Sources/Values/ValueByte.cpp.o
 # target to build an object file
 Sources/Values/ValueByte.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueByte.cpp.o
 .PHONY : Sources/Values/ValueByte.cpp.o
 
 Sources/Values/ValueByte.i: Sources/Values/ValueByte.cpp.i
@@ -1223,6 +1372,7 @@ Sources/Values/ValueByte.i: Sources/Values/ValueByte.cpp.i
 # target to preprocess a source file
 Sources/Values/ValueByte.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueByte.cpp.i
 .PHONY : Sources/Values/ValueByte.cpp.i
 
 Sources/Values/ValueByte.s: Sources/Values/ValueByte.cpp.s
@@ -1231,6 +1381,7 @@ Sources/Values/ValueByte.s: Sources/Values/ValueByte.cpp.s
 # target to generate assembly for a file
 Sources/Values/ValueByte.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueByte.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueByte.cpp.s
 .PHONY : Sources/Values/ValueByte.cpp.s
 
 Sources/Values/ValueDword.o: Sources/Values/ValueDword.cpp.o
@@ -1239,6 +1390,7 @@ Sources/Values/ValueDword.o: Sources/Values/ValueDword.cpp.o
 # target to build an object file
 Sources/Values/ValueDword.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueDword.cpp.o
 .PHONY : Sources/Values/ValueDword.cpp.o
 
 Sources/Values/ValueDword.i: Sources/Values/ValueDword.cpp.i
@@ -1247,6 +1399,7 @@ Sources/Values/ValueDword.i: Sources/Values/ValueDword.cpp.i
 # target to preprocess a source file
 Sources/Values/ValueDword.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueDword.cpp.i
 .PHONY : Sources/Values/ValueDword.cpp.i
 
 Sources/Values/ValueDword.s: Sources/Values/ValueDword.cpp.s
@@ -1255,6 +1408,7 @@ Sources/Values/ValueDword.s: Sources/Values/ValueDword.cpp.s
 # target to generate assembly for a file
 Sources/Values/ValueDword.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueDword.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueDword.cpp.s
 .PHONY : Sources/Values/ValueDword.cpp.s
 
 Sources/Values/ValueInt.o: Sources/Values/ValueInt.cpp.o
@@ -1263,6 +1417,7 @@ Sources/Values/ValueInt.o: Sources/Values/ValueInt.cpp.o
 # target to build an object file
 Sources/Values/ValueInt.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueInt.cpp.o
 .PHONY : Sources/Values/ValueInt.cpp.o
 
 Sources/Values/ValueInt.i: Sources/Values/ValueInt.cpp.i
@@ -1271,6 +1426,7 @@ Sources/Values/ValueInt.i: Sources/Values/ValueInt.cpp.i
 # target to preprocess a source file
 Sources/Values/ValueInt.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueInt.cpp.i
 .PHONY : Sources/Values/ValueInt.cpp.i
 
 Sources/Values/ValueInt.s: Sources/Values/ValueInt.cpp.s
@@ -1279,6 +1435,7 @@ Sources/Values/ValueInt.s: Sources/Values/ValueInt.cpp.s
 # target to generate assembly for a file
 Sources/Values/ValueInt.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueInt.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueInt.cpp.s
 .PHONY : Sources/Values/ValueInt.cpp.s
 
 Sources/Values/ValueString.o: Sources/Values/ValueString.cpp.o
@@ -1287,6 +1444,7 @@ Sources/Values/ValueString.o: Sources/Values/ValueString.cpp.o
 # target to build an object file
 Sources/Values/ValueString.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueString.cpp.o
 .PHONY : Sources/Values/ValueString.cpp.o
 
 Sources/Values/ValueString.i: Sources/Values/ValueString.cpp.i
@@ -1295,6 +1453,7 @@ Sources/Values/ValueString.i: Sources/Values/ValueString.cpp.i
 # target to preprocess a source file
 Sources/Values/ValueString.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueString.cpp.i
 .PHONY : Sources/Values/ValueString.cpp.i
 
 Sources/Values/ValueString.s: Sources/Values/ValueString.cpp.s
@@ -1303,6 +1462,7 @@ Sources/Values/ValueString.s: Sources/Values/ValueString.cpp.s
 # target to generate assembly for a file
 Sources/Values/ValueString.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueString.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueString.cpp.s
 .PHONY : Sources/Values/ValueString.cpp.s
 
 Sources/Values/ValueWord.o: Sources/Values/ValueWord.cpp.o
@@ -1311,6 +1471,7 @@ Sources/Values/ValueWord.o: Sources/Values/ValueWord.cpp.o
 # target to build an object file
 Sources/Values/ValueWord.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueWord.cpp.o
 .PHONY : Sources/Values/ValueWord.cpp.o
 
 Sources/Values/ValueWord.i: Sources/Values/ValueWord.cpp.i
@@ -1319,6 +1480,7 @@ Sources/Values/ValueWord.i: Sources/Values/ValueWord.cpp.i
 # target to preprocess a source file
 Sources/Values/ValueWord.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueWord.cpp.i
 .PHONY : Sources/Values/ValueWord.cpp.i
 
 Sources/Values/ValueWord.s: Sources/Values/ValueWord.cpp.s
@@ -1327,6 +1489,7 @@ Sources/Values/ValueWord.s: Sources/Values/ValueWord.cpp.s
 # target to generate assembly for a file
 Sources/Values/ValueWord.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/Values/ValueWord.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/Values/ValueWord.cpp.s
 .PHONY : Sources/Values/ValueWord.cpp.s
 
 Sources/WPA/WPA.o: Sources/WPA/WPA.cpp.o
@@ -1335,6 +1498,7 @@ Sources/WPA/WPA.o: Sources/WPA/WPA.cpp.o
 # target to build an object file
 Sources/WPA/WPA.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/WPA/WPA.cpp.o
 .PHONY : Sources/WPA/WPA.cpp.o
 
 Sources/WPA/WPA.i: Sources/WPA/WPA.cpp.i
@@ -1343,6 +1507,7 @@ Sources/WPA/WPA.i: Sources/WPA/WPA.cpp.i
 # target to preprocess a source file
 Sources/WPA/WPA.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/WPA/WPA.cpp.i
 .PHONY : Sources/WPA/WPA.cpp.i
 
 Sources/WPA/WPA.s: Sources/WPA/WPA.cpp.s
@@ -1351,7 +1516,32 @@ Sources/WPA/WPA.s: Sources/WPA/WPA.cpp.s
 # target to generate assembly for a file
 Sources/WPA/WPA.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/process-manager.dir/build.make CMakeFiles/process-manager.dir/Sources/WPA/WPA.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Sources/WPA/WPA.cpp.s
 .PHONY : Sources/WPA/WPA.cpp.s
+
+client.o: client.cpp.o
+.PHONY : client.o
+
+# target to build an object file
+client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cpp.o
+.PHONY : client.cpp.o
+
+client.i: client.cpp.i
+.PHONY : client.i
+
+# target to preprocess a source file
+client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cpp.i
+.PHONY : client.cpp.i
+
+client.s: client.cpp.s
+.PHONY : client.s
+
+# target to generate assembly for a file
+client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cpp.s
+.PHONY : client.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -1385,6 +1575,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... client"
 	@echo "... process-manager"
 	@echo "... Controllers/Controllers.o"
 	@echo "... Controllers/Controllers.i"
@@ -1539,6 +1730,9 @@ help:
 	@echo "... Sources/WPA/WPA.o"
 	@echo "... Sources/WPA/WPA.i"
 	@echo "... Sources/WPA/WPA.s"
+	@echo "... client.o"
+	@echo "... client.i"
+	@echo "... client.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

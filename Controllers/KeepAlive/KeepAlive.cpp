@@ -1,13 +1,12 @@
 #include "Controllers/KeepAlive/KeepAlive.hpp" 
 
-std::map<std::string, Service> KeepAlive::service_; 
+std::map<std::string, Service> KeepAlive::service_ ; 
 
 KeepAlive::KeepAlive(): 
                         proxy_(nullptr),
                         LBusNode::Server(LMainBus::GetInstance()), 
                         LBusNode::Client(LMainBus::GetInstance()) {
     Subscribe("get-list-of-services", LBus::GET, HandleGetListOfService, this); 
-    Subscribe("get-list-services", LBus::SET, HandleStopListOfService, this);
     Subscribe("stop-service", LBus::SET, HandleStopService, this);
     check_priodic_time_.RegisterTimerHandler(HandleKeepAlive, this);
     
@@ -39,7 +38,7 @@ KeepAlive::Start() {
         ser.execute = config["services"][name]["execute"].asString(); 
         ser.kill = config["services"][name]["kill"].asString(); 
 
-        service_.insert(std::pair<std::string, Service> (name,ser)); 
+        service_->insert(std::pair<std::string, Service> (name,ser)); 
         LOG_INFO("Component service: %s", name.c_str()); 
     }
     if (LBusNode::Server::Start(KEEPALIVE_MODULE) < 0) 
@@ -69,7 +68,7 @@ KeepAlive::Stop() {
 int KeepAlive::HandleKeepAlive(void *user_data) {
     auto data = (KeepAlive *)user_data;
     std::string command;
-    for (auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
+    for (auto itr = data->service_->begin(); itr != data->service_->end(); ++itr) {
         command = "pidof " + itr->first;
         if (Execute(command))
             LOG_INFO("Service %s is active", itr->first.c_str());
@@ -84,24 +83,25 @@ int KeepAlive::HandleKeepAlive(void *user_data) {
 
 void 
 KeepAlive::HandleStopService(const LBus::Message *message, void *user_data) {
-    auto request = (GVariant *)LBus::GetTransaction(&message->request);
+    auto request = (GVariant **)LBus::GetTransaction(&message->request);
     auto data = (KeepAlive *)user_data; 
     const gchar *name; 
-    g_variant_get(request, "s", name);
-    for (auto &ser : data->service_) {
-        if(ser.first.c_str() == name) 
-            data->service_.erase(name); 
+    name = g_variant_get_string(*request, nullptr); 
+    for (auto itr = data->service_->begin(); itr != data->service_->end(); ++itr) {
+        if(itr->first.c_str() == name) 
+            data->service_->erase(name); 
     }
+    LOG_INFO("here"); 
     GVariantBuilder *builders = g_variant_builder_new(G_VARIANT_TYPE("aa{sv}"));
     g_variant_builder_init(builders, G_VARIANT_TYPE("aa{sv}"));
-    for(auto &ser: data->service_) {  
+    for (auto itr = data->service_->begin(); itr != data->service_->end(); ++itr) {
         GVariantBuilder *buil = g_variant_builder_new(G_VARIANT_TYPE("a{sv}")); 
         g_variant_builder_init(buil, G_VARIANT_TYPE("a{sv}"));
-        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
-        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(itr->first.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(itr->second.execute.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(itr->second.kill.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(itr->second.priority)); 
+        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(itr->second.logpath.c_str())); 
         g_variant_builder_add(builders, "a{sv}", buil); 
     }
     LOG_INFO("got response");  
@@ -121,14 +121,14 @@ KeepAlive::HandleGetListOfService(const LBus::Message *message, void *user_data)
     auto data = (KeepAlive *)user_data; 
     GVariantBuilder *builders = g_variant_builder_new(G_VARIANT_TYPE("aa{sv}"));
     g_variant_builder_init(builders, G_VARIANT_TYPE("aa{sv}"));
-    for(auto &ser: data->service_) {  
+    for (auto itr = data->service_->begin(); itr != data->service_->end(); ++itr) {
         GVariantBuilder *buil = g_variant_builder_new(G_VARIANT_TYPE("a{sv}")); 
         g_variant_builder_init(buil, G_VARIANT_TYPE("a{sv}"));
-        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
-        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(itr->first.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(itr->second.execute.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(itr->second.kill.c_str())); 
+        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(itr->second.priority)); 
+        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(itr->second.logpath.c_str())); 
         g_variant_builder_add(builders, "a{sv}", buil); 
     }
     LOG_INFO("got response");  
@@ -138,39 +138,12 @@ KeepAlive::HandleGetListOfService(const LBus::Message *message, void *user_data)
         g_free(*builders);
     }); 
 }
-void 
-KeepAlive::HandleStopListOfService(const LBus::Message *message, void *user_data) {
-    auto request = (GVariant *)LBus::GetTransaction(&message->request); 
-    GVariantIter *iter; 
-    std::string sname; 
-    const gchar *name; 
-    int ret; 
-    auto data = (KeepAlive *)user_data; 
-    GVariantBuilder *builders = g_variant_builder_new(G_VARIANT_TYPE("aa{sv}"));
-    g_variant_builder_init(builders, G_VARIANT_TYPE("aa{sv}"));
-    for(auto &ser: data->service_) {  
-        GVariantBuilder *buil = g_variant_builder_new(G_VARIANT_TYPE("a{sv}")); 
-        g_variant_builder_init(buil, G_VARIANT_TYPE("a{sv}"));
-        g_variant_builder_add(buil, "{sv}", "name", g_variant_new_string(ser.first.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "execute", g_variant_new_string(ser.second.execute.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "kill", g_variant_new_string(ser.second.kill.c_str())); 
-        g_variant_builder_add(buil, "{sv}", "priority", g_variant_new_int32(ser.second.priority)); 
-        g_variant_builder_add(buil, "{sv}", "logpath", g_variant_new_string(ser.second.logpath.c_str())); 
-        g_variant_builder_add(builders, "a{sv}", buil); 
-    }
-    LOG_INFO("got response");  
-    data->LBusNode::Server::Response(message, &builders, sizeof(&builders), [] (void * buff) {
-        auto builders = (GVariantBuilder **)buff; 
-        g_variant_builder_unref(*builders); 
-        g_free(*builders);
-    });
-}
 
 void
 KeepAlive::StartService(std::string name) {
     std::string command; 
-    if(service_.find(name) != service_.end()) {
-        command = service_[name].execute; 
+    if(service_->find(name) != service_->end()) {
+        command = service_->find(name)->second.execute; 
         LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
     } else  
         LOG_DBUG("Cannot find service in list"); 
@@ -179,8 +152,8 @@ KeepAlive::StartService(std::string name) {
 void 
 KeepAlive::StopService(std::string name) {
     std::string command; 
-    if(service_.find(name) != service_.end()) {
-        command = service_[name].kill; 
+    if(service_->find(name) != service_->end()) {
+        command = service_->find(name)->second.kill; 
         LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
     } else  
         LOG_DBUG("Cannot find service in list"); 
@@ -215,47 +188,6 @@ KeepAlive::HandleKeepAlivePropertiesChanged(GDBusProxy *proxy,
     }
 }
 
-
-
-
-
-// void KeepAlive::HandleControllerMethods(GDBusConnection *connection,
-//                                         const gchar *sender,
-//                                         const gchar *object_path,
-//                                         const gchar *interface_name,
-//                                         const gchar *method_name,
-//                                         GVariant *paramenter,
-//                                         GDBusMethodInvocation *invocation,
-//                                         gpointer user_data) {
-//     auto data = (KeepAlive *)user_data;
-
-//     LOG_INFO("Handler call method: sender (%s), obj_path (%s), interface_name (%s), method_name (%s), type_string (%s)", sender, 
-//                                                                                                                         object_path, 
-//                                                                                                                         interface_name, 
-//                                                                                                                         method_name, 
-//                                                                                                        g_variant_get_type_string(paramenter));
-//     if(g_strcmp0(method_name, "StopServices") == 0) {
-//         GVariantIter *iter;
-//         GVariant *dict;
-//         const gchar *name; 
-
-//         g_variant_get(paramenter, "(aa{sv})", &iter);
-//         while( g_variant_iter_loop(iter, "&s", &name)) {
-//             data->service_.erase(name); 
-//         } 
-//         // while ((dict = g_variant_iter_next_value(iter))) {
-//         //     GVariant *service_erase = g_variant_lookup_value(dict, "&s", G_VARIANT_TYPE_STRING);
-//         //     if (service_erase) {
-//         //         name = g_variant_get_string(service_erase, NULL);
-//         //         g_variant_unref(service_erase);
-//         //         data->service_.erase(name); 
-//         //     }
-//         //     g_variant_unref(dict);
-//         // }
-//         g_dbus_method_invocation_return_value(invocation, NULL);
-//         g_variant_iter_free(iter);
-//     }                                                     
-// }
 
 
 

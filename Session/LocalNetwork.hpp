@@ -14,7 +14,7 @@ public:
 
     int Start();
     void Stop();
-
+    
 private:
     guint bus_id_;
     GDBusConnection *connection_; 
@@ -57,9 +57,6 @@ private:
                                                     const gchar *proterty_name,
                                                     GError **error,
                                                     gpointer user_data);
-    
-    
-
 };
 
 #endif // 
