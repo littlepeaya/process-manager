@@ -31,7 +31,7 @@ public:
 private: 
     int count; 
     GDBusProxy *proxy_;
-    static std::map<std::string, Service> *service_; 
+    static std::map<std::string, Service> service_; 
     static int HandleKeepAlive(void *user_data); 
     static GDBusInterfaceVTable handle_interface_vtable; 
     static GDBusNodeInfo *controller_introspection_data_; 

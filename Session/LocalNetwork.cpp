@@ -14,13 +14,16 @@ GDBusNodeInfo *LocalNetwork::controller_introspection_data_ = nullptr;
 const gchar *LocalNetwork::controller_introspection_xml_ =
     "<node>"
         "<interface name='com.audio.process.Controller1'>"
-            "<method name='GetListOfService'>"
+            "<method name='StopServices'>"
+            "<arg type='as' direction='in' />"
+        "</method>"
+            "<method name='StartServices'>"
+            "<arg type='as' direction='in' />"
+        "</method>"
+        "<method name='RestartServices'>"
             "<arg type='as' direction='in' />"
         "</method>"
             "<property name= 'GetListOfServices' type='aa{sv}' access='read'/>"
-            "<property name= 'StopServices' type='s' access='readwrite'/>"
-            "<property name= 'StartServices' type='aa{sv}' access='readwrite'/>"
-            "<property name= 'RestartServices' type='aa{sv}' access='readwrite'/>"
         "</interface>"
     "</node>";
 

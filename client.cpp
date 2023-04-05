@@ -94,67 +94,26 @@ int main(int argc, char *argv[])
         exit(0);
     }
 
-    JsonConfiguration *json_configuration = JsonConfiguration::GetInstance();
-    for (int i = 0; json_configuration->Open(config_path) < 0; ++i) {
-        fprintf(stderr, "Couldn't open the '%s'\n", config_path.c_str());
-
-        switch (i) {
-            case 0:
-                fprintf(stdout, "Try repair '%s' from '%s'", config_path.c_str(), (config_path + ".copied").c_str());
-                retval = Copy((config_path + ".copied").c_str(), config_path.c_str());
-                if (retval < 0)
-                    fprintf(stderr, "Couldn't copy from '%s' to '%s'\n", (config_path + ".copied").c_str(), config_path.c_str());
-                else 
-                    close(retval);
-
-                break;
-            
-            case 1:
-                fprintf(stdout, "Try repair '%s' from '%s'", config_path.c_str(), (config_path + ".orig").c_str());
-                retval = Copy((config_path + ".orig").c_str(), config_path.c_str());
-                if (retval < 0)
-                    fprintf(stderr, "Couldn't copy from '%s' to '%s'\n", (config_path + ".orig").c_str(), config_path.c_str());
-                else 
-                    close(retval);
-                    
-                break;
-            
-            default:
-                fprintf(stderr, "Couldn't repair '%s'", config_path.c_str());
-                exit(1);
-        }
-    }
-
-    if (UpdateMainAddress() < 0) {
-        fprintf(stderr, "Failed to update main address\n");
-        exit(1);
-    }
-    auto root = json_configuration->Read();
-    Log::Level level = (Log::Level)root["log"]["level"].asInt();
-    Log::Create(root["log"]["path"].asString(), true, true, level, level);
-    LOG_INFO("The log is contained in the '%s'.", root["log"]["path"].asCString());
-   
-   GDBusProxy *proxy_; 
-    GVariant *res; 
-    proxy_ = GDBusProxyConnect(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH, COME_AUDIO_PROCESS_CONTROLLER_INTERFACE); 
+    GDBusProxy *proxy_;
+    GVariant *res;
+    proxy_ = GDBusProxyConnect(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH, COME_AUDIO_PROCESS_CONTROLLER_INTERFACE);
     if (proxy_ == nullptr) {
         LOG_ERRO("Failed to create proxy");
     }
-    sleep(2);  
-    GVariant* request; 
-    const gchar *name[] = {"audio-manager","io-manager"}; 
+    GVariant *request;
+    const gchar *name[] = {"audio-manager", "io-manager"};
     GVariantBuilder builder;
     GVariant *value;
-g_variant_builder_init(&builder, G_VARIANT_TYPE ("as")); 
-g_variant_builder_add(&builder, "s", "io-manager");
-g_variant_builder_add (&builder, "s", "audio-manager");
-request = g_variant_new("(as)",&builder);
-printf("%s\n", g_variant_print(request, true));
-g_variant_builder_clear (&builder); 
-    res = GDBusProxyCallMethod(proxy_, "GetListOfService", request); 
-    if(res == nullptr)
-        LOG_INFO("error");
-     
+    g_variant_builder_init(&builder, G_VARIANT_TYPE("as"));
+    g_variant_builder_add(&builder, "s", "io-manager");
+    g_variant_builder_add(&builder, "s", "audio-manager");
+    request = g_variant_new("(as)", &builder);
+    printf("%s\n", g_variant_print(request, true));
+    g_variant_builder_clear(&builder);
+    res = GDBusProxyCallMethod(proxy_, "GetListOfService", request);
+    if (res == nullptr)
+        printf("error\n");
+
     //main loop 
     GMainLoop *loop = g_main_loop_new(NULL, FALSE);
     g_main_loop_run(loop);
