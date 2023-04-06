@@ -140,18 +140,18 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
     GVariant *a = nullptr; 
     LBus::Transaction response;
     GVariantIter *iter;
-    if (g_strcmp0(method_name, "GetListOfService") == 0) {
+    if (g_strcmp0(method_name, "StopServices") == 0) {
         g_variant_get(paramenters, "(as)", &iter); 
         const gchar *name;
+        
         while (g_variant_iter_next(iter, "s", &name)) { 
             res = g_variant_new("(s)", name); 
             self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "stop-service", LBus::SET, 50, {&res, sizeof(&res),[] (void * buffer) {
             auto res = (GVariant **)buffer;
             g_variant_unref(*res); 
             }}, &response); 
-        auto builder = (GVariant **)LBus::GetTransaction(&response); 
-        a = g_variant_new("(aa{sv})", *builder); 
-            LOG_INFO("%s", name);
+            auto builder = (char **)LBus::GetTransaction(&response); 
+            LOG_INFO("Stop service %s %s", name, *builder); 
         }
         g_dbus_method_invocation_return_value(invocation, nullptr); 
         g_variant_iter_free(iter);
@@ -176,20 +176,7 @@ LocalNetwork::HandleControllerSetProperties(GDBusConnection *connection,
                                                                                                                             property_name, 
                                                                                                                             g_variant_get_type_string(value));
    
-     if(g_strcmp0(property_name, "StopServices") == 0) {
-        GVariantIter *iter = g_variant_iter_new(value);
-        const gchar *name; 
-        g_variant_get(value, "({s})", name); 
-        GVariant *service_erase;
-        while ((service_erase = g_variant_iter_next_value(iter))) {
-            if (g_variant_is_of_type(service_erase, G_VARIANT_TYPE_STRING)) {
-                name = g_variant_get_string(service_erase, NULL);
-                g_print("Service to be erased: %s\n", name);
-            }
-            g_variant_unref(service_erase);
-        }
-        g_variant_iter_free(iter);
-    }   
+    
      
     return TRUE;
 }  
