@@ -24,20 +24,22 @@ public:
     int Start();
     void Stop();
 
-    static void StartService(std::string name);
-    static void StopService(std::string name);
-    static void RestartService(std::string name);
+    void StartService(std::string name);
+    void StopService(std::string name);
+    void RestartService(std::string name);
 
 private: 
     int count; 
+    bool is_changed; 
     GDBusProxy *proxy_;
-    static std::map<std::string, Service> service_; 
+    std::map<std::string, Service> service_; 
     static int HandleKeepAlive(void *user_data); 
     static GDBusInterfaceVTable handle_interface_vtable; 
     static GDBusNodeInfo *controller_introspection_data_; 
     static GDBusInterfaceVTable controller_interface_vtable_;  
     static void HandleGetListOfService( const LBus::Message *message, void *user_data);
     static void HandleStopService(const LBus::Message *message, void *user_data); 
+    static void HandleStartService(const LBus::Message *message, void *user_data);
     static void HandleKeepAlivePropertiesChanged(GDBusProxy *proxy,
                                                 GVariant *changed_properties,
                                                 const gchar* const *invalidated_properties,

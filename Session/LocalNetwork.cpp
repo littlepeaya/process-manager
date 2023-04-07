@@ -137,13 +137,12 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
 
     int ret;
     GVariant *res = nullptr;
-    GVariant *a = nullptr; 
     LBus::Transaction response;
     GVariantIter *iter;
+    const gchar *name;
+    g_variant_get(paramenters, "(as)", &iter); 
+    
     if (g_strcmp0(method_name, "StopServices") == 0) {
-        g_variant_get(paramenters, "(as)", &iter); 
-        const gchar *name;
-        
         while (g_variant_iter_next(iter, "s", &name)) { 
             res = g_variant_new("(s)", name); 
             self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "stop-service", LBus::SET, 50, {&res, sizeof(&res),[] (void * buffer) {
@@ -152,6 +151,41 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
             }}, &response); 
             auto builder = (char **)LBus::GetTransaction(&response); 
             LOG_INFO("Stop service %s %s", name, *builder); 
+        }
+        g_dbus_method_invocation_return_value(invocation, nullptr); 
+        g_variant_iter_free(iter);
+    }
+    if(g_strcmp0(method_name, "StartServices") == 0) {
+        while (g_variant_iter_next(iter, "s", &name)) { 
+            res = g_variant_new("(s)", name); 
+            self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "start-service", LBus::SET, 50, {&res, sizeof(&res),[] (void * buffer) {
+            auto res = (GVariant **)buffer;
+            g_variant_unref(*res); 
+            }}, &response); 
+            auto builder = (char **)LBus::GetTransaction(&response); 
+            LOG_INFO("Start service %s %s", name, *builder); 
+        }
+        g_dbus_method_invocation_return_value(invocation, nullptr); 
+        g_variant_iter_free(iter);
+    }
+    if(g_strcmp0(method_name, "RestartServices") == 0) {
+        while (g_variant_iter_next(iter, "s", &name)) { 
+            res = g_variant_new("(s)", name); 
+            // auto res1 = res; 
+            self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "stop-service", LBus::SET, 50, {&res, sizeof(&res),[] (void * buffer) {
+            auto res = (GVariant **)buffer;
+            g_variant_unref(*res); 
+            }}, &response); 
+            auto builder = (char **)LBus::GetTransaction(&response); 
+            LOG_INFO("Stop service %s %s", name, *builder);
+            LBus::FreeTransaction(&response);  
+
+            self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "start-service", LBus::SET, 50, {&res, sizeof(&res),[] (void * buffer) {
+            auto res = (GVariant **)buffer;
+            g_variant_unref(*res); 
+            }}, &response); 
+            builder = (char **)LBus::GetTransaction(&response); 
+            LOG_INFO("Start service %s %s", name, *builder); 
         }
         g_dbus_method_invocation_return_value(invocation, nullptr); 
         g_variant_iter_free(iter);

@@ -649,7 +649,9 @@ typedef struct {
     std::string kill; 
     int priority; 
     std::string logpath; 
+    bool monitor; 
 } Service; 
+
 
 
 

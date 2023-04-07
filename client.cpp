@@ -25,12 +25,12 @@
 #define WLAN_IFACE_ADDRESS_LEN      17 
 
 void PrintHelp() {
-    std::cout << "Usage: client [OPTIONS]" << std::endl;
+    std::cout << "Usage: client [OPTIONS] [service1] [serivce2] [...]" << std::endl;
     std::cout << std::endl;
-    std::cout << "\t-x \t to stop services by name" << std::endl;
-    std::cout << "\t-s \t to start services by name" << std::endl;
-    std::cout << "\t-r \t to restart services by name" << std::endl;
-    std::cout << "\t-g \t to get list of services" << std::endl;
+    std::cout << "\t-x, --stop \t to stop services by name" << std::endl;
+    std::cout << "\t-s, --start \t to start services by name" << std::endl;
+    std::cout << "\t-r, --restart \t to restart services by name" << std::endl;
+    std::cout << "\t-g, --getlist \t to get list of services" << std::endl;
 }
 
 
@@ -41,12 +41,12 @@ int main(int argc, char *argv[]) {
     std::string name_services, properties, method;
     std::vector<char *> name; 
     struct option long_options[] = {
-            {"startservices",     required_argument, nullptr, 's'},
-            {"stopservices",      required_argument, nullptr, 'x'},
-            {"restartservices",   required_argument, nullptr, 'r'},
-            {"getlistofservices", no_argument,       nullptr, 'g'}, 
-            {"help",              no_argument,       nullptr, 'h'},
-            {nullptr,             0,                 nullptr,  0 }
+            {"start",     required_argument, nullptr, 's'},
+            {"stop",      required_argument, nullptr, 'x'},
+            {"restart",   required_argument, nullptr, 'r'},
+            {"getlist",   no_argument,       nullptr, 'g'}, 
+            {"help",      no_argument,       nullptr, 'h'},
+            {nullptr,     0,                 nullptr,  0 }
     };
 
     while ((opt = getopt_long(argc, argv, "hx:s:r:g", long_options, nullptr)) != -1) {
@@ -109,9 +109,9 @@ int main(int argc, char *argv[]) {
     g_variant_builder_clear(&builder);
     res = GDBusProxyCallMethod(proxy_, method, request);
     if (res == nullptr)
-        printf("error %s \n", method.c_str());
+        printf("%s FAILED\n", method.c_str());
     else 
-        printf("successfully%s \n", method.c_str()); 
+        printf("%s SUCCESSFULLY\n", method.c_str()); 
    
     return 0;
 }
