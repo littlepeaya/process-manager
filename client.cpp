@@ -98,15 +98,16 @@ int main(int argc, char *argv[]) {
         printf("Failed to create proxy");
     }
     GVariant *request;
-    GVariantBuilder builder;
+    GVariantBuilder *builder;
     GVariant *value;
-    g_variant_builder_init(&builder, G_VARIANT_TYPE("as"));
+    g_variant_builder_init(builder, G_VARIANT_TYPE("as"));
     while(!name.empty()) {
-        g_variant_builder_add(&builder, "s", name.back());
+        g_variant_builder_add(builder, "s", name.back());
         name.pop_back(); 
     }
-    request = g_variant_new("(as)", &builder);
-    g_variant_builder_clear(&builder);
+    request = g_variant_new("(as)", builder);
+    g_variant_builder_unref(builder);
+    
     res = GDBusProxyCallMethod(proxy_, method, request);
     if (res == nullptr)
         printf("%s FAILED\n", method.c_str());
