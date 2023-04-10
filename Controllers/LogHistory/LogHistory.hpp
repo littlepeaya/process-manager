@@ -7,8 +7,9 @@
 #include "Generic.hpp" 
 #include <vector>
 #include <string>
-#define LOG_SIZE 40 //mb 
-#define PERIODIC_UPLOAD 60*1000  // 60s 
+
+#define LOG_SIZE        50 //mb 
+#define PERIODIC_UPLOAD 24*60*60*1000  // 1 day 
 
 class LogHistory {
 public: 
@@ -20,9 +21,8 @@ public:
     int LogTransfer(void *user_data); 
 
 private: 
-    
+    std::string dir_log_path_; 
     std::string url_server_; 
-    std::string full_log_path_; 
     std::map<std::string, Service> service_; 
     std::string dir_upload_; 
     unsigned int log_size_;

@@ -3,7 +3,7 @@
 pthread_mutex_t LogHistory::log_transfer_mutex_ = PTHREAD_MUTEX_INITIALIZER; 
 
 LogHistory::LogHistory() : 
-                        full_log_path_(), 
+                        dir_log_path_(), 
                         log_size_(0), 
                         url_server_(), 
                         dir_upload_(), 
@@ -31,6 +31,7 @@ LogHistory::Start() {
     port_ = config["port"].asString(); 
     dir_upload_ = config["dirupload"].asString(); 
     url_server_ = config["address-server"].asString(); 
+    dir_log_path_ = config["log"]["path"].asString(); 
     Service ser; 
     for(auto &name : config["services"].getMemberNames()) {
         ser.logpath = config["services"][name]["pathlog"].asString(); 
@@ -53,6 +54,7 @@ LogHistory::Start() {
     for(auto it = service_.begin(); it != service_.end(); ++it) {
         LOG_INFO("%s", it->second.logpath.c_str()); 
     }
+    LOG_INFO("%s", dir_log_path_.c_str()); 
     if ( time_upload_file_log_.Start(100, PERIODIC_UPLOAD) < 0) {
         LOG_ERRO("Could not start periodic timer to start to check log");
         return -1; 
@@ -70,11 +72,12 @@ int
 LogHistory::CheckLogSize(void *user_data) {
     auto data = (LogHistory *) user_data; 
     std::string command; 
-    std::string log_path; 
+    std::string log_path = data->dir_log_path_ + " "; 
     for(auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
         log_path += itr->second.logpath.c_str(); 
         log_path += " "; 
     }
+
     command = "du -c " + log_path + " |grep total | awk '{print $1}'; "; 
     LOG_INFO("Execute: %s", command.c_str()); 
     int log_size_ = std::stoi(ExecuteCommand(command.c_str())); 
@@ -89,22 +92,24 @@ LogHistory::LogTransfer(void *user_data) {
     auto data = (LogHistory *)user_data; 
     // load file config 
     if(!data->is_loaded_) {
-    auto config = JsonConfiguration::GetInstance()->Read();
-    data->url_server_ = config["address-server"].asString();  
-    data->port_ = config["port"].asString(); 
-    data->dir_upload_ = config["dirupload"].asString(); 
-    (data->dir_upload_).append((data->dir_upload_).back() == '/' ? "":"/"); 
-    Service ser; 
-    for(auto &name : config["services"].getMemberNames()) {
-        ser.logpath = config["services"][name]["pathlog"].asString(); 
-        ser.priority = config["services"][name]["priority"].asInt(); 
-        ser.execute = config["services"][name]["execute"].asString(); 
-        ser.kill = config["services"][name]["kill"].asString(); 
+        auto config = JsonConfiguration::GetInstance()->Read();
+        data->url_server_ = config["address-server"].asString();  
+        data->port_ = config["port"].asString(); 
+        data->dir_upload_ = config["dirupload"].asString(); 
+        data->dir_log_path_ = config["log"]["path"].asString(); 
+        (data->dir_upload_).append((data->dir_upload_).back() == '/' ? "":"/"); 
+        Service ser; 
+        for(auto &name : config["services"].getMemberNames()) {
+            ser.logpath = config["services"][name]["pathlog"].asString(); 
+            ser.priority = config["services"][name]["priority"].asInt(); 
+            ser.execute = config["services"][name]["execute"].asString(); 
+            ser.kill = config["services"][name]["kill"].asString(); 
 
-        service_.insert(std::pair<std::string, Service> (name,ser)); 
+            service_.insert(std::pair<std::string, Service> (name,ser)); 
+        }
+        data->is_loaded_ = true;
     }
-    data->is_loaded_ = true;
-    }
+    
     pthread_mutex_lock(&log_transfer_mutex_); 
     CURL *curl; 
     CURLcode res; 
@@ -121,7 +126,7 @@ LogHistory::LogTransfer(void *user_data) {
     dir_path = (char *)malloc((data->dir_upload_).length() + uploadFolder.length() + 1); 
     std::strcpy(dir_path, data->dir_upload_.c_str()); 
     std::strcat(dir_path, uploadFolder.c_str()); 
-    std::string log_path;
+    std::string log_path = data->dir_log_path_ + " ";
     for(auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
         log_path += itr->second.logpath.c_str(); 
         log_path += " "; 
@@ -179,6 +184,8 @@ clean:
         LOG_INFO("Clean %s", itr->second.logpath.c_str());
         usleep(10);
     }
+    fclose(fopen((data->dir_log_path_).c_str(), "w"));
+        LOG_INFO("Clean %s", data->dir_log_path_.c_str());
 
     free(dir_path);
     pthread_mutex_unlock(&log_transfer_mutex_); 
@@ -190,7 +197,6 @@ LogHistory::WriteCallback(const char *buffer, size_t size, size_t nmemb, void *u
     response->append(buffer);
     return size * nmemb;
 }
-
 
 
 

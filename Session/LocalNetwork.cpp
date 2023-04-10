@@ -14,7 +14,7 @@ const gchar *LocalNetwork::controller_introspection_xml_ =
             "<method name='StopServices'>"
             "<arg type='as' direction='in' />"
         "</method>"
-            "<method name='StartServices'>"
+            "<method name='StartServices'>" 
             "<arg type='as' direction='in' />"
         "</method>"
         "<method name='RestartServices'>"
@@ -161,7 +161,7 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
     else if(g_strcmp0(method_name, "StartServices") == 0) {
         while (g_variant_iter_next(iter, "s", &name)) { 
             res_start = g_variant_new("(s)", name); 
-            self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "start-service", LBus::SET, 50, {&res_start, sizeof(&res_start),[] (void * buffer) {
+            ret = self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "start-service", LBus::SET, 50, {&res_start, sizeof(&res_start),[] (void * buffer) {
                                                                                                 auto res_start = (GVariant **)buffer;
                                                                                                 g_variant_unref(*res_start); 
                                                                                                 }}, 
@@ -180,7 +180,7 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
     else if(g_strcmp0(method_name, "RestartServices") == 0) {
         while (g_variant_iter_next(iter, "s", &name)) { 
             res_stop = g_variant_new("(s)", name); 
-            self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "stop-service", LBus::SET, 50, {&res_stop, sizeof(&res_stop),[] (void * buffer) {
+            ret = self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "stop-service", LBus::SET, 50, {&res_stop, sizeof(&res_stop),[] (void * buffer) {
                                                                                                 auto res_stop = (GVariant **)buffer;
                                                                                                 g_variant_unref(*res_stop); 
                                                                                                 }}, 
@@ -196,7 +196,7 @@ LocalNetwork::HandleControllerMethods(GDBusConnection *connection,
             LOG_INFO("Stop service %s %s", name, *builder);
 
             res_start = g_variant_new("(s)", name); 
-            self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "start-service", LBus::SET, 50, {&res_start, sizeof(&res_start),[] (void * buffer) {
+            ret = self->LBusNode::Client::Publish(KEEPALIVE_MODULE, "start-service", LBus::SET, 50, {&res_start, sizeof(&res_start),[] (void * buffer) {
                                                                                                 auto res_start = (GVariant **)buffer;
                                                                                                 g_variant_unref(*res_start); 
                                                                                                 }}, 

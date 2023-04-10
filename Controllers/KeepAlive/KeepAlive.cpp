@@ -1,8 +1,5 @@
 #include "Controllers/KeepAlive/KeepAlive.hpp" 
 
-namespace {
-
-}
 KeepAlive::KeepAlive(): 
                         service_(), 
                         proxy_(nullptr),
@@ -24,8 +21,8 @@ KeepAlive::Start() {
     auto config = JsonConfiguration::GetInstance()->Read();
     LOG_CRIT("==========Check Keep Alive===============");
     
-     //load services 
-     if(!config.isMember("services") && !config["services"].isObject()) {
+    //load services 
+    if(!config.isMember("services") && !config["services"].isObject()) {
         LOG_ERRO("Missing configuration");
         return -1;
     }
@@ -47,13 +44,15 @@ KeepAlive::Start() {
         service_.insert(std::pair<std::string, Service> (name,ser));
         LOG_INFO("Component service: %s", name.c_str()); 
     }
-    
-    if (LBusNode::Server::Start(KEEPALIVE_MODULE) < 0) 
-        LOG_ERRO("Error to start LBus Server"); 
-    if(check_priodic_time_.Start(50, CHECK_PERIODIC_TIME) < 0) {
-        LOG_INFO("Error start timer"); 
-        return -1; 
+    //sorting services bases on priorites 
+    for(auto itr1 = service_.begin(); itr1 != service_.end(); ++itr1){
+        for(auto itr2 = service_.begin(); itr2 != service_.begin() && itr2 != service_.end(); ++itr2) {
+            if(itr1->second.priority < itr2->second.priority) {
+                std::swap(itr1, itr2); 
+            }
+        }
     }
+    
     proxy_ = GDBusProxyConnect(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH, COME_AUDIO_PROCESS_CONTROLLER_INTERFACE);
     if (proxy_ == nullptr) {
         LOG_ERRO("Failed to create proxy");
@@ -63,6 +62,14 @@ KeepAlive::Start() {
                     "g-properties-changed", 
                     G_CALLBACK(HandleKeepAlivePropertiesChanged), 
                     this); 
+
+    if (LBusNode::Server::Start(KEEPALIVE_MODULE) < 0) 
+        LOG_ERRO("Error to start LBus Server"); 
+    if(check_priodic_time_.Start(50, CHECK_PERIODIC_TIME) < 0) {
+        LOG_ERRO("Error start timer"); 
+        return -1; 
+    }
+
     return 1;  
 }
 
@@ -88,6 +95,32 @@ int KeepAlive::HandleKeepAlive(void *user_data) {
         }
     }
     return 0;
+}
+
+void
+KeepAlive::StartService(std::string name) {
+    std::string command; 
+    if(service_.find(name) != service_.end()) {
+        command = service_[name].execute; 
+        LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
+    } else  
+        LOG_DBUG("Cannot find service in list"); 
+}
+
+void 
+KeepAlive::StopService(std::string name) {
+    std::string command; 
+    if(service_.find(name) != service_.end()) {
+        command = service_[name].kill; 
+        LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
+    } else  
+        LOG_DBUG("Cannot find service in list"); 
+}
+
+void
+KeepAlive::RestartService(std::string name) {
+    StopService(name); 
+    StartService(name); 
 }
 
 void  
@@ -162,32 +195,6 @@ KeepAlive::HandleGetListOfService(const LBus::Message *message, void *user_data)
         g_variant_builder_unref(*builders); 
         g_free(*builders);
     }); 
-}
-
-void
-KeepAlive::StartService(std::string name) {
-    std::string command; 
-    if(service_.find(name) != service_.end()) {
-        command = service_[name].execute; 
-        LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
-    } else  
-        LOG_DBUG("Cannot find service in list"); 
-}
-
-void 
-KeepAlive::StopService(std::string name) {
-    std::string command; 
-    if(service_.find(name) != service_.end()) {
-        command = service_[name].kill; 
-        LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
-    } else  
-        LOG_DBUG("Cannot find service in list"); 
-}
-
-void
-KeepAlive::RestartService(std::string name) {
-    StopService(name); 
-    StartService(name); 
 }
 
 void

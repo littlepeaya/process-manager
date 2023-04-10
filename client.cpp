@@ -33,12 +33,32 @@ void PrintHelp() {
     std::cout << "\t-g, --getlist \t to get list of services" << std::endl;
 }
 
+int GetList(std::string property) {
+    GDBusProxy *proxy_;
+    GVariant *res;
+    proxy_ = GDBusProxyConnect(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH, COME_AUDIO_PROCESS_CONTROLLER_INTERFACE);
+    if (proxy_ == nullptr) {
+        printf("Failed to create proxy"); 
+    }
+    res = GDBusProxyGetProperty(proxy_, property); 
+    if (res == nullptr) {
+        printf("FAILED\n");
+        return -1;
+    }
+    printf("%s\n", g_variant_print(res, true)); 
+    Json::Value data; 
+    GVariantToJson(res, data); 
+    Json::FastWriter fast; 
+    printf("%s", fast.write(data).c_str());
+    return 0; 
+}
+
 
 int main(int argc, char *argv[]) {
     int opt;
     bool is_option = false;
 
-    std::string name_services, properties, method;
+    std::string name_services, property, method;
     std::vector<char *> name; 
     struct option long_options[] = {
             {"start",     required_argument, nullptr, 's'},
@@ -67,8 +87,9 @@ int main(int argc, char *argv[]) {
                 }
                 break;
             case 'g' : 
-                properties.assign(optarg);
-                break;
+                property = "GetListOfServices"; 
+                GetList(property); 
+                exit(0); 
             case 's' : 
                 method = "StartServices"; 
                 optind--; 
@@ -96,6 +117,7 @@ int main(int argc, char *argv[]) {
     proxy_ = GDBusProxyConnect(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH, COME_AUDIO_PROCESS_CONTROLLER_INTERFACE);
     if (proxy_ == nullptr) {
         printf("Failed to create proxy");
+        return -1; 
     }
     GVariant *request;
     GVariantBuilder *builder;
@@ -106,7 +128,6 @@ int main(int argc, char *argv[]) {
         name.pop_back(); 
     }
     request = g_variant_new("(as)", builder);
-    g_variant_builder_unref(builder);
     
     res = GDBusProxyCallMethod(proxy_, method, request);
     if (res == nullptr)

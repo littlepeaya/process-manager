@@ -21,7 +21,7 @@ Resources::Resources() : percent_cpu_avg_(0),
                          mem_info_() { 
     timer_check_RAM_.RegisterTimerHandler(HandleStatusRAMIsOver,this); 
     timer_check_Load_Averages_.RegisterTimerHandler(LoadAverages, this); 
-    timer_check_CPU_.RegisterTimerHandler(PeriodicStatusCPUusage, this); 
+    timer_check_CPU_.RegisterTimerHandler(HandleStatusCPUusage, this); 
 }
 
 Resources::~Resources() {
@@ -29,7 +29,6 @@ Resources::~Resources() {
 
 int 
 Resources::Start() {
-    //sorting services bases on priorites 
     auto config = JsonConfiguration::GetInstance()->Read();
     Service ser; 
     for (auto &name : config["services"].getMemberNames()) {
@@ -39,13 +38,6 @@ Resources::Start() {
         ser.kill = config["services"][name]["kill"].asString(); 
 
         service_.insert(std::pair<std::string, Service> (name,ser)); 
-    }
-    for(auto itr1 = service_.begin(); itr1 != service_.end(); ++itr1){
-        for(auto itr2 = service_.begin(); itr2 != service_.begin() && itr2 != service_.end(); ++itr2) {
-            if(itr1->second.priority < itr2->second.priority) {
-                std::swap(itr1, itr2); 
-            }
-        }
     }
   
     ram_limmited_ = config["resources"]["ram"].asInt(); 
@@ -59,7 +51,7 @@ Resources::Start() {
         LOG_ERRO("Could not start timer to check RAM"); 
         return -1; 
     } 
-    if(timer_check_CPU_.Start(100, TIME_GET_CPU) < 0) {
+    if(timer_check_CPU_.Start(100, TIME_CHECK_CPU) < 0) {
         LOG_ERRO("Could not start timer to check CPU"); 
     }
     if(timer_check_Load_Averages_.Start(100, TIME_CHECK_LOADAVG) < 0 ) {
@@ -76,36 +68,12 @@ Resources::Stop() {
 
     timer_check_RAM_.Stop(); 
     timer_check_RAM_.CancelTimerHandler(HandleStatusRAMIsOver); 
+
+    timer_check_CPU_.Stop(); 
+    timer_check_CPU_.CancelTimerHandler(HandleStatusCPUusage); 
 }
 
-//get cpu usage init 
 int 
-Resources::PeriodicStatusCPUusage(void *user_data) {
-    auto data = (Resources *)user_data;
-    std::ifstream stat_file("/proc/stat");
-    std::string line;
-    float cpu_init;
-    unsigned long long stats[CP_STATES];
-    unsigned long long stats_all;
-    size_t substr_start = 0;
-    size_t substr_len;
-    stats_all = 0;
-    getline(stat_file, line);
-    substr_len = line.find_first_of(" ", 3);
-
-    for (unsigned i = 0; i < 4; ++i) {
-        substr_start = line.find_first_not_of(" ", substr_len);
-        substr_len = line.find_first_of(" ", substr_start);
-        stats[i] = std::stoll(line.substr(substr_start, substr_len));
-        stats_all += stats[i];
-    }
-    cpu_init = (static_cast<float>(stats_all - stats[CP_IDLE]) / static_cast<float>(stats_all)) * 100.00;
-
-    stat_file.close();
-
-    return cpu_init;
-}
-bool 
 Resources::HandleStatusCPUusage(void *user_data) {
     auto data = (Resources *) user_data;
     time_t time_; 
@@ -116,19 +84,20 @@ Resources::HandleStatusCPUusage(void *user_data) {
     size_t substr_len;
     float percent_cpu_init[TIME_COUNT]; 
     float percent_cpu = 0.00; 
-    unsigned long long stats_all = 0;
-    int time_count = 0; 
-    std::ifstream stat_file("/proc/stat");
+
     unsigned long long stats[CP_STATES];
+    unsigned long long stats_all; 
+    int time_count = 0;
+    std::ifstream stat_file("/proc/stat");
     if(stat_file.fail()) {
         LOG_DBUG("Open file state failure"); 
-        data->is_started_ = false; 
         goto out; 
     }
-    //get cpu usage init 
-        while (time_count != TIME_COUNT){
-            percent_cpu_init[time_count] = 0;
-            stats_all = 0;
+
+    while (time_count != TIME_COUNT) {
+        std::ifstream stat_file("/proc/stat");
+        percent_cpu_init[time_count] = 0; 
+            stats_all = 0; 
             getline(stat_file, line);
             substr_len = line.find_first_of(" ", 3);
 
@@ -138,21 +107,25 @@ Resources::HandleStatusCPUusage(void *user_data) {
                 stats[i] = std::stoll(line.substr(substr_start, substr_len));
                 stats_all += stats[i];
             }
-            percent_cpu_init[time_count] = (static_cast<float>(stats_all - stats[CP_IDLE]) / static_cast<float>(stats_all)) * 100.00;
-            percent_cpu += percent_cpu_init[time_count];
-            time_count++;
-            sleep(1); // 1s
-        }
-        data->percent_cpu_avg_ = static_cast<float>(percent_cpu / TIME_COUNT);
-        LOG_INFO("CPUavg in used is %0.2f during 10s", data->percent_cpu_avg_);
-
+            percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.00;
+        sleep(1); //1s
+        time_count++; 
+        stat_file.close(); 
+    } 
+    for( int i = 0; i < TIME_COUNT; ++i) {
+        percent_cpu += percent_cpu_init[i]; 
+    }
+    data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
+    LOG_INFO("CPUavg in used is %0.2f during 10s", data->percent_cpu_avg_ ); 
 
     if(data->percent_cpu_avg_ >= data->cpu_limitted_) { 
-        LOG_WARN("CPU is over high at %s. Trying restart all services dependence priority", ctime(&time_)); 
+        LOG_WARN("CPU is over high at %s", ctime(&time_)); 
+        LOG_WARN("Trying restart all services dependence priority"); 
         for (auto &itr : data->service_) {
             LOG_INFO("Restart service %d %s", itr.second.priority, itr.first.c_str()); 
             keep_alive_.RestartService(itr.first); 
-        }     
+        }   
+        ++data->count_cpu_;   
     } 
     else 
         data->count_cpu_ = 0; 
@@ -160,12 +133,10 @@ Resources::HandleStatusCPUusage(void *user_data) {
         LOG_ERRO("CPU is very high during 1 hour. Upload Log and reboot device"); 
         log_transfer_.LogTransfer(data); 
         data->count_cpu_ = 0; 
-        // reboot(LINUX_REBOOT_CMD_RESTART); 
+        reboot(LINUX_REBOOT_CMD_RESTART); 
     }
-
 out: 
     stat_file.close(); 
-    return data->is_started_;  
 }
 
 int  
@@ -224,11 +195,9 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     if(data->count_ram_ >= MAXIMUM_COUNT_RAM_TO_REBOOT) {
         LOG_WARN("RAM is not free. Trying reboot ..."); 
         data->count_ram_ = 0; 
-        LOG_INFO("==============="); 
-        // reboot(LINUX_REBOOT_CMD_RESTART);  
+        reboot(LINUX_REBOOT_CMD_RESTART);  
     }  
 }
-
 
 int
 Resources::LoadAverages(void *user_data) {
@@ -240,6 +209,47 @@ Resources::LoadAverages(void *user_data) {
         reboot(LINUX_REBOOT_CMD_RESTART);   
     }
 }
+/*
+void get_cpu_usage_init(int seconds, bool& done)
+{
+    time_t time_; 
+    int nums_of_services; 
+    time_ = time(NULL); 
+    std::string line;
+    size_t substr_start = 0;
+    size_t substr_len;
+    float percent_cpu_init[TIME_COUNT];
+    float percent_cpu = 0.00;
+    unsigned long long stats_all = 0;
+    int time_count = 0;
+    std::ifstream stat_file("/proc/stat");
+    unsigned long long stats[CP_STATES];
+    if (stat_file.fail()) {
+        LOG_DBUG("Open file state failure");
+    }
+    // get cpu usage init
+    while (time_count != TIME_COUNT) {
+        percent_cpu_init[time_count] = 0;
+        stats_all = 0;
+        getline(stat_file, line);
+        substr_len = line.find_first_of(" ", 3);
+
+        for (unsigned i = 0; i < 4; ++i) {
+            substr_start = line.find_first_not_of(" ", substr_len);
+            substr_len = line.find_first_of(" ", substr_start);
+            stats[i] = std::stoll(line.substr(substr_start, substr_len));
+            stats_all += stats[i];
+        }
+        percent_cpu_init[time_count] = (static_cast<float>(stats_all - stats[CP_IDLE]) / static_cast<float>(stats_all)) * 100.00;
+        percent_cpu += percent_cpu_init[time_count];
+        time_count++;
+        std::this_thread::sleep_for(std::chrono::seconds(1)); // sleep(1)
+    }
+    done = true;
+}
+
+*/ 
+
 
 
 

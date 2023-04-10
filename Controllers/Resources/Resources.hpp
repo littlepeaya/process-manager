@@ -14,13 +14,14 @@ important as it shows. < following loadavg of linux git >
 #include "Generic.hpp"
 #include<unistd.h> 
 #include<fstream>
+#include<thread>
 #include<string>
 #include<sys/reboot.h> 
 #include<linux/reboot.h> 
 
-#define TIME_CHECK_RAM 60*1000 // 1 minute  
-#define TIME_CHECK_LOADAVG 15*60*1000 // 15 minutes
-#define TIME_GET_CPU 1*1000 // 1s 
+#define TIME_CHECK_RAM       60*1000 // 1 minute  
+#define TIME_CHECK_LOADAVG   15*60*1000 // 15 minutes
+#define TIME_CHECK_CPU       60*1000 // 1 minutes
 
 #define CP_USER   0
 #define CP_NICE   1 
@@ -52,8 +53,7 @@ private:
     bool is_started_; 
 
     static int HandleStatusRAMIsOver(void *user_data); 
-    static int PeriodicStatusCPUusage(void *user_data); 
-    static bool HandleStatusCPUusage(void *user_data); 
+    static int HandleStatusCPUusage(void *user_data); 
     static int LoadAverages(void *user_data); 
 
     int count_ram_; 
