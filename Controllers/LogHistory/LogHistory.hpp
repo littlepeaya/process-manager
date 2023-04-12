@@ -9,7 +9,7 @@
 #include <string>
 
 #define LOG_SIZE        50 //mb 
-#define PERIODIC_UPLOAD 24*60*60*1000  // 1 day 
+#define PERIODIC_CHECK  3*60*60*1000  // 3 hour 
 
 class LogHistory {
 public: 

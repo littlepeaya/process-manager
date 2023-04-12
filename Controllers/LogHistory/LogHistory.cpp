@@ -45,17 +45,17 @@ LogHistory::Start() {
 
     is_loaded_ = true;
     }
- 
     LOG_CRIT("==========Component Log module==========="); 
     LOG_INFO("ADDRESS SERVER: %s", url_server_.c_str()); 
     LOG_INFO("PORT: %s", port_.c_str()); 
     LOG_INFO("DIR UPLOAD: %s", dir_upload_.c_str()); 
     LOG_INFO("LOG PATH: "); 
+    LOG_INFO("%s", dir_log_path_.c_str()); 
     for(auto it = service_.begin(); it != service_.end(); ++it) {
         LOG_INFO("%s", it->second.logpath.c_str()); 
     }
-    LOG_INFO("%s", dir_log_path_.c_str()); 
-    if ( time_upload_file_log_.Start(100, PERIODIC_UPLOAD) < 0) {
+    
+    if ( time_upload_file_log_.Start(100, PERIODIC_CHECK) < 0) {
         LOG_ERRO("Could not start periodic timer to start to check log");
         return -1; 
     }
@@ -71,20 +71,24 @@ LogHistory::Stop() {
 int 
 LogHistory::CheckLogSize(void *user_data) {
     auto data = (LogHistory *) user_data; 
-    std::string command; 
-    std::string log_path = data->dir_log_path_ + " "; 
+    int log_size = 0; 
+    struct stat stat_buf; 
+    stat(data->dir_log_path_.c_str(), &stat_buf); 
+    log_size = stat_buf.st_size; 
     for(auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
-        log_path += itr->second.logpath.c_str(); 
-        log_path += " "; 
+        stat(itr->second.logpath.c_str(), &stat_buf); 
+        log_size += stat_buf.st_size; 
     }
-
-    command = "du -c " + log_path + " |grep total | awk '{print $1}'; "; 
-    LOG_INFO("Execute: %s", command.c_str()); 
-    int log_size_ = std::stoi(ExecuteCommand(command.c_str())); 
-    if (log_size_ >= LOG_SIZE) {
+    if ((log_size/(1024*1024)) >= LOG_SIZE) { // convert to mb   
         LOG_WARN("Size of log is over limited. Trying push log into the server");
         data->LogTransfer(data);
-    } 
+    }
+    // periodic upload file among 1:00 a.m to 4:00 a.m
+    time_t second = GetLocalTimestamp() % 86400;
+    if (second >= 3600 && second <= 14400) {
+        LOG_INFO("push log to server periodic"); 
+        data->LogTransfer(data);
+    }
 }
 
 int 

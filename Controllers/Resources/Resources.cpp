@@ -1,7 +1,7 @@
 #include "Resources.hpp"
 
 #define MAXIMUM_COUNT_CPU_TO_REBOOT 5
-#define MAXIMUM_COUNT_RAM_TO_REBOOT 5 
+#define MAXIMUM_COUNT_RAM_TO_REBOOT 20
 
 int Resources::check_RAM_ = 0;
 int Resources::check_CPU_ = 0; 
@@ -82,7 +82,7 @@ Resources::HandleStatusCPUusage(void *user_data) {
     std::string line;
     size_t substr_start = 0;
     size_t substr_len;
-    float percent_cpu_init[TIME_COUNT]; 
+    float percent_cpu_sub[TIME_COUNT]; 
     float percent_cpu = 0.00; 
 
     unsigned long long stats[CP_STATES];
@@ -96,7 +96,7 @@ Resources::HandleStatusCPUusage(void *user_data) {
 
     while (time_count != TIME_COUNT) {
         std::ifstream stat_file("/proc/stat");
-        percent_cpu_init[time_count] = 0; 
+        percent_cpu_sub[time_count] = 0; 
             stats_all = 0; 
             getline(stat_file, line);
             substr_len = line.find_first_of(" ", 3);
@@ -107,13 +107,13 @@ Resources::HandleStatusCPUusage(void *user_data) {
                 stats[i] = std::stoll(line.substr(substr_start, substr_len));
                 stats_all += stats[i];
             }
-            percent_cpu_init[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.00;
+            percent_cpu_sub[time_count] =(static_cast<float>(stats_all - stats[CP_IDLE]) /static_cast<float>( stats_all )) * 100.00;
         sleep(1); //1s
         time_count++; 
         stat_file.close(); 
     } 
     for( int i = 0; i < TIME_COUNT; ++i) {
-        percent_cpu += percent_cpu_init[i]; 
+        percent_cpu += percent_cpu_sub[i]; 
     }
     data->percent_cpu_avg_ = static_cast<float>(percent_cpu/TIME_COUNT);   
     LOG_INFO("CPUavg in used is %0.2f during 10s", data->percent_cpu_avg_ ); 
@@ -178,12 +178,11 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
     }
     
    
-    data->free_ram_ = (static_cast<int>(data->mem_info_.mem_available + data->mem_info_.cached) / 1024); // convert to MB
+    data->free_ram_ = (static_cast<int>(data->mem_info_.mem_available ) / 1024); // convert to MB
     LOG_INFO("RAM free is %d", data->free_ram_);
-    if(data->free_ram_ >= data->ram_limmited_) {
+    if(data->free_ram_ <= data->ram_limmited_) {
         std::string command;
-        command = "sync; ";
-        command += "echo 3 > /proc/sys/vm/drop_caches ; ";
+        command = "sync; echo 3 > /proc/sys/vm/drop_caches";
         Execute(command); 
         data->LogTransfer(data);
         ++data->count_ram_;
@@ -218,7 +217,7 @@ void get_cpu_usage_init(int seconds, bool& done)
     std::string line;
     size_t substr_start = 0;
     size_t substr_len;
-    float percent_cpu_init[TIME_COUNT];
+    float percent_cpu_sub[TIME_COUNT];
     float percent_cpu = 0.00;
     unsigned long long stats_all = 0;
     int time_count = 0;
@@ -229,7 +228,7 @@ void get_cpu_usage_init(int seconds, bool& done)
     }
     // get cpu usage init
     while (time_count != TIME_COUNT) {
-        percent_cpu_init[time_count] = 0;
+        percent_cpu_sub[time_count] = 0;
         stats_all = 0;
         getline(stat_file, line);
         substr_len = line.find_first_of(" ", 3);
@@ -240,8 +239,8 @@ void get_cpu_usage_init(int seconds, bool& done)
             stats[i] = std::stoll(line.substr(substr_start, substr_len));
             stats_all += stats[i];
         }
-        percent_cpu_init[time_count] = (static_cast<float>(stats_all - stats[CP_IDLE]) / static_cast<float>(stats_all)) * 100.00;
-        percent_cpu += percent_cpu_init[time_count];
+        percent_cpu_sub[time_count] = (static_cast<float>(stats_all - stats[CP_IDLE]) / static_cast<float>(stats_all)) * 100.00;
+        percent_cpu += percent_cpu_sub[time_count];
         time_count++;
         std::this_thread::sleep_for(std::chrono::seconds(1)); // sleep(1)
     }

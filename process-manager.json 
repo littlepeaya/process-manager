@@ -1,0 +1,63 @@
+{
+        "address-server" : "https://logfile.lumi.vn",
+        "core" : 3,
+        "dirupload" : "/var/log/",
+        "log" :
+        {
+                "level" : 5,
+                "path" : "/var/log/process-manager.log"
+        },
+        "macaddr" : "00:bf:af:ce:7c:53",
+        "port" : "443",
+        "resources" :
+        {
+                "cpu" : 50,
+                "ram" : 450
+        },
+        "services" :
+        {
+                "airplay2" :
+                {
+                        "execute" : "/etc/init.d/airplay2 start",
+                        "kill" : "/etc/init.d/airplay2 stop",
+                        "pathlog" : "/var/log/debug-daemon.log",
+                        "priority" : 4
+                },
+                "audio-manager" :
+                {
+                        "execute" : "/etc/init.d/audio-manager start",
+                        "kill" : "/etc/init.d/audio-manager stop",
+                        "pathlog" : "/var/log/audio-manager.log",
+                        "priority" : 1
+                },
+                "io-manager" :
+                {
+                        "execute" : "/etc/init.d/io-manager start",
+                        "kill" : "/etc/init.d/io-manager stop",
+                        "pathlog" : "/var/log/io-manager.log",
+                        "priority" : 3
+                },
+                "media-bluez" :
+                {
+                        "execute" : "/etc/init.d/media-bluez start",
+                        "kill" : "/etc/init.d/media-bluez stop",
+                        "name" : "media-bluez",
+                        "pathlog" : "/var/log/media-bluez.log",
+                        "priority" : 5
+                },
+                "owntone" :
+                {
+                        "execute" : "/etc/init.d/owntone start",
+                        "kill" : "/etc/init.d/owntone stop",
+                        "pathlog" : "/var/log/owntone.log",
+                        "priority" : 2
+                },
+                "upgrade-manager" :
+                {
+                        "execute" : "/etc/init.d/S99upgrade-manager start",
+                        "kill" : "/etc/init.d/S99upgrade-manager stop",
+                        "pathlog" : "/var/log/upgrade-manager.log",
+                        "priority" : 6
+                }
+        }
+}

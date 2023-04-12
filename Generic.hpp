@@ -506,7 +506,6 @@ out:
 
 inline bool 
 Execute(const String& command) {
-    // LOG_INFO("Execute: %s", command.data());
     int result = system(command.c_str());
     if (WIFEXITED(result) && WEXITSTATUS(result) == EXIT_SUCCESS)
         return true;

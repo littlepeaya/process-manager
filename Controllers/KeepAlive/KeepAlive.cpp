@@ -52,19 +52,9 @@ KeepAlive::Start() {
             }
         }
     }
-    
-    proxy_ = GDBusProxyConnect(COM_AUDIO_PROCESS_BUS_NAME, COM_AUDIO_PROCESS_OBJECT_PATH, COME_AUDIO_PROCESS_CONTROLLER_INTERFACE);
-    if (proxy_ == nullptr) {
-        LOG_ERRO("Failed to create proxy");
-        return -1; 
-    }
-    g_signal_connect(proxy_, 
-                    "g-properties-changed", 
-                    G_CALLBACK(HandleKeepAlivePropertiesChanged), 
-                    this); 
-
     if (LBusNode::Server::Start(KEEPALIVE_MODULE) < 0) 
         LOG_ERRO("Error to start LBus Server"); 
+
     if(check_priodic_time_.Start(50, CHECK_PERIODIC_TIME) < 0) {
         LOG_ERRO("Error start timer"); 
         return -1; 
@@ -85,42 +75,16 @@ int KeepAlive::HandleKeepAlive(void *user_data) {
     for (auto &itr : data->service_) {
         if (itr.second.monitor) {
             command = "pidof " + itr.first;
-            if (Execute(command))
-                LOG_INFO("Service %s is active", itr.first.c_str());
-            else {
-                LOG_DBUG("Service %s is not active. Trying Start......", itr.first.c_str());
+            if (!Execute(command)) {
+                LOG_DBUG("Service %s is not active. Trying start......", itr.first.c_str());
                 data->StartService(itr.first);
                 usleep(1000);
             }
+            else 
+                LOG_INFO("Service %s is active", itr.first.c_str()); 
         }
     }
     return 0;
-}
-
-void
-KeepAlive::StartService(std::string name) {
-    std::string command; 
-    if(service_.find(name) != service_.end()) {
-        command = service_[name].execute; 
-        LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
-    } else  
-        LOG_DBUG("Cannot find service in list"); 
-}
-
-void 
-KeepAlive::StopService(std::string name) {
-    std::string command; 
-    if(service_.find(name) != service_.end()) {
-        command = service_[name].kill; 
-        LOG_DBUG("%s", ExecuteCommand(command.c_str()).c_str()); 
-    } else  
-        LOG_DBUG("Cannot find service in list"); 
-}
-
-void
-KeepAlive::RestartService(std::string name) {
-    StopService(name); 
-    StartService(name); 
 }
 
 void  
@@ -142,7 +106,7 @@ KeepAlive::HandleStopService(const LBus::Message *message, void *user_data) {
     }
     LOG_WARN("Can not find service in process-manager service"); 
     ret = "FAIL";
-    out: 
+out: 
     data->LBusNode::Server::Response(message, &ret, sizeof(&ret), [] (void *) {}); 
 }
 
@@ -165,7 +129,7 @@ KeepAlive::HandleStartService(const LBus::Message *message, void *user_data) {
     }
     LOG_DBUG("Can not find service in process-manager service"); 
     ret = "FAIL";
-    out: 
+out: 
     data->LBusNode::Server::Response(message, &ret, sizeof(&ret), [] (void *) {}); 
 }
 
@@ -191,34 +155,39 @@ KeepAlive::HandleGetListOfService(const LBus::Message *message, void *user_data)
         g_variant_builder_add(builders, "a{sv}", buil); 
     }
     data->LBusNode::Server::Response(message, &builders, sizeof(&builders), [] (void * buff) {
-        auto builders = (GVariantBuilder **)buff; 
-        g_variant_builder_unref(*builders); 
-        g_free(*builders);
-    }); 
+                                                                                auto builders = (GVariantBuilder **)buff; 
+                                                                                g_variant_builder_unref(*builders); 
+                                                                                g_free(*builders);}); 
 }
 
 void
-KeepAlive::HandleKeepAlivePropertiesChanged(GDBusProxy *proxy,
-                                            GVariant *changed_properties,
-                                            const gchar* const *invalidated_properties,
-                                            gpointer user_data) {
-    auto self = (KeepAlive *)user_data; 
-     bool boolean;
-
-    LOG_DBUG("%s, %s.", g_dbus_proxy_get_interface_name(proxy), g_variant_print(changed_properties, true));
-    
-    if (g_variant_n_children(changed_properties) > 0) {
-        if (g_variant_lookup(changed_properties, "Paired", "b", &boolean)) {
-            if (boolean == true) {
-                GVariant *reply = GDBusProxyGetProperty(self->proxy_, "MainPaired");
-                if(reply != nullptr) {
-                    LOG_ERRO("Error get changed properties"); 
-                    g_variant_unref(reply); 
-                }
-            }
-        }
-    }
+KeepAlive::StartService(std::string name) {
+    std::string command, res; 
+    if(service_.find(name) != service_.end()) {
+        command = service_[name].execute; 
+        res = ExecuteCommand(command.c_str()); 
+        LOG_DBUG("%s", res.c_str()); 
+    } else  
+        LOG_DBUG("Cannot find service in list"); 
 }
+
+void 
+KeepAlive::StopService(std::string name) {
+    std::string command, res; 
+    if(service_.find(name) != service_.end()) {
+        command = service_[name].kill; 
+        res = ExecuteCommand(command.c_str()); 
+        LOG_DBUG("%s", res.c_str()); 
+    } else  
+        LOG_DBUG("Cannot find service in list"); 
+}
+
+void
+KeepAlive::RestartService(std::string name) {
+    StopService(name); 
+    StartService(name); 
+}
+
 
 
 

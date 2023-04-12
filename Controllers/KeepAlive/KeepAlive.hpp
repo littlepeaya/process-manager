@@ -34,16 +34,10 @@ private:
     GDBusProxy *proxy_;
     std::map<std::string, Service> service_; 
     static int HandleKeepAlive(void *user_data); 
-    static GDBusInterfaceVTable handle_interface_vtable; 
-    static GDBusNodeInfo *controller_introspection_data_; 
-    static GDBusInterfaceVTable controller_interface_vtable_;  
     static void HandleGetListOfService( const LBus::Message *message, void *user_data);
     static void HandleStopService(const LBus::Message *message, void *user_data); 
     static void HandleStartService(const LBus::Message *message, void *user_data);
-    static void HandleKeepAlivePropertiesChanged(GDBusProxy *proxy,
-                                                GVariant *changed_properties,
-                                                const gchar* const *invalidated_properties,
-                                                gpointer user_data); 
+    
     Timer check_priodic_time_;
     
 };
