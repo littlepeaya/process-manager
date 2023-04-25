@@ -184,6 +184,7 @@ Resources::HandleStatusRAMIsOver(void *user_data) {
         std::string command;
         command = "sync; echo 3 > /proc/sys/vm/drop_caches";
         Execute(command); 
+        LOG_INFO("push log into server %d", data->count_ram_); 
         data->LogTransfer(data);
         ++data->count_ram_;
     } 
@@ -208,47 +209,3 @@ Resources::LoadAverages(void *user_data) {
         reboot(LINUX_REBOOT_CMD_RESTART);   
     }
 }
-/*
-void get_cpu_usage_init(int seconds, bool& done)
-{
-    time_t time_; 
-    int nums_of_services; 
-    time_ = time(NULL); 
-    std::string line;
-    size_t substr_start = 0;
-    size_t substr_len;
-    float percent_cpu_sub[TIME_COUNT];
-    float percent_cpu = 0.00;
-    unsigned long long stats_all = 0;
-    int time_count = 0;
-    std::ifstream stat_file("/proc/stat");
-    unsigned long long stats[CP_STATES];
-    if (stat_file.fail()) {
-        LOG_DBUG("Open file state failure");
-    }
-    // get cpu usage init
-    while (time_count != TIME_COUNT) {
-        percent_cpu_sub[time_count] = 0;
-        stats_all = 0;
-        getline(stat_file, line);
-        substr_len = line.find_first_of(" ", 3);
-
-        for (unsigned i = 0; i < 4; ++i) {
-            substr_start = line.find_first_not_of(" ", substr_len);
-            substr_len = line.find_first_of(" ", substr_start);
-            stats[i] = std::stoll(line.substr(substr_start, substr_len));
-            stats_all += stats[i];
-        }
-        percent_cpu_sub[time_count] = (static_cast<float>(stats_all - stats[CP_IDLE]) / static_cast<float>(stats_all)) * 100.00;
-        percent_cpu += percent_cpu_sub[time_count];
-        time_count++;
-        std::this_thread::sleep_for(std::chrono::seconds(1)); // sleep(1)
-    }
-    done = true;
-}
-
-*/ 
-
-
-
-

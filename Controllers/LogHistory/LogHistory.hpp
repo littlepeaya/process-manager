@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 
-#define LOG_SIZE        50 //mb 
+#define LOG_SIZE        5 //mb 
 #define PERIODIC_CHECK  3*60*60*1000  // 3 hour 
 
 class LogHistory {
