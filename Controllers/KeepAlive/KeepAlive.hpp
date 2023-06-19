@@ -13,7 +13,7 @@
 #include "Libraries/Timer/Timer.hpp"
 #include "Libraries/Utils/Vector.hpp"
 
-#define CHECK_PERIODIC_TIME  15*1000 //15s 
+#define CHECK_PERIODIC_TIME  45*1000 //15s 
 
 
 class KeepAlive : public LBusNode::Server, public LBusNode::Client {

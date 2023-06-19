@@ -1,6 +1,6 @@
 /*
 total memory in used formula : = +total + shmem - free - buffer - cached - sreclaimable  
-load avagers is help to know process is running and how much processed is in message queue. But it is not im
+load avagers is help to know process is running and how much processed is in message queue. But it is not
 important as it shows. < following loadavg of linux git > 
 */
 
@@ -18,6 +18,7 @@ important as it shows. < following loadavg of linux git >
 #include<string>
 #include<sys/reboot.h> 
 #include<linux/reboot.h> 
+
 
 #define TIME_CHECK_RAM       60*1000 // 1 minute  
 #define TIME_CHECK_LOADAVG   15*60*1000 // 15 minutes
@@ -39,7 +40,7 @@ typedef struct {
     unsigned long long  cached;
 } MemoryStatus; 
 
-class Resources : public LogHistory {
+class Resources : public LogHistory{
 public: 
     Resources(); 
     ~Resources();
@@ -48,19 +49,21 @@ public:
     void Stop();
 
 private: 
-    static int check_RAM_;
-    static int check_CPU_;
-    bool is_started_; 
-
     static int HandleStatusRAMIsOver(void *user_data); 
     static int HandleStatusCPUusage(void *user_data); 
     static int LoadAverages(void *user_data); 
 
-    int count_ram_; 
+    static int check_RAM_; 
+    static int check_CPU_;  
+    std::string file_cpu_; 
+    std::string file_ram_; 
+    int count_ram_;                                
     int count_cpu_; 
     int count_; 
     int free_ram_; 
     int core_; 
+    int data_cpu_;
+    int data_ram_;
     float percent_cpu_avg_; 
     Timer timer_check_RAM_; //important 
     Timer timer_check_CPU_; //important 

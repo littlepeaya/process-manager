@@ -9,7 +9,7 @@
 #include <string>
 
 #define LOG_SIZE        5 //mb 
-#define PERIODIC_CHECK  3*60*60*1000  // 3 hour 
+#define PERIODIC_CHECK  1*60*60*1000  // 1 hour 
 
 class LogHistory {
 public: 
@@ -25,7 +25,6 @@ private:
     std::string url_server_; 
     std::map<std::string, Service> service_; 
     std::string dir_upload_; 
-    unsigned int log_size_;
     std::string port_; 
     bool is_loaded_; 
     

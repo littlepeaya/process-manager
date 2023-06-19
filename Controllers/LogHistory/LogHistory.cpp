@@ -4,7 +4,6 @@ pthread_mutex_t LogHistory::log_transfer_mutex_ = PTHREAD_MUTEX_INITIALIZER;
 
 LogHistory::LogHistory() : 
                         dir_log_path_(), 
-                        log_size_(0), 
                         url_server_(), 
                         dir_upload_(), 
                         port_(), 
@@ -79,13 +78,13 @@ LogHistory::CheckLogSize(void *user_data) {
         stat(itr->second.logpath.c_str(), &stat_buf); 
         log_size += stat_buf.st_size; 
     }
-    if ((log_size/(1024*1024)) >= LOG_SIZE) { // convert to mb   
+    if ((log_size/(1024*1024)) >= LOG_SIZE ) { // convert to mb   
         LOG_WARN("Size of log is over limited. Trying push log into the server");
         data->LogTransfer(data);
     }
-    // periodic upload file among 1:00 a.m to 4:00 a.m
+    // periodic upload file among 1:00 a.m to 2:00 a.m
     time_t second = GetLocalTimestamp() % 86400;
-    if (second >= 3600 && second <= 14400) {
+    if (second >= 3600 && second <= 7200) {
         LOG_INFO("push log to server periodic"); 
         data->LogTransfer(data);
     }
@@ -94,10 +93,10 @@ LogHistory::CheckLogSize(void *user_data) {
 int 
 LogHistory::LogTransfer(void *user_data) {
     auto data = (LogHistory *)user_data; 
-    // load file config 
+    // load file config     
     if(!data->is_loaded_) {
-        auto config = JsonConfiguration::GetInstance()->Read();
-        data->url_server_ = config["address-server"].asString();  
+        auto config = JsonConfiguration::GetInstance()->Read();     
+        data->url_server_ = config["address-server"].asString();          
         data->port_ = config["port"].asString(); 
         data->dir_upload_ = config["dirupload"].asString(); 
         data->dir_log_path_ = config["log"]["path"].asString(); 
@@ -106,7 +105,7 @@ LogHistory::LogTransfer(void *user_data) {
         for(auto &name : config["services"].getMemberNames()) {
             ser.logpath = config["services"][name]["pathlog"].asString(); 
             ser.priority = config["services"][name]["priority"].asInt(); 
-            ser.execute = config["services"][name]["execute"].asString(); 
+            ser.execute = config["services"][name]["execute"].asString();            
             ser.kill = config["services"][name]["kill"].asString(); 
 
             service_.insert(std::pair<std::string, Service> (name,ser)); 
@@ -130,11 +129,7 @@ LogHistory::LogTransfer(void *user_data) {
     dir_path = (char *)malloc((data->dir_upload_).length() + uploadFolder.length() + 1); 
     std::strcpy(dir_path, data->dir_upload_.c_str()); 
     std::strcat(dir_path, uploadFolder.c_str()); 
-    std::string log_path = data->dir_log_path_ + " ";
-    for(auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
-        log_path += itr->second.logpath.c_str(); 
-        log_path += " "; 
-    } 
+    std::string log_path = data->dir_upload_+ "*.log";
     command = "tar -cvf " + std::string(dir_path) + ".tar" + " "+ log_path; 
     LOG_INFO("Execute: %s", command.c_str()); 
     if (!Execute(command)) 
@@ -152,7 +147,6 @@ LogHistory::LogTransfer(void *user_data) {
                 CURLFORM_COPYNAME, "file",
                 CURLFORM_FILE, dir_upload.c_str(), 
                 CURLFORM_END); 
-
     if (curl) {
         headerlist = curl_slist_append(headerlist, buf); 
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -181,17 +175,18 @@ clean:
     curl_global_cleanup();
 
     command.clear();
-    Execute("rm -rf " + std::string(dir_path));
+    // rmdir(dir_path); 
+    Execute("rm -rf " + std::string(dir_path));                                                                                                                                                                                                                                                                                                                  
     remove(dir_upload.c_str());
-    for( auto itr = data->service_.begin(); itr != data->service_.end() ; ++itr) {
-        fclose(fopen((itr->second.logpath).c_str(), "w"));
+    for( auto itr = data->service_.begin(); itr != data->service_.end(); ++itr) {
+        fclose(fopen((itr->second.logpath).c_str(), "w")); 
         LOG_INFO("Clean %s", itr->second.logpath.c_str());
         usleep(10);
     }
     fclose(fopen((data->dir_log_path_).c_str(), "w"));
         LOG_INFO("Clean %s", data->dir_log_path_.c_str());
-
-    free(dir_path);
+                                                                                                                  
+    free(dir_path); 
     pthread_mutex_unlock(&log_transfer_mutex_); 
 }
 
